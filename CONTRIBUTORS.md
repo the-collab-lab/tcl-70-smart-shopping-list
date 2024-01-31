@@ -7,6 +7,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 ## Cohort Participants
 
 - [Leon Chung](https://github.com/chungleee) 🤤
+- [Kamili Mayroo](https://github.com/MiliMade) 💃
 
 ## Mentors
 
