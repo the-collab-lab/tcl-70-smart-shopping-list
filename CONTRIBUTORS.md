@@ -15,3 +15,5 @@ Add yourself as a contributor to this project as a Markdown link that links your
 - [Lyle Schemmerling](https://github.com/lyleschemmerling) 🐶
 
 ## Code of Conduct Contacts
+
+- [Stacie](https://github.com/stacietaylorcima) 🌈
