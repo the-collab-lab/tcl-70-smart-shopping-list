@@ -11,7 +11,7 @@ The `firebase.js` file contains all of the functions that communicate with your 
 This function adds a new user to the database on their initial sign-in.
 
 | Parameter | Type     | Description                                          |
-| --------- | -------- | ---------------------------------------------------- |
+|-----------|----------|------------------------------------------------------|
 | `user`    | `object` | The user object returned by Firebase Authentication. |
 
 ### `createList`
@@ -19,7 +19,7 @@ This function adds a new user to the database on their initial sign-in.
 This function takes user-provided data and uses it to create a new list in the Firestore database.
 
 | Parameter   | Type     | Description                                              |
-| ----------- | -------- | -------------------------------------------------------- |
+|-------------|----------|----------------------------------------------------------|
 | `userId`    | `string` | The user ID of the current user (the owner of the list). |
 | `userEmail` | `string` | The email of the current user (the owner of the list).   |
 | `listName`  | `string` | The name of the list.                                    |
@@ -29,7 +29,7 @@ This function takes user-provided data and uses it to create a new list in the F
 This function takes the path to a list, the owner's id, and the user to be added's email and shares the list with that user if they exist in the database and if the current user is the owner of the list.
 
 | Parameter        | Type     | Description                                               |
-| ---------------- | -------- | --------------------------------------------------------- |
+|------------------|----------|-----------------------------------------------------------|
 | `listPath`       | `string` | The Firestore path of the list to be shared.              |
 | `currentUserId`  | `string` | The user ID of the current user (the owner of the list).  |
 | `recipientEmail` | `string` | The email of the user with whom the list is to be shared. |
@@ -39,7 +39,7 @@ This function takes the path to a list, the owner's id, and the user to be added
 This function takes user-provided data and uses it to create a new item in the Firestore database.
 
 | Parameter               | Type     | Description                                                                              |
-| ----------------------- | -------- | ---------------------------------------------------------------------------------------- |
+|-------------------------|----------|------------------------------------------------------------------------------------------|
 | `listPath`              | `string` | The Firestore path of the list to which the item will be added.                          |
 | `itemName`              | `string` | The name of the item.                                                                    |
 | `daysUntilNextPurchase` | `number` | The number of days until the user anticipates they will need to purchase the item again. |
