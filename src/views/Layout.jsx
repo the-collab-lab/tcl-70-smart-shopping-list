@@ -13,12 +13,21 @@ import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
  */
 
 export function Layout() {
-	console.log('hi');
+	const { user } = useAuth();
+
 	return (
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
 					<h1>Smart shopping list</h1>
+					{!!user ? (
+						<span>
+							<p>Signed in as {auth.name}</p>
+							<SignOutButton />
+						</span>
+					) : (
+						<SignInButton />
+					)}
 				</header>
 				<main className="Layout-main">
 					<Outlet />
