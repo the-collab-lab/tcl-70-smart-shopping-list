@@ -13,6 +13,7 @@ import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
  */
 
 export function Layout() {
+	console.log('hi');
 	return (
 		<>
 			<div className="Layout">
