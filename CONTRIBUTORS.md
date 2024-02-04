@@ -9,6 +9,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 - [Leon Chung](https://github.com/chungleee) 🤤
 - [Kamili Mayroo](https://github.com/MiliMade) 💃
 - [Amanda Guan](https://github.com/amandaguan-ag) 🥏
+- [Grace Lee](https://github.com/g-lee2) 🥹
 
 ## Mentors
 
