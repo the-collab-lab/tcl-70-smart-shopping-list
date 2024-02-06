@@ -5,7 +5,7 @@ import { getAuth } from 'firebase/auth';
 // Your web app's Firebase configuration
 const firebaseConfig = {
 	apiKey: 'AIzaSyAP-AdidYHRKJNfHIKpDlvasLzSDLSKiF0',
-	authDomain: 'tcl-70-smart-shopping-list.firebaseapp.com',
+	authDomain: 'tcl-70-smart-shopping-list.web.app',
 	projectId: 'tcl-70-smart-shopping-list',
 	storageBucket: 'tcl-70-smart-shopping-list.appspot.com',
 	messagingSenderId: '769899901278',
