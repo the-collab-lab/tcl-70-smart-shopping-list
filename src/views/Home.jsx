@@ -11,7 +11,9 @@ export function Home({ data, setListPath }) {
 			<ul>
 				{/* Renders the `lists` array so we can see which lists the user has access to.  */}
 				{data.map((list) => {
-					return <SingleList name={list.name} path={list.path} />;
+					return (
+						<SingleList key={list.name} name={list.name} path={list.path} />
+					);
 				})}
 			</ul>
 		</div>
