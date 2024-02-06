@@ -4,8 +4,8 @@
 		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
 		"rewrites": [
 			{
-				"source": "/__/**",
-				"destination": "/__/"
+				"source": "/__/auth/handler",
+				"destination": "https://tcl-70-smart-shopping-list.firebaseapp.com/__/auth/handler"
 			},
 			{
 				"source": "**",
