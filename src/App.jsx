@@ -21,7 +21,7 @@ export function App() {
 		'tcl-shopping-list-path',
 		null,
 		{
-			/* use "MyvBY6DUacb6kpGB6wtE1v5QZjF2/test-list" to render list */
+			/* Replace null with the string "MyvBY6DUacb6kpGB6wtE1v5QZjF2/test-list" to render items in test-list */
 		},
 	);
 
