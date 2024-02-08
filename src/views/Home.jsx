@@ -14,7 +14,7 @@ export function Home({ data, setListPath }) {
 						<SingleList
 							key={list.name}
 							name={list.path}
-							path={list.name / list.path}
+							path={list.name + '/' + list.path}
 							setListPath={setListPath}
 						/>
 					);
