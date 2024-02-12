@@ -20,6 +20,10 @@ export function Home({ data, setListPath }) {
 					);
 				})}
 			</ul>
+			<form>
+				<label htmlFor="shopping-list-name">Enter shopping list name:</label>
+				<input type="text" name="shopping-list-name" id="shopping-list-name" />
+			</form>
 		</div>
 	);
 }
