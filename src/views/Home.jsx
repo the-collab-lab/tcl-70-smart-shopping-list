@@ -4,14 +4,12 @@ import { useState } from 'react';
 import { createList } from '../api/firebase';
 
 export function Home({ data, setListPath, user }) {
-	console.log(user);
-
 	const [shoppingListName, setShoppingListName] = useState('');
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const { uid, email } = user;
-		console.log(uid, email);
+
 		createList(uid, email, shoppingListName);
 	};
 
