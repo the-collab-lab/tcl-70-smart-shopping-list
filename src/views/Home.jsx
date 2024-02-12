@@ -10,8 +10,9 @@ export function Home({ data, setListPath, user }) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const { userId, email } = user;
-		// createList(userId, email, shoppingListName)
+		const { uid, email } = user;
+		console.log(uid, email);
+		createList(uid, email, shoppingListName);
 	};
 
 	const handleOnChange = (event) => {
