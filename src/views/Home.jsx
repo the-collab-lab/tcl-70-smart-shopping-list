@@ -43,7 +43,15 @@ export function Home({ data, setListPath }) {
 					value={shoppingListName}
 				/>
 				<p>{shoppingListName}</p>
-				<button onClick={handleSubmit} type="submit">
+				<button
+					onKeyDown={(event) => {
+						if (event.key === 'Enter') {
+							console.log('submitted');
+						}
+					}}
+					onClick={handleSubmit}
+					type="submit"
+				>
 					Submit
 				</button>
 			</form>
