@@ -44,7 +44,6 @@ export function Home({ data, setListPath, user }) {
 					onChange={handleOnChange}
 					value={shoppingListName}
 				/>
-				<p>{shoppingListName}</p>
 				<button
 					onKeyDown={(event) => {
 						if (event.key === 'Enter') {
@@ -54,7 +53,7 @@ export function Home({ data, setListPath, user }) {
 					onClick={handleSubmit}
 					type="submit"
 				>
-					Submit
+					Create list
 				</button>
 			</form>
 		</div>
