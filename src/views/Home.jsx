@@ -1,14 +1,17 @@
 import './Home.css';
 import { SingleList } from '../components/SingleList';
 import { useState } from 'react';
+import { createList } from '../api/firebase';
 
-export function Home({ data, setListPath }) {
+export function Home({ data, setListPath, user }) {
+	console.log(user);
+
 	const [shoppingListName, setShoppingListName] = useState('');
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-
-		console.log('shopping list name: ', shoppingListName);
+		const { userId, email } = user;
+		// createList(userId, email, shoppingListName)
 	};
 
 	const handleOnChange = (event) => {
