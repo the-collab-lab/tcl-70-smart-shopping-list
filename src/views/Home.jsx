@@ -6,11 +6,24 @@ import { createList } from '../api/firebase';
 export function Home({ data, setListPath, user }) {
 	const [shoppingListName, setShoppingListName] = useState('');
 
+	console.log('data: ', data);
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const { uid, email } = user;
 
+		const names = data.map((list) => {
+			return list.name;
+		});
+
+		if (names.includes(shoppingListName)) {
+			alert('name should be unique');
+
+			return;
+		}
+
 		createList(uid, email, shoppingListName);
+		alert('created');
 	};
 
 	const handleOnChange = (event) => {
@@ -28,8 +41,10 @@ export function Home({ data, setListPath, user }) {
 					return (
 						<SingleList
 							key={list.name}
-							name={list.path}
-							path={list.name + '/' + list.path}
+							name={list.name}
+							path={list.path}
+							// name={list.path}
+							// path={list.name + '/' + list.path}
 							setListPath={setListPath}
 						/>
 					);
