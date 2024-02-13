@@ -45,11 +45,6 @@ export function ManageList({ listPath }) {
 			<p>
 				Hello from the <code>/manage-list</code> page!
 			</p>
-			{/* {submitted=="added" ? (
-				<span>Your item was added!</span>
-			) : (
-				<span>Your item wasn't added!</span>
-			)} */}
 			{submitted === 'added' && <span>Your item was added!</span>}
 			{submitted === 'failed' && <span>Your item was added!</span>}
 
