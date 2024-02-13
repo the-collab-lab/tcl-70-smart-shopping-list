@@ -1,11 +1,12 @@
 import './Home.css';
 import { SingleList } from '../components/SingleList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createList } from '../api/firebase';
+import { useNavigate } from 'react-router-dom';
 
 export function Home({ data, setListPath, user }) {
 	const [shoppingListName, setShoppingListName] = useState('');
-
+	const navigate = useNavigate();
 	console.log('data: ', data);
 
 	const handleSubmit = (event) => {
@@ -24,7 +25,13 @@ export function Home({ data, setListPath, user }) {
 
 		createList(uid, email, shoppingListName);
 		alert('created');
+		navigate('/list');
 	};
+
+	useEffect(() => {
+		const newestList = data[data.length - 1];
+		if (newestList) setListPath(newestList.path);
+	}, [data]);
 
 	const handleOnChange = (event) => {
 		setShoppingListName(event.target.value);
