@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 export function Home({ data, setListPath, user }) {
 	const [shoppingListName, setShoppingListName] = useState('');
 	const navigate = useNavigate();
-	console.log('data: ', data);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -50,8 +49,6 @@ export function Home({ data, setListPath, user }) {
 							key={list.name}
 							name={list.name}
 							path={list.path}
-							// name={list.path}
-							// path={list.name + '/' + list.path}
 							setListPath={setListPath}
 						/>
 					);
@@ -66,15 +63,7 @@ export function Home({ data, setListPath, user }) {
 					onChange={handleOnChange}
 					value={shoppingListName}
 				/>
-				<button
-					onKeyDown={(event) => {
-						if (event.key === 'Enter') {
-							console.log('submitted');
-						}
-					}}
-					onClick={handleSubmit}
-					type="submit"
-				>
+				<button onClick={handleSubmit} type="submit">
 					Create list
 				</button>
 			</form>
