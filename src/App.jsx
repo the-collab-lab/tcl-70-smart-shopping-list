@@ -20,9 +20,6 @@ export function App() {
 	const [listPath, setListPath] = useStateWithStorage(
 		'tcl-shopping-list-path',
 		null,
-		{
-			/* Replace null with the string "MyvBY6DUacb6kpGB6wtE1v5QZjF2/test-list" to render items in test-list */
-		},
 	);
 
 	/**
