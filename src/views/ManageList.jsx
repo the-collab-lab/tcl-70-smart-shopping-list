@@ -25,7 +25,7 @@ export function ManageList({ listPath }) {
 				nextPurchasedDate = 30;
 				break;
 			default:
-				console.log('Unrecognized selecton');
+				console.log('Unrecognized selection');
 				return;
 		}
 		try {
@@ -46,26 +46,22 @@ export function ManageList({ listPath }) {
 				Hello from the <code>/manage-list</code> page!
 			</p>
 			{submitted === 'added' && <span>Your item was added!</span>}
-			{submitted === 'failed' && <span>Your item was added!</span>}
-
+			{submitted === 'failed' && <span>Your item wasn't added!</span>}
 			<form onSubmit={handleSubmit}>
-				<label>
-					Item name
-					<input
-						type="text"
-						placeholder="Item Name"
-						name="name"
-						onChange={handleChange}
-					/>
-				</label>
-				<label>
-					Purchase urgency
-					<select name="urgency" onChange={handleChange}>
-						<option value="soon">Soon</option>
-						<option value="kindOfSoon">Kind of Soon</option>
-						<option value="notSoon">Not soon</option>
-					</select>
-				</label>
+				<label htmlFor="itemName">Item name</label>
+				<input
+					id="itemName"
+					type="text"
+					placeholder="Item Name"
+					name="name"
+					onChange={handleChange}
+				/>
+				<label htmlFor="purchaseUrgency">Purchase urgency</label>
+				<select id="purchaseUrgency" name="urgency" onChange={handleChange}>
+					<option value="soon">Soon</option>
+					<option value="kindOfSoon">Kind of Soon</option>
+					<option value="notSoon">Not soon</option>
+				</select>
 				<button type="submit" value="Submit">
 					Submit
 				</button>
