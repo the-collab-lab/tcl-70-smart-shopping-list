@@ -1,39 +1,48 @@
 import './Home.css';
 import { SingleList } from '../components/SingleList';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
 import { useNavigate } from 'react-router-dom';
 
-export function Home({ data, setListPath, user }) {
+export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
+	const [notificationMessage, setNotificationMessage] = useState('');
 	const navigate = useNavigate();
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const { uid, email } = user;
-
-		const names = data.map((list) => {
-			return list.name;
-		});
-
-		if (names.includes(shoppingListName)) {
-			alert('name should be unique');
-
-			return;
-		}
-
-		createList(uid, email, shoppingListName);
-		alert('created');
-		navigate('/list');
-	};
+	const previousDataRef = useRef(data);
 
 	useEffect(() => {
 		const newestList = data[data.length - 1];
-		if (newestList) setListPath(newestList.path);
-	}, [data]);
+		setListPath(newestList?.path);
+
+		if (previousDataRef.current !== data) {
+			setTimeout(() => {
+				navigate('/list');
+			}, 3000);
+		}
+	}, [data, setListPath]);
 
 	const handleOnChange = (event) => {
 		setShoppingListName(event.target.value);
+	};
+
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		try {
+			const names = data.map((list) => {
+				return list.name;
+			});
+
+			if (names.includes(shoppingListName)) {
+				throw new Error('Name should be unique');
+			}
+
+			await createList(userId, userEmail, shoppingListName);
+			setShoppingListName('');
+			setNotificationMessage(`${shoppingListName} is added to the list!`);
+		} catch (error) {
+			setNotificationMessage(error.message);
+			console.log('submit error: ', error);
+		}
 	};
 
 	return (
@@ -54,19 +63,24 @@ export function Home({ data, setListPath, user }) {
 					);
 				})}
 			</ul>
-			<form>
-				<label htmlFor="shopping-list-name">Enter shopping list name:</label>
-				<input
-					type="text"
-					name="shopping-list-name"
-					id="shopping-list-name"
-					onChange={handleOnChange}
-					value={shoppingListName}
-				/>
-				<button onClick={handleSubmit} type="submit">
-					Create list
-				</button>
-			</form>
+			{notificationMessage && <p>{notificationMessage}</p>}
+			{userId && userEmail ? (
+				<form>
+					<label htmlFor="shopping-list-name">Enter shopping list name:</label>
+					<input
+						type="text"
+						name="shopping-list-name"
+						id="shopping-list-name"
+						onChange={handleOnChange}
+						value={shoppingListName}
+					/>
+					<button onClick={handleSubmit} type="submit">
+						Create list
+					</button>
+				</form>
+			) : (
+				<p>Please log in</p>
+			)}
 		</div>
 	);
 }
