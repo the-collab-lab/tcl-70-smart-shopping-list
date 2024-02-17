@@ -9,13 +9,13 @@ export function Home({ data, setListPath, userEmail, userId }) {
 	const [notificationMessage, setNotificationMessage] = useState('');
 	const navigate = useNavigate();
 	const previousDataRef = useRef([]);
-	previousDataRef.current = data;
 
 	useEffect(() => {
 		const newestList = data[data.length - 1];
 		setListPath(newestList?.path);
 
 		if (previousDataRef.current.length === 0) {
+			previousDataRef.current = data;
 			return;
 		}
 
@@ -26,7 +26,7 @@ export function Home({ data, setListPath, userEmail, userId }) {
 		return () => {
 			previousDataRef.current = data;
 		};
-	}, [data, setListPath]);
+	}, [data.length]);
 
 	const handleOnChange = (event) => {
 		setShoppingListName(event.target.value);
