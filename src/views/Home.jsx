@@ -14,7 +14,6 @@ export function Home({ data, setListPath, userEmail, userId }) {
 	useEffect(() => {
 		const newestList = data[data.length - 1];
 		setListPath(newestList?.path);
-		console.log('prev data: ', previousDataRef.current.length);
 
 		if (previousDataRef.current.length === 0) {
 			return;
@@ -28,17 +27,6 @@ export function Home({ data, setListPath, userEmail, userId }) {
 			previousDataRef.current = data;
 		};
 	}, [data, setListPath]);
-
-	// useEffect(() => {
-	// 	const newestList = data[data.length - 1];
-	// 	setListPath(newestList?.path);
-
-	// 	if (previousDataRef.current !== data) {
-	// 		setTimeout(() => {
-	// 			navigate('/list');
-	// 		}, 3000);
-	// 	}
-	// }, [data, setListPath]);
 
 	const handleOnChange = (event) => {
 		setShoppingListName(event.target.value);
