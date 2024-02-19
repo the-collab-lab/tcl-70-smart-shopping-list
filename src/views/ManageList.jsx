@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { addItem } from '../api';
 
 export function ManageList({ listPath }) {
-	const [item, setItem] = useState({ name: '', urgency: '' });
+	const [item, setItem] = useState({ name: '', urgency: 'soon' });
 	const [submitted, setSubmitted] = useState();
 
 	const handleChange = (e) => {
