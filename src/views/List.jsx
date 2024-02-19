@@ -3,15 +3,26 @@ import { ListItem } from '../components';
 
 export function List({ data }) {
 	const [searchTerm, setSearchTerm] = useState('');
+	const [filteredData, setFilteredData] = useState(data);
 
-	const handleChange = (e) => {
-		setSearchTerm(e.target.value);
-		console.log('Changed!');
+	function searchItem(list, listItem) {
+		const lowerCaseListItem = listItem.toLowerCase().replace(/\s+/g, '');
+		const filteredList = list.filter((item) =>
+			item.name.toLowerCase().replace(/\s+/g, '').includes(lowerCaseListItem),
+		);
+		return filteredList;
+	}
+
+	console.log(data);
+	const handleChange = (e, data) => {
+		const searchTermLocal = e.target.value;
+		setSearchTerm(searchTermLocal);
+		const filteredResults = searchItem(data, searchTermLocal);
+		setFilteredData(filteredResults);
 	};
 
 	const clearSearch = () => {
 		setSearchTerm('');
-		console.log('CLEARED!');
 	};
 
 	return (
@@ -36,7 +47,7 @@ export function List({ data }) {
 			</form>
 			<ul>
 				{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
-				{data.map((item) => {
+				{filteredData.map((item) => {
 					return <ListItem key={item.id} name={item.name} />;
 				})}
 			</ul>
