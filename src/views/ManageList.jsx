@@ -4,6 +4,11 @@ import { addItem } from '../api';
 export function ManageList({ listPath }) {
 	const [item, setItem] = useState({ name: '', urgency: 'soon' });
 	const [submitted, setSubmitted] = useState();
+	const [emailInvite, setEmailInvite] = useState('');
+
+	const handleEmailInviteChange = (e) => {
+		setEmailInvite(e.target.value);
+	};
 
 	const handleChange = (e) => {
 		setItem({ ...item, [e.target.name]: e.target.value });
@@ -65,6 +70,18 @@ export function ManageList({ listPath }) {
 				<button type="submit" value="Submit">
 					Submit
 				</button>
+			</form>
+
+			<form>
+				<label htmlFor="emailInvite">Email invite</label>
+				<input
+					id="emailInvite"
+					placeholder="Type user email to invite"
+					name="emailInvite"
+					type="email"
+					onChange={handleEmailInviteChange}
+				/>
+				<button>Submit</button>
 			</form>
 		</div>
 	);
