@@ -5,23 +5,20 @@ export function List({ data }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
 
-	// function searchItem(listItem) {
-	// 	const lowerCaseListItem = listItem.toLowerCase().replace(/\s+/g, '');
-	// 	const filteredList = data.filter((item) =>
-	// 		item.name.toLowerCase().replace(/\s+/g, '').includes(lowerCaseListItem),
-	// 	);
-	// 	return filteredList;
-	// }
-
 	const handleChange = (e) => {
 		const searchTermLocal = e.target.value;
+		//Sets searchTerm to the input value
 		setSearchTerm(searchTermLocal);
 	};
 
+	//useEffect triggered with change in searchTerm or data
 	useEffect(() => {
+		//Debounce function
 		const getItem = setTimeout(() => {
 			function searchItem(listItem) {
+				//Changes input to lowercase and remove spaces
 				const lowerCaseListItem = listItem.toLowerCase().replace(/\s+/g, '');
+				//Filters through all items to return an array of items that match input
 				const filteredList = data.filter((item) =>
 					item.name
 						.toLowerCase()
@@ -30,13 +27,17 @@ export function List({ data }) {
 				);
 				return filteredList;
 			}
+
+			//Finds and returns array of list items that match the input value (searchTerm)
 			const filteredResults = searchItem(searchTerm);
+			//Sets filteredData to filteredResults data
 			setFilteredData(filteredResults);
-			console.log('debounce');
 		}, 300);
+		//Clears the timer set with the setTimeout()
 		return () => clearTimeout(getItem);
 	}, [searchTerm, data]);
 
+	//Clears input field
 	const clearSearch = () => {
 		setSearchTerm('');
 	};
@@ -47,7 +48,7 @@ export function List({ data }) {
 				Hello from the <code>/list</code> page!
 			</p>
 			<form>
-				<label htmlFor="itemSearch">Search:</label>
+				<label htmlFor="itemSearch">Search for item:</label>
 				<input
 					type="text"
 					id="itemSearch"
