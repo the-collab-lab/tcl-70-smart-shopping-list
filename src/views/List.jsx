@@ -1,25 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ListItem } from '../components';
 
 export function List({ data }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
 
-	function searchItem(listItem) {
-		const lowerCaseListItem = listItem.toLowerCase().replace(/\s+/g, '');
-		const filteredList = data.filter((item) =>
-			item.name.toLowerCase().replace(/\s+/g, '').includes(lowerCaseListItem),
-		);
-		return filteredList;
-	}
+	// function searchItem(listItem) {
+	// 	const lowerCaseListItem = listItem.toLowerCase().replace(/\s+/g, '');
+	// 	const filteredList = data.filter((item) =>
+	// 		item.name.toLowerCase().replace(/\s+/g, '').includes(lowerCaseListItem),
+	// 	);
+	// 	return filteredList;
+	// }
 
-	console.log(data);
 	const handleChange = (e) => {
 		const searchTermLocal = e.target.value;
 		setSearchTerm(searchTermLocal);
-		const filteredResults = searchItem(searchTermLocal);
-		setFilteredData(filteredResults);
 	};
+
+	useEffect(() => {
+		const getItem = setTimeout(() => {
+			function searchItem(listItem) {
+				const lowerCaseListItem = listItem.toLowerCase().replace(/\s+/g, '');
+				const filteredList = data.filter((item) =>
+					item.name
+						.toLowerCase()
+						.replace(/\s+/g, '')
+						.includes(lowerCaseListItem),
+				);
+				return filteredList;
+			}
+			const filteredResults = searchItem(searchTerm);
+			setFilteredData(filteredResults);
+			console.log('debounce');
+		}, 300);
+		return () => clearTimeout(getItem);
+	}, [searchTerm, data]);
 
 	const clearSearch = () => {
 		setSearchTerm('');
