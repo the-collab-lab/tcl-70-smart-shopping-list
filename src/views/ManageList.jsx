@@ -15,11 +15,10 @@ export function ManageList({ listPath, userId }) {
 		e.preventDefault();
 		try {
 			await shareList(listPath, userId, emailInvite);
-
-			setEmailExists('exists');
+			setEmailExists('Your list was shared!');
 		} catch (err) {
 			console.log(err);
-			setEmailExists('emailNotFound');
+			setEmailExists(err.message);
 		}
 	};
 
@@ -84,10 +83,7 @@ export function ManageList({ listPath, userId }) {
 					Submit
 				</button>
 			</form>
-			{emailExists === 'exists' && (
-				<span>The list was successfully shared!</span>
-			)}
-			{emailExists === 'emailNotFound' && <span>The email was not found!</span>}
+			{emailExists}
 			<form onSubmit={handleEmailInviteSubmit}>
 				<label htmlFor="emailInvite">Email invite</label>
 				<input
