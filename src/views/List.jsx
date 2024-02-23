@@ -15,21 +15,13 @@ export function List({ data }) {
 	useEffect(() => {
 		//Debounce function
 		const getItem = setTimeout(() => {
-			function searchItem(listItem) {
-				//Changes input to lowercase and remove spaces
-				const lowerCaseListItem = listItem.toLowerCase().replace(/\s+/g, '');
-				//Filters through all items to return an array of items that match input
-				const filteredList = data.filter((item) =>
-					item.name
-						.toLowerCase()
-						.replace(/\s+/g, '')
-						.includes(lowerCaseListItem),
-				);
-				return filteredList;
-			}
-
-			//Finds and returns array of list items that match the input value (searchTerm)
-			const filteredResults = searchItem(searchTerm);
+			//Filters through all items to return an array of items that match input
+			const filteredResults = data.filter((item) =>
+				item.name
+					.toLowerCase()
+					.replace(/\s+/g, '')
+					.includes(searchTerm.toLowerCase().replace(/\s+/g, '')),
+			);
 			//Sets filteredData to filteredResults data
 			setFilteredData(filteredResults);
 		}, 300);
