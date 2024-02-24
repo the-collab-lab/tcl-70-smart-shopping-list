@@ -16,6 +16,7 @@ export function ManageList({ listPath, userId }) {
 		try {
 			await shareList(listPath, userId, emailInvite);
 			setEmailExists('Your list was shared!');
+			setEmailInvite('');
 		} catch (err) {
 			console.log(err);
 			setEmailExists(err.message);
@@ -92,6 +93,7 @@ export function ManageList({ listPath, userId }) {
 					name="emailInvite"
 					type="email"
 					onChange={handleEmailInviteChange}
+					value={emailInvite}
 				/>
 				<button>Submit</button>
 			</form>
