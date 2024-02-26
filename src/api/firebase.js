@@ -7,6 +7,7 @@ import {
 	onSnapshot,
 	updateDoc,
 	addDoc,
+	increment,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
@@ -183,6 +184,7 @@ export async function updateItem(listPath, itemId) {
 
 	await updateDoc(listCollectionRef, {
 		dateLastPurchased: new Date(),
+		totalPurchases: increment(1),
 	});
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function
