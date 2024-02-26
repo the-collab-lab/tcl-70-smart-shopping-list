@@ -1,11 +1,13 @@
 import './ListItem.css';
 import { useState } from 'react';
+import { updateItem } from '../api/firebase';
 
-export function ListItem({ name }) {
+export function ListItem({ name, listPath, itemId }) {
 	const [isChecked, setIsChecked] = useState(false);
 
 	const handleChange = () => {
 		setIsChecked(!isChecked);
+		updateItem(listPath, itemId);
 	};
 
 	return (
