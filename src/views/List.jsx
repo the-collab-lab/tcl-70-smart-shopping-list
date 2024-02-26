@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { ListItem } from '../components';
 
 export function List({ data, listPath }) {
-	console.log('data: ', data);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
 
