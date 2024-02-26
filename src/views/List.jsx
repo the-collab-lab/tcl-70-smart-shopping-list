@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import { ListItem } from '../components';
+import { useNavigate } from 'react-router-dom';
 
 export function List({ data }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
+	const navigate = useNavigate();
 
 	const handleChange = (e) => {
 		const searchTermLocal = e.target.value;
 		//Sets searchTerm to the input value
 		setSearchTerm(searchTermLocal);
 	};
+
+	const handleClick = () => navigate('/manage-list');
 
 	//useEffect triggered with change in searchTerm or data
 	useEffect(() => {
@@ -43,7 +47,7 @@ export function List({ data }) {
 				<div>
 					<p>Your shopping list is empty!</p>
 					<p>Click the button below to add your first item!</p>
-					<button>Add first item</button>
+					<button onClick={handleClick}>Add first item</button>
 				</div>
 			)}
 			{data.length > 0 && (
