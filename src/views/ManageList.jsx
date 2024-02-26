@@ -1,9 +1,27 @@
 import { useState } from 'react';
-import { addItem } from '../api';
+import { addItem, shareList } from '../api';
 
-export function ManageList({ listPath }) {
+export function ManageList({ listPath, userId }) {
 	const [item, setItem] = useState({ name: '', urgency: 'soon' });
 	const [submitted, setSubmitted] = useState();
+	const [emailInvite, setEmailInvite] = useState('');
+	const [emailExists, setEmailExists] = useState();
+
+	const handleEmailInviteChange = (e) => {
+		setEmailInvite(e.target.value);
+	};
+
+	const handleEmailInviteSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			await shareList(listPath, userId, emailInvite);
+			setEmailExists('Your list was shared!');
+			setEmailInvite('');
+		} catch (err) {
+			console.log(err);
+			setEmailExists(err.message);
+		}
+	};
 
 	const handleChange = (e) => {
 		setItem({ ...item, [e.target.name]: e.target.value });
@@ -65,6 +83,19 @@ export function ManageList({ listPath }) {
 				<button type="submit" value="Submit">
 					Submit
 				</button>
+			</form>
+			{emailExists}
+			<form onSubmit={handleEmailInviteSubmit}>
+				<label htmlFor="emailInvite">Email invite</label>
+				<input
+					id="emailInvite"
+					placeholder="Type user email to invite"
+					name="emailInvite"
+					type="email"
+					onChange={handleEmailInviteChange}
+					value={emailInvite}
+				/>
+				<button>Submit</button>
 			</form>
 		</div>
 	);
