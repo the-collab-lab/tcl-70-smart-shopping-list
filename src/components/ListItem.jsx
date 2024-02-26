@@ -1,5 +1,19 @@
 import './ListItem.css';
+import { useState } from 'react';
 
 export function ListItem({ name }) {
-	return <li className="ListItem">{name}</li>;
+	const [isChecked, setIsChecked] = useState(false);
+
+	const handleChange = () => {
+		setIsChecked(!isChecked);
+	};
+
+	return (
+		<li className="ListItem">
+			<label>
+				<input type="checkbox" checked={isChecked} onChange={handleChange} />
+				{name}
+			</label>
+		</li>
+	);
 }
