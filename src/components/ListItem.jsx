@@ -1,18 +1,28 @@
 import './ListItem.css';
 import { useEffect, useState } from 'react';
 import { updateItem } from '../api/firebase';
+import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates';
 
 export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 	const [isChecked, setIsChecked] = useState(false);
 	const [expired, setExpired] = useState();
 
 	const handleChange = async () => {
-		setIsChecked(!isChecked);
+		if (!isChecked) {
+			const userConfirmed = window.confirm('Confirm purchase?');
+			if (userConfirmed) {
+				setIsChecked(!isChecked);
+			}
+		} else {
+			setIsChecked(!isChecked);
+		}
 	};
 
 	useEffect(() => {
 		if (dateLastPurchased) {
-			const expiryDate = new Date(dateLastPurchased.seconds * 1000 + 86400000);
+			const expiryDate = new Date(
+				dateLastPurchased.seconds * 1000 + ONE_DAY_IN_MILLISECONDS,
+			);
 
 			if (new Date() > expiryDate) {
 				setIsChecked(false);
