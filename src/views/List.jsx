@@ -60,6 +60,7 @@ export function List({ data, listPath }) {
 					return (
 						<ListItem
 							key={item.id}
+							dateLastPurchased={item.dateLastPurchased}
 							itemId={item.id}
 							name={item.name}
 							listPath={listPath}
