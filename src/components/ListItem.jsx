@@ -13,8 +13,6 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 			if (userConfirmed) {
 				setIsChecked(!isChecked);
 			}
-		} else {
-			setIsChecked(!isChecked);
 		}
 	};
 
@@ -32,7 +30,7 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 				setExpired(true);
 			}
 		}
-	}, [dateLastPurchased.seconds]);
+	}, [dateLastPurchased]);
 
 	useEffect(() => {
 		const handleUpdateItem = async () => {
