@@ -33,6 +33,44 @@ export function List({ data }) {
 		return () => clearTimeout(getItem);
 	}, [searchTerm, data]);
 
+	const renderAddFirstItemCTA = () => {
+		return (
+			<div>
+				<p>Your shopping list is empty!</p>
+				<p>Click the button below to add your first item!</p>
+				<button onClick={handleClick}>Add first item</button>
+			</div>
+		);
+	};
+
+	const renderItemList = () => {
+		return (
+			<div>
+				<form>
+					<label htmlFor="itemSearch">Search for item:</label>
+					<input
+						type="text"
+						id="itemSearch"
+						placeholder="Search items..."
+						value={searchTerm}
+						onChange={handleChange}
+					></input>
+					{searchTerm && (
+						<button type="button" onClick={clearSearch}>
+							Clear
+						</button>
+					)}
+				</form>
+				<ul>
+					{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
+					{filteredData.map((item) => {
+						return <ListItem key={item.id} name={item.name} />;
+					})}
+				</ul>
+			</div>
+		);
+	};
+
 	//Clears input field
 	const clearSearch = () => {
 		setSearchTerm('');
@@ -43,38 +81,7 @@ export function List({ data }) {
 			<p>
 				Hello from the <code>/list</code> page!
 			</p>
-			{data.length === 0 && (
-				<div>
-					<p>Your shopping list is empty!</p>
-					<p>Click the button below to add your first item!</p>
-					<button onClick={handleClick}>Add first item</button>
-				</div>
-			)}
-			{data.length > 0 && (
-				<div>
-					<form>
-						<label htmlFor="itemSearch">Search for item:</label>
-						<input
-							type="text"
-							id="itemSearch"
-							placeholder="Search items..."
-							value={searchTerm}
-							onChange={handleChange}
-						></input>
-						{searchTerm && (
-							<button type="button" onClick={clearSearch}>
-								Clear
-							</button>
-						)}
-					</form>
-					<ul>
-						{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
-						{filteredData.map((item) => {
-							return <ListItem key={item.id} name={item.name} />;
-						})}
-					</ul>
-				</div>
-			)}
+			{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}
 		</>
 	);
 }
