@@ -43,7 +43,7 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 		} catch (error) {
 			console.log('error: ', error);
 		}
-	}, [isChecked]);
+	}, [isChecked, itemId, listPath]);
 
 	return (
 		<li className="ListItem">
