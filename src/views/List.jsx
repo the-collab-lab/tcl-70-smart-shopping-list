@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ListItem } from '../components';
 import { useNavigate } from 'react-router-dom';
 
-export function List({ data }) {
+export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
 	const navigate = useNavigate();
@@ -81,7 +81,39 @@ export function List({ data }) {
 			<p>
 				Hello from the <code>/list</code> page!
 			</p>
+
+			<form>
+				<label htmlFor="itemSearch">Search for item:</label>
+				<input
+					type="text"
+					id="itemSearch"
+					placeholder="Search items..."
+					value={searchTerm}
+					onChange={handleChange}
+				></input>
+				{searchTerm && (
+					<button type="button" onClick={clearSearch}>
+						Clear
+					</button>
+				)}
+			</form>
+			<ul>
+				{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
+				{filteredData.map((item) => {
+					return (
+						<ListItem
+							key={item.id}
+							dateLastPurchased={item.dateLastPurchased}
+							itemId={item.id}
+							name={item.name}
+							listPath={listPath}
+						/>
+					);
+				})}
+			</ul>
+
 			{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}
+
 		</>
 	);
 }
