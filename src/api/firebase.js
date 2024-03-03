@@ -186,11 +186,6 @@ export async function updateItem(listPath, itemId) {
 		dateLastPurchased: new Date(),
 		totalPurchases: increment(1),
 	});
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to update an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
 }
 
 export async function deleteItem() {
