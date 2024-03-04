@@ -76,14 +76,7 @@ export function ManageList({ listPath, userId, data }) {
 			console.log(err);
 			setSubmitted('failed');
 		}
-
-		//map through list and check if items match name, if yes - return error message using state
 	};
-
-	// Show an error message if the user tries to submit an empty item
-	// Show an error message if the user tries to submit a new item that is identical to an existing name. For instance, if the list contains apples and the user adds apples.
-	// Show an error message if the user tries to submit a new item that matches an existing name with punctuation and casing normalized. For instance, if the list contains apples and the user adds aPples or apples, or a pples.
-	// The user’s original input is saved in the database
 
 	return (
 		<div>
