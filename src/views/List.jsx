@@ -64,7 +64,15 @@ export function List({ data, listPath }) {
 				<ul>
 					{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
 					{filteredData.map((item) => {
-						return <ListItem key={item.id} name={item.name} />;
+						return (
+							<ListItem
+								key={item.id}
+								dateLastPurchased={item.dateLastPurchased}
+								itemId={item.id}
+								name={item.name}
+								listPath={listPath}
+							/>
+						);
 					})}
 				</ul>
 			</div>
