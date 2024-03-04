@@ -31,6 +31,22 @@ export function ManageList({ listPath, userId, data }) {
 		e.preventDefault();
 		const { name, urgency } = item;
 
+		//if name is empty - return error message using state
+		const submittedItem = name.toLowerCase().replace(/\s+/g, '');
+		if (!submittedItem) {
+			alert('No empty items!!');
+			return;
+		}
+
+		const match = data.find(
+			(item) => item.name.toLowerCase().replace(/\s+/g, '') === submittedItem,
+		);
+
+		if (match) {
+			alert('No duplicate items pls');
+			return;
+		}
+
 		let nextPurchasedDate;
 		switch (urgency) {
 			case 'soon':
@@ -57,20 +73,7 @@ export function ManageList({ listPath, userId, data }) {
 			setSubmitted('failed');
 		}
 
-		//if name is empty - return error message using state
 		//map through list and check if items match name, if yes - return error message using state
-
-		// 	const filteredResults = data.filter((item) =>
-		// 	item.name
-		// 		.toLowerCase()
-		// 		.replace(/\s+/g, '')
-		// 		 === searchTerm.toLowerCase().replace(/\s+/g, '')
-		// );
-		//
-		const submittedItem = name.toLowerCase().replace(/\s+/g, '');
-		if (!submittedItem) {
-			alert('No empty items!!');
-		}
 	};
 
 	// Show an error message if the user tries to submit an empty item
