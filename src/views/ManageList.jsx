@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addItem, shareList } from '../api';
 
-export function ManageList({ listPath, userId }) {
+export function ManageList({ listPath, userId, data }) {
 	const [item, setItem] = useState({ name: '', urgency: 'soon' });
 	const [submitted, setSubmitted] = useState();
 	const [emailInvite, setEmailInvite] = useState('');
@@ -56,7 +56,27 @@ export function ManageList({ listPath, userId }) {
 			console.log(err);
 			setSubmitted('failed');
 		}
+
+		//if name is empty - return error message using state
+		//map through list and check if items match name, if yes - return error message using state
+
+		// 	const filteredResults = data.filter((item) =>
+		// 	item.name
+		// 		.toLowerCase()
+		// 		.replace(/\s+/g, '')
+		// 		 === searchTerm.toLowerCase().replace(/\s+/g, '')
+		// );
+		//
+		const submittedItem = name.toLowerCase().replace(/\s+/g, '');
+		if (!submittedItem) {
+			alert('No empty items!!');
+		}
 	};
+
+	// Show an error message if the user tries to submit an empty item
+	// Show an error message if the user tries to submit a new item that is identical to an existing name. For instance, if the list contains apples and the user adds apples.
+	// Show an error message if the user tries to submit a new item that matches an existing name with punctuation and casing normalized. For instance, if the list contains apples and the user adds aPples or apples, or a pples.
+	// The user’s original input is saved in the database
 
 	return (
 		<div>
