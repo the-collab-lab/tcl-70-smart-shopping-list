@@ -32,9 +32,13 @@ export function ManageList({ listPath, userId, data }) {
 		const { name, urgency } = item;
 
 		//if name is empty - return error message using state
-		const submittedItem = name.toLowerCase().replace(/\s+/g, '');
+		const submittedItem = name
+			.toLowerCase()
+			.replace(/[^\w\s]/g, '')
+			.replace(/\s+/g, '');
+
 		if (!submittedItem) {
-			alert('No empty items!!');
+			setSubmitted('empty');
 			return;
 		}
 
@@ -43,7 +47,7 @@ export function ManageList({ listPath, userId, data }) {
 		);
 
 		if (match) {
-			alert('No duplicate items pls');
+			setSubmitted('duplicate');
 			return;
 		}
 
@@ -88,6 +92,8 @@ export function ManageList({ listPath, userId, data }) {
 			</p>
 			{submitted === 'added' && <span>Your item was added!</span>}
 			{submitted === 'failed' && <span>Your item wasn't added!</span>}
+			{submitted === 'empty' && <span>No empty items!</span>}
+			{submitted === 'duplicate' && <span>Item already exists!</span>}
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="itemName">Item name</label>
 				<input
@@ -96,6 +102,7 @@ export function ManageList({ listPath, userId, data }) {
 					placeholder="Item Name"
 					name="name"
 					onChange={handleChange}
+					value={item.name}
 				/>
 				<label htmlFor="purchaseUrgency">Purchase urgency</label>
 				<select id="purchaseUrgency" name="urgency" onChange={handleChange}>
