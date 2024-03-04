@@ -31,17 +31,19 @@ export function ManageList({ listPath, userId, data }) {
 		e.preventDefault();
 		const { name, urgency } = item;
 
-		//if name is empty - return error message using state
+		//Changes input value to lowercase and removes spaces
 		const submittedItem = name
 			.toLowerCase()
 			.replace(/[^\w\s]/g, '')
 			.replace(/\s+/g, '');
 
+		//Empty inputs return an error
 		if (!submittedItem) {
 			setSubmitted('empty');
 			return;
 		}
 
+		//Inputs matching exisitng list items return an error
 		const match = data.find(
 			(item) => item.name.toLowerCase().replace(/\s+/g, '') === submittedItem,
 		);
