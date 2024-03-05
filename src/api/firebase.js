@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from 'react';
 import { db } from './config';
 import { getFutureDate } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
  * A custom hook that subscribes to the user's shopping lists in our Firestore
@@ -173,18 +174,45 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 		// NOTE: This is null because the item has just been created.
 		// We'll use updateItem to put a Date here when the item is purchased!
 		dateLastPurchased: null,
+		daysUntilNextPurchase: daysUntilNextPurchase,
 		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 		name: itemName,
 		totalPurchases: 0,
+		// estimate: nextPurchasedDate,
 	});
 }
 
-export async function updateItem(listPath, itemId) {
+export async function updateItem(listPath, itemId, dateLastPurchased) {
 	const listCollectionRef = doc(db, `${listPath}/items`, itemId);
+	const itemSnapshot = await getDoc(listCollectionRef);
+	if (!itemSnapshot.exists()) {
+		console.log('No such document!');
+		return;
+	}
+	const item = itemSnapshot.data();
 
+	const previousEstimate = item.daysUntilNextPurchase;
+	const totalPurchases = item.totalPurchases;
+
+	const daysSinceLastPurchase =
+		(new Date().getTime() - dateLastPurchased.toDate().getTime()) /
+		(1000 * 3600 * 24);
+
+	console.log(
+		`Previous estimate: ${previousEstimate}, Days since last purchase: ${daysSinceLastPurchase}, Total Purchase:${totalPurchases}`,
+	);
+
+	let nextPurchaseEstimate = calculateEstimate(
+		previousEstimate,
+		daysSinceLastPurchase,
+		item.totalPurchases + 1,
+	);
+	console.log(`Next purchase estimate (in days): ${nextPurchaseEstimate}`);
 	await updateDoc(listCollectionRef, {
 		dateLastPurchased: new Date(),
 		totalPurchases: increment(1),
+		dateNextPurchased: getFutureDate(nextPurchaseEstimate),
+		daysUntilNextPurchase: nextPurchaseEstimate,
 	});
 }
 
