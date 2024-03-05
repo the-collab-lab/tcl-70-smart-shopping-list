@@ -11,7 +11,7 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate } from '../utils';
+import { getFutureDate, getDaysBetweenDates } from '../utils';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
@@ -178,7 +178,6 @@ export async function addItem(listPath, { itemName, daysUntilNextPurchase }) {
 		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 		name: itemName,
 		totalPurchases: 0,
-		// estimate: nextPurchasedDate,
 	});
 }
 
@@ -192,14 +191,10 @@ export async function updateItem(listPath, itemId, dateLastPurchased) {
 	const item = itemSnapshot.data();
 
 	const previousEstimate = item.daysUntilNextPurchase;
-	const totalPurchases = item.totalPurchases;
 
-	const daysSinceLastPurchase =
-		(new Date().getTime() - dateLastPurchased.toDate().getTime()) /
-		(1000 * 3600 * 24);
-
-	console.log(
-		`Previous estimate: ${previousEstimate}, Days since last purchase: ${daysSinceLastPurchase}, Total Purchase:${totalPurchases}`,
+	const daysSinceLastPurchase = getDaysBetweenDates(
+		new Date(),
+		dateLastPurchased.toDate(),
 	);
 
 	let nextPurchaseEstimate = calculateEstimate(
@@ -207,7 +202,7 @@ export async function updateItem(listPath, itemId, dateLastPurchased) {
 		daysSinceLastPurchase,
 		item.totalPurchases + 1,
 	);
-	console.log(`Next purchase estimate (in days): ${nextPurchaseEstimate}`);
+
 	await updateDoc(listCollectionRef, {
 		dateLastPurchased: new Date(),
 		totalPurchases: increment(1),
