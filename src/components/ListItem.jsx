@@ -35,7 +35,7 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 	useEffect(() => {
 		const handleUpdateItem = async () => {
 			if (isChecked) {
-				await updateItem(listPath, itemId);
+				await updateItem(listPath, itemId, dateLastPurchased);
 			}
 		};
 		try {
