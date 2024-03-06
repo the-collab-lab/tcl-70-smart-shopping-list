@@ -80,15 +80,28 @@ export function ManageList({ listPath, userId, data }) {
 		}
 	};
 
+	//Alerts based on "submitted" value
+	const alertText = (submittedValue) => {
+		switch (submittedValue) {
+			case 'added':
+				return <span>Your item was added!</span>;
+			case 'failed':
+				return <span>Your item wasn't added!</span>;
+			case 'empty':
+				return <span>No empty items!</span>;
+			case 'duplicate':
+				return <span>Item already exists!</span>;
+			default:
+				return '';
+		}
+	};
+
 	return (
 		<div>
 			<p>
 				Hello from the <code>/manage-list</code> page!
 			</p>
-			{submitted === 'added' && <span>Your item was added!</span>}
-			{submitted === 'failed' && <span>Your item wasn't added!</span>}
-			{submitted === 'empty' && <span>No empty items!</span>}
-			{submitted === 'duplicate' && <span>Item already exists!</span>}
+			{alertText(submitted)}
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="itemName">Item name</label>
 				<input
