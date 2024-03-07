@@ -32,10 +32,7 @@ export function ManageList({ listPath, userId, data }) {
 		const { name, urgency } = item;
 
 		//Changes input value to lowercase and removes spaces
-		const submittedItem = name
-			.toLowerCase()
-			.replace(/[^\w\s]/g, '')
-			.replace(/\s+/g, '');
+		const submittedItem = name.toLowerCase().replace(/[^a-z]/g, '');
 
 		//Empty inputs return an error
 		if (!submittedItem) {
@@ -45,7 +42,8 @@ export function ManageList({ listPath, userId, data }) {
 
 		//Inputs matching exisitng list items return an error
 		const match = data.find(
-			(item) => item.name.toLowerCase().replace(/\s+/g, '') === submittedItem,
+			(item) =>
+				item.name.toLowerCase().replace(/[^a-z]/g, '') === submittedItem,
 		);
 
 		if (match) {
