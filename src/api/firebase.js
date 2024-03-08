@@ -190,16 +190,25 @@ export async function updateItem(listPath, itemId, dateLastPurchased) {
 	}
 	const item = itemSnapshot.data();
 
-	const effectiveDateLastPurchased = dateLastPurchased
-		? dateLastPurchased.toDate()
-		: new Date();
-
 	const previousEstimate = item.daysUntilNextPurchase;
 
-	const daysSinceLastPurchase = getDaysBetweenDates(
-		new Date(),
-		effectiveDateLastPurchased,
-	);
+	const itemCreated = item.dateCreated;
+
+	let daysSinceLastPurchase;
+
+	if (dateLastPurchased) {
+		daysSinceLastPurchase = getDaysBetweenDates(
+			new Date(),
+			dateLastPurchased.toDate(),
+		);
+	} else if (!getDaysBetweenDates(new Date(), itemCreated.toDate())) {
+		daysSinceLastPurchase = previousEstimate;
+	} else {
+		daysSinceLastPurchase = getDaysBetweenDates(
+			new Date(),
+			itemCreated.toDate(),
+		);
+	}
 
 	let nextPurchaseEstimate = calculateEstimate(
 		previousEstimate,
@@ -208,7 +217,7 @@ export async function updateItem(listPath, itemId, dateLastPurchased) {
 	);
 
 	await updateDoc(listCollectionRef, {
-		dateLastPurchased: effectiveDateLastPurchased,
+		dateLastPurchased: new Date(),
 		totalPurchases: increment(1),
 		dateNextPurchased: getFutureDate(nextPurchaseEstimate),
 		daysUntilNextPurchase: nextPurchaseEstimate,
