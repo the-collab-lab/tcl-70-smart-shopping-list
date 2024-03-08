@@ -190,11 +190,15 @@ export async function updateItem(listPath, itemId, dateLastPurchased) {
 	}
 	const item = itemSnapshot.data();
 
+	const effectiveDateLastPurchased = dateLastPurchased
+		? dateLastPurchased.toDate()
+		: new Date();
+
 	const previousEstimate = item.daysUntilNextPurchase;
 
 	const daysSinceLastPurchase = getDaysBetweenDates(
 		new Date(),
-		dateLastPurchased.toDate(),
+		effectiveDateLastPurchased,
 	);
 
 	let nextPurchaseEstimate = calculateEstimate(
@@ -204,7 +208,7 @@ export async function updateItem(listPath, itemId, dateLastPurchased) {
 	);
 
 	await updateDoc(listCollectionRef, {
-		dateLastPurchased: new Date(),
+		dateLastPurchased: effectiveDateLastPurchased,
 		totalPurchases: increment(1),
 		dateNextPurchased: getFutureDate(nextPurchaseEstimate),
 		daysUntilNextPurchase: nextPurchaseEstimate,
