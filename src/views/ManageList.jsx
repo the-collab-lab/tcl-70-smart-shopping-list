@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { addItem, shareList } from '../api';
 
-export function ManageList({ listPath, userId }) {
+export function ManageList({ listPath, userId, data }) {
 	const [item, setItem] = useState({ name: '', urgency: 'soon' });
 	const [submitted, setSubmitted] = useState();
 	const [emailInvite, setEmailInvite] = useState('');
@@ -31,6 +31,26 @@ export function ManageList({ listPath, userId }) {
 		e.preventDefault();
 		const { name, urgency } = item;
 
+		//Changes input value to lowercase and removes spaces
+		const submittedItem = name.toLowerCase().replace(/[^a-z]/g, '');
+
+		//Empty inputs return an error
+		if (!submittedItem) {
+			setSubmitted('empty');
+			return;
+		}
+
+		//Inputs matching exisitng list items return an error
+		const match = data.find(
+			(item) =>
+				item.name.toLowerCase().replace(/[^a-z]/g, '') === submittedItem,
+		);
+
+		if (match) {
+			setSubmitted('duplicate');
+			return;
+		}
+
 		let nextPurchasedDate;
 		switch (urgency) {
 			case 'soon':
@@ -58,13 +78,28 @@ export function ManageList({ listPath, userId }) {
 		}
 	};
 
+	//Alerts based on "submitted" value
+	const alertText = (submittedValue) => {
+		switch (submittedValue) {
+			case 'added':
+				return <span>Your item was added!</span>;
+			case 'failed':
+				return <span>Your item wasn't added!</span>;
+			case 'empty':
+				return <span>Please enter an item to add to your list</span>;
+			case 'duplicate':
+				return <span>Item already exists!</span>;
+			default:
+				return '';
+		}
+	};
+
 	return (
 		<div>
 			<p>
 				Hello from the <code>/manage-list</code> page!
 			</p>
-			{submitted === 'added' && <span>Your item was added!</span>}
-			{submitted === 'failed' && <span>Your item wasn't added!</span>}
+			{alertText(submitted)}
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="itemName">Item name</label>
 				<input
@@ -73,6 +108,7 @@ export function ManageList({ listPath, userId }) {
 					placeholder="Item Name"
 					name="name"
 					onChange={handleChange}
+					value={item.name}
 				/>
 				<label htmlFor="purchaseUrgency">Purchase urgency</label>
 				<select id="purchaseUrgency" name="urgency" onChange={handleChange}>
