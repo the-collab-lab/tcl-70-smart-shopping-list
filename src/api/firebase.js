@@ -201,7 +201,7 @@ export async function updateItem(listPath, itemId, dateLastPurchased) {
 			new Date(),
 			dateLastPurchased.toDate(),
 		);
-	} else if (getDaysBetweenDates(new Date(), itemCreated.toDate()) !== 0) {
+	} else if (getDaysBetweenDates(new Date(), itemCreated.toDate()) === 0) {
 		daysSinceLastPurchase = previousEstimate;
 	} else {
 		daysSinceLastPurchase = getDaysBetweenDates(
