@@ -86,7 +86,7 @@ export function ManageList({ listPath, userId, data }) {
 			case 'failed':
 				return <span>Your item wasn't added!</span>;
 			case 'empty':
-				return <span>No empty items!</span>;
+				return <span>Please enter an item to add to your list</span>;
 			case 'duplicate':
 				return <span>Item already exists!</span>;
 			default:
