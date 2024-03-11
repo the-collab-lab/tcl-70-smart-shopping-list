@@ -16,6 +16,14 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 		}
 	};
 
+	const handleClick = () => {
+		if (window.confirm('Do you really want to delete this item?')) {
+			console.log('confirmed!');
+		} else {
+			console.log('canceled');
+		}
+	};
+
 	useEffect(() => {
 		if (dateLastPurchased) {
 			const expiryDate = new Date(
@@ -57,6 +65,9 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 				/>
 				{name}
 			</label>
+			<button onClick={handleClick} type="button">
+				Delete
+			</button>
 		</li>
 	);
 }
