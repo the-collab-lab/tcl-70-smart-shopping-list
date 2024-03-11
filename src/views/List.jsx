@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ListItem } from '../components';
 import { useNavigate } from 'react-router-dom';
+import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -20,12 +21,13 @@ export function List({ data, listPath }) {
 		//Debounce function
 		const getItem = setTimeout(() => {
 			//Filters through all items to return an array of items that match input
-			const filteredResults = data.filter((item) =>
+			let filteredResults = data.filter((item) =>
 				item.name
 					.toLowerCase()
 					.replace(/\s+/g, '')
 					.includes(searchTerm.toLowerCase().replace(/\s+/g, '')),
 			);
+			filteredResults = filteredResults.sort(comparePurchaseUrgency);
 			//Sets filteredData to filteredResults data
 			setFilteredData(filteredResults);
 		}, 300);
@@ -42,6 +44,9 @@ export function List({ data, listPath }) {
 			</div>
 		);
 	};
+
+	// Items in the list are shown with an indicator that tells the user they should buy the item “soon”, “kind of soon”, or “not soon”; or that the item is “inactive”
+	// This urgency indicator does not rely on only color
 
 	const renderItemList = () => {
 		return (
