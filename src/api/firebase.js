@@ -235,3 +235,18 @@ export async function deleteItem(listPath, itemId) {
 	 * this function must accept!
 	 */
 }
+
+export async function comparePurchaseUrgency(a, b) {
+	const daysPassedA = new Date() - a.dateNextPurchased.toDate();
+	const daysPassedB = new Date() - b.dateNextPurchased.toDate();
+
+	if (daysPassedA < daysPassedB) {
+		return -1;
+	}
+	if (daysPassedB > daysPassedA) {
+		return 1;
+	}
+	if (daysPassedA === daysPassedB) {
+		return a.name.localeCompare(b.name);
+	}
+}
