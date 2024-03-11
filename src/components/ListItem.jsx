@@ -18,7 +18,6 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 
 	const handleClick = async () => {
 		if (window.confirm('Do you really want to delete this item?')) {
-			console.log('confirmed!');
 			try {
 				await deleteItem(listPath, itemId);
 			} catch (error) {
