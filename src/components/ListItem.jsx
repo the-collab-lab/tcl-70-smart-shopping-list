@@ -1,6 +1,6 @@
 import './ListItem.css';
 import { useEffect, useState } from 'react';
-import { updateItem } from '../api/firebase';
+import { updateItem, deleteItem } from '../api/firebase';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates';
 
 export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
@@ -16,9 +16,14 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 		}
 	};
 
-	const handleClick = () => {
+	const handleClick = async () => {
 		if (window.confirm('Do you really want to delete this item?')) {
 			console.log('confirmed!');
+			try {
+				await deleteItem(listPath, itemId);
+			} catch (error) {
+				console.log('error: ', error);
+			}
 		} else {
 			console.log('canceled');
 		}
