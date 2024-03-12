@@ -46,6 +46,10 @@ export function List({ data, listPath }) {
 	};
 
 	// Items in the list are shown with an indicator that tells the user they should buy the item “soon”, “kind of soon”, or “not soon”; or that the item is “inactive”
+	//-if it is less than or equal to 7 days - add span of "Soon"
+	//- if it is greater than 7 days but less than 30 days - "Kind of soon"
+	//- if it is greater than or equal to 30 days but less than 60 - "Not soon"
+	//- if it is equal or greater than 60 - "Inactive"
 	// This urgency indicator does not rely on only color
 
 	const renderItemList = () => {
