@@ -27,6 +27,7 @@ export function List({ data, listPath }) {
 					.replace(/\s+/g, '')
 					.includes(searchTerm.toLowerCase().replace(/\s+/g, '')),
 			);
+			// console.log(filteredResults);
 			filteredResults = filteredResults.sort(comparePurchaseUrgency);
 			//Sets filteredData to filteredResults data
 			setFilteredData(filteredResults);

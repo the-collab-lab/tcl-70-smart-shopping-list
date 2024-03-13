@@ -232,14 +232,21 @@ export async function deleteItem() {
 	 */
 }
 
-export async function comparePurchaseUrgency(a, b) {
-	const daysPassedA = new Date() - a.dateNextPurchased.toDate();
-	const daysPassedB = new Date() - b.dateNextPurchased.toDate();
-
+export function comparePurchaseUrgency(a, b) {
+	const daysPassedA = a.daysUntilNextPurchase;
+	// const daysPassedA = getDaysBetweenDates(
+	// 	new Date(),
+	// 	a.dateNextPurchased.toDate(),
+	// );
+	const daysPassedB = b.daysUntilNextPurchase;
+	// const daysPassedB = getDaysBetweenDates(
+	// 	new Date(),
+	// 	b.dateNextPurchased.toDate(),
+	// );
 	if (daysPassedA < daysPassedB) {
 		return -1;
 	}
-	if (daysPassedB > daysPassedA) {
+	if (daysPassedB < daysPassedA) {
 		return 1;
 	}
 	if (daysPassedA === daysPassedB) {
