@@ -3,9 +3,16 @@ import { useEffect, useState } from 'react';
 import { updateItem } from '../api/firebase';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates';
 
-export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
+export function ListItem({
+	name,
+	listPath,
+	itemId,
+	dateLastPurchased,
+	daysUntilNextPurchase,
+}) {
 	const [isChecked, setIsChecked] = useState(false);
 	const [expired, setExpired] = useState();
+	const [purchaseUrgency, setPurchaseUrgency] = useState('');
 
 	const handleChange = async () => {
 		if (!isChecked) {
@@ -45,6 +52,20 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 		}
 	}, [isChecked, itemId, listPath]);
 
+	const calculateUrgency = (daysUntilNextPurchase) => {
+		if (daysUntilNextPurchase <= 7) {
+			return 'soon';
+		} else if ((daysUntilNextPurchase > 7) & (daysUntilNextPurchase < 30)) {
+			return 'kind of soon';
+		} else if (daysUntilNextPurchase >= 30) {
+			return 'not soon';
+		} else {
+			return 'inactive';
+		}
+	};
+	console.log(daysUntilNextPurchase);
+	const urgency = calculateUrgency(daysUntilNextPurchase);
+
 	return (
 		<li className="ListItem">
 			<label htmlFor={`${name}`}>
@@ -55,7 +76,7 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 					checked={isChecked}
 					onChange={handleChange}
 				/>
-				{name}
+				{`${name}-${urgency}`}
 			</label>
 		</li>
 	);
