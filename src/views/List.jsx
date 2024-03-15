@@ -27,7 +27,6 @@ export function List({ data, listPath }) {
 					.replace(/\s+/g, '')
 					.includes(searchTerm.toLowerCase().replace(/\s+/g, '')),
 			);
-			// console.log(filteredResults);
 			filteredResults = filteredResults.sort(comparePurchaseUrgency);
 			//Sets filteredData to filteredResults data
 			setFilteredData(filteredResults);
@@ -71,7 +70,6 @@ export function List({ data, listPath }) {
 							<ListItem
 								key={item.id}
 								daysUntilNextPurchase={item.daysUntilNextPurchase}
-								// dateNextPurchased={item.daysUntilNextPurchase}
 								dateLastPurchased={item.dateLastPurchased}
 								itemId={item.id}
 								name={item.name}

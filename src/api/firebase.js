@@ -234,15 +234,7 @@ export async function deleteItem() {
 
 export function comparePurchaseUrgency(a, b) {
 	const daysPassedA = a.daysUntilNextPurchase;
-	// const daysPassedA = getDaysBetweenDates(
-	// 	new Date(),
-	// 	a.dateNextPurchased.toDate(),
-	// );
 	const daysPassedB = b.daysUntilNextPurchase;
-	// const daysPassedB = getDaysBetweenDates(
-	// 	new Date(),
-	// 	b.dateNextPurchased.toDate(),
-	// );
 	if (daysPassedA < daysPassedB) {
 		return -1;
 	}
