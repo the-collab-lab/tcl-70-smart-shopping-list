@@ -63,19 +63,28 @@ export function ListItem({
 		}
 	}, [isChecked, itemId, listPath]);
 
-	const calculateUrgency = (daysUntilNextPurchase) => {
-		if (daysUntilNextPurchase <= 7) {
+	const calculateUrgency = (daysUntilNextPurchase, dateLastPurchased) => {
+		const today = new Date();
+		let daysSinceLastPurchase = 0;
+
+		if (dateLastPurchased) {
+			const lastPurchaseDate = new Date(dateLastPurchased.seconds * 1000);
+			const timeDiff = today - lastPurchaseDate;
+			daysSinceLastPurchase = Math.floor(timeDiff / ONE_DAY_IN_MILLISECONDS);
+		}
+
+		if (daysSinceLastPurchase >= 60) {
+			return 'inactive';
+		} else if (daysUntilNextPurchase <= 7) {
 			return 'soon';
 		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
 			return 'kind of soon';
 		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
 			return 'not soon';
-		} else {
-			return 'inactive';
 		}
 	};
 
-	const urgency = calculateUrgency(daysUntilNextPurchase);
+	const urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
 
 	return (
 		<li className="ListItem">
