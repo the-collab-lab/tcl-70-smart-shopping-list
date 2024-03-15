@@ -12,7 +12,6 @@ export function ListItem({
 }) {
 	const [isChecked, setIsChecked] = useState(false);
 	const [expired, setExpired] = useState();
-	const [purchaseUrgency, setPurchaseUrgency] = useState('');
 
 	const handleChange = async () => {
 		if (!isChecked) {
@@ -55,15 +54,15 @@ export function ListItem({
 	const calculateUrgency = (daysUntilNextPurchase) => {
 		if (daysUntilNextPurchase <= 7) {
 			return 'soon';
-		} else if ((daysUntilNextPurchase > 7) & (daysUntilNextPurchase < 30)) {
+		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
 			return 'kind of soon';
-		} else if (daysUntilNextPurchase >= 30) {
+		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
 			return 'not soon';
 		} else {
 			return 'inactive';
 		}
 	};
-	console.log(daysUntilNextPurchase);
+
 	const urgency = calculateUrgency(daysUntilNextPurchase);
 
 	return (
