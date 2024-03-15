@@ -261,11 +261,11 @@ export function comparePurchaseUrgency(a, b) {
 	const daysPassedB = b.daysUntilNextPurchase;
 	if (daysPassedA < daysPassedB) {
 		return -1;
-	}
-	if (daysPassedB < daysPassedA) {
+	} else if (daysPassedB < daysPassedA) {
 		return 1;
-	}
-	if (daysPassedA === daysPassedB) {
+	} else if (daysPassedA === daysPassedB) {
 		return a.name.localeCompare(b.name);
 	}
+
+	throw new Error('Unexpected condition when comparing purchase urgency');
 }
