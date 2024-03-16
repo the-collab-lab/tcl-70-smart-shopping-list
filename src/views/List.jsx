@@ -21,13 +21,14 @@ export function List({ data, listPath }) {
 		//Debounce function
 		const getItem = setTimeout(() => {
 			//Filters through all items to return an array of items that match input
-			let filteredResults = data.filter((item) =>
-				item.name
-					.toLowerCase()
-					.replace(/\s+/g, '')
-					.includes(searchTerm.toLowerCase().replace(/\s+/g, '')),
-			);
-			filteredResults = filteredResults.sort(comparePurchaseUrgency);
+			const filteredResults = data
+				.filter((item) =>
+					item.name
+						.toLowerCase()
+						.replace(/\s+/g, '')
+						.includes(searchTerm.toLowerCase().replace(/\s+/g, '')),
+				)
+				.sort(comparePurchaseUrgency);
 			//Sets filteredData to filteredResults data
 			setFilteredData(filteredResults);
 		}, 300);
