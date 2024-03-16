@@ -1,6 +1,6 @@
 import './ListItem.css';
 import { useEffect, useState } from 'react';
-import { updateItem } from '../api/firebase';
+import { updateItem, calculateUrgency } from '../api/firebase';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates';
 
 export function ListItem({
@@ -50,27 +50,6 @@ export function ListItem({
 			console.log('error: ', error);
 		}
 	}, [isChecked, itemId, listPath]);
-
-	const calculateUrgency = (daysUntilNextPurchase, dateLastPurchased) => {
-		const today = new Date();
-		let daysSinceLastPurchase = 0;
-
-		if (dateLastPurchased) {
-			const lastPurchaseDate = new Date(dateLastPurchased.seconds * 1000);
-			const timeDiff = today - lastPurchaseDate;
-			daysSinceLastPurchase = Math.floor(timeDiff / ONE_DAY_IN_MILLISECONDS);
-		}
-
-		if (daysSinceLastPurchase >= 60) {
-			return 'inactive';
-		} else if (daysUntilNextPurchase <= 7) {
-			return 'soon';
-		} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
-			return 'kind of soon';
-		} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
-			return 'not soon';
-		}
-	};
 
 	const urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
 
