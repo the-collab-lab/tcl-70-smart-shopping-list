@@ -1,11 +1,12 @@
 import './ListItem.css';
 import { useEffect, useState } from 'react';
-import { updateItem } from '../api/firebase';
+import { updateItem, deleteItem } from '../api/firebase';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates';
 
 export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 	const [isChecked, setIsChecked] = useState(false);
 	const [expired, setExpired] = useState();
+	const [message, setMessage] = useState();
 
 	const handleChange = async () => {
 		if (!isChecked) {
@@ -13,6 +14,20 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 			if (userConfirmed) {
 				setIsChecked(!isChecked);
 			}
+		}
+	};
+
+	const handleClick = async () => {
+		if (window.confirm('Do you really want to delete this item?')) {
+			try {
+				await deleteItem(listPath, itemId);
+			} catch (error) {
+				console.log('error: ', error);
+				setMessage('Oops! Something went wrong! Please try again!');
+			}
+		} else {
+			console.log('canceled');
+			setMessage('Deletion canceled!');
 		}
 	};
 
@@ -46,17 +61,23 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 	}, [isChecked, itemId, listPath]);
 
 	return (
-		<li className="ListItem">
-			<label htmlFor={`${name}`}>
-				<input
-					disabled={expired}
-					id={`${name}`}
-					type="checkbox"
-					checked={isChecked}
-					onChange={handleChange}
-				/>
-				{name}
-			</label>
-		</li>
+		<>
+			<span>{message}</span>
+			<li className="ListItem">
+				<label htmlFor={`${name}`}>
+					<input
+						disabled={expired}
+						id={`${name}`}
+						type="checkbox"
+						checked={isChecked}
+						onChange={handleChange}
+					/>
+					{name}
+				</label>
+				<button onClick={handleClick} type="button">
+					Delete
+				</button>
+			</li>
+		</>
 	);
 }
