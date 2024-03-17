@@ -1,9 +1,15 @@
 import './ListItem.css';
 import { useEffect, useState } from 'react';
-import { updateItem, deleteItem } from '../api/firebase';
+import { updateItem, deleteItem, calculateUrgency } from '../api/firebase';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates';
 
-export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
+export function ListItem({
+	name,
+	listPath,
+	itemId,
+	dateLastPurchased,
+	daysUntilNextPurchase,
+}) {
 	const [isChecked, setIsChecked] = useState(false);
 	const [expired, setExpired] = useState();
 	const [message, setMessage] = useState();
@@ -60,24 +66,27 @@ export function ListItem({ name, listPath, itemId, dateLastPurchased }) {
 		}
 	}, [isChecked, itemId, listPath]);
 
+	const urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
+
 	return (
-		<>
+
+    	<>
 			<span>{message}</span>
-			<li className="ListItem">
-				<label htmlFor={`${name}`}>
-					<input
-						disabled={expired}
-						id={`${name}`}
-						type="checkbox"
-						checked={isChecked}
-						onChange={handleChange}
-					/>
-					{name}
-				</label>
-				<button onClick={handleClick} type="button">
-					Delete
-				</button>
-			</li>
-		</>
+		<li className="ListItem">
+			<label htmlFor={`${name}`}>
+				<input
+					disabled={expired}
+					id={`${name}`}
+					type="checkbox"
+					checked={isChecked}
+					onChange={handleChange}
+				/>
+				{`${name}-${urgency}`}
+			</label>
+			<button onClick={handleClick} type="button">
+				Delete
+			</button>
+		</li>
+    </>
 	);
 }

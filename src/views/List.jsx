@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ListItem } from '../components';
 import { useNavigate } from 'react-router-dom';
+import { comparePurchaseUrgency } from '../api';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -20,12 +21,14 @@ export function List({ data, listPath }) {
 		//Debounce function
 		const getItem = setTimeout(() => {
 			//Filters through all items to return an array of items that match input
-			const filteredResults = data.filter((item) =>
-				item.name
-					.toLowerCase()
-					.replace(/\s+/g, '')
-					.includes(searchTerm.toLowerCase().replace(/\s+/g, '')),
-			);
+			const filteredResults = data
+				.filter((item) =>
+					item.name
+						.toLowerCase()
+						.replace(/\s+/g, '')
+						.includes(searchTerm.toLowerCase().replace(/\s+/g, '')),
+				)
+				.sort(comparePurchaseUrgency);
 			//Sets filteredData to filteredResults data
 			setFilteredData(filteredResults);
 		}, 300);
@@ -67,6 +70,7 @@ export function List({ data, listPath }) {
 						return (
 							<ListItem
 								key={item.id}
+								daysUntilNextPurchase={item.daysUntilNextPurchase}
 								dateLastPurchased={item.dateLastPurchased}
 								itemId={item.id}
 								name={item.name}

@@ -12,7 +12,11 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate, getDaysBetweenDates } from '../utils';
+import {
+	getFutureDate,
+	getDaysBetweenDates,
+	ONE_DAY_IN_MILLISECONDS,
+} from '../utils';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
@@ -230,3 +234,58 @@ export async function deleteItem(listPath, itemId) {
 
 	await deleteDoc(listCollectionRef);
 }
+
+export function comparePurchaseUrgency(a, b) {
+	const INACTIVE_THRESHOLD = 60 * ONE_DAY_IN_MILLISECONDS;
+	const today = new Date();
+
+	const timeDiffA = a.dateLastPurchased
+		? today - new Date(a.dateLastPurchased.seconds * 1000)
+		: null;
+	const timeDiffB = b.dateLastPurchased
+		? today - new Date(b.dateLastPurchased.seconds * 1000)
+		: null;
+
+	const isInactiveA = timeDiffA > INACTIVE_THRESHOLD;
+	const isInactiveB = timeDiffB > INACTIVE_THRESHOLD;
+
+	if (isInactiveA && !isInactiveB) {
+		return 1;
+	}
+	if (!isInactiveA && isInactiveB) {
+		return -1;
+	}
+
+	const daysPassedA = a.daysUntilNextPurchase;
+	const daysPassedB = b.daysUntilNextPurchase;
+	if (daysPassedA < daysPassedB) {
+		return -1;
+	} else if (daysPassedB < daysPassedA) {
+		return 1;
+	} else if (daysPassedA === daysPassedB) {
+		return a.name.localeCompare(b.name);
+	}
+
+	throw new Error('Unexpected condition when comparing purchase urgency');
+}
+
+export const calculateUrgency = (daysUntilNextPurchase, dateLastPurchased) => {
+	const today = new Date();
+	let daysSinceLastPurchase = 0;
+
+	if (dateLastPurchased) {
+		const lastPurchaseDate = new Date(dateLastPurchased.seconds * 1000);
+		const timeDiff = today - lastPurchaseDate;
+		daysSinceLastPurchase = Math.floor(timeDiff / ONE_DAY_IN_MILLISECONDS);
+	}
+
+	if (daysSinceLastPurchase >= 60) {
+		return 'inactive';
+	} else if (daysUntilNextPurchase <= 7) {
+		return 'soon';
+	} else if (daysUntilNextPurchase > 7 && daysUntilNextPurchase < 30) {
+		return 'kind of soon';
+	} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
+		return 'not soon';
+	}
+};
