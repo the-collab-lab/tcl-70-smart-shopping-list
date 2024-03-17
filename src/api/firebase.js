@@ -233,11 +233,6 @@ export async function deleteItem(listPath, itemId) {
 	const listCollectionRef = doc(db, `${listPath}/items`, itemId);
 
 	await deleteDoc(listCollectionRef);
-	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to delete an existing item. You'll need to figure out what arguments
-	 * this function must accept!
-	 */
 }
 
 export function comparePurchaseUrgency(a, b) {

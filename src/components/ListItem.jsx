@@ -12,6 +12,7 @@ export function ListItem({
 }) {
 	const [isChecked, setIsChecked] = useState(false);
 	const [expired, setExpired] = useState();
+	const [message, setMessage] = useState();
 
 	const handleChange = async () => {
 		if (!isChecked) {
@@ -28,9 +29,11 @@ export function ListItem({
 				await deleteItem(listPath, itemId);
 			} catch (error) {
 				console.log('error: ', error);
+				setMessage('Oops! Something went wrong! Please try again!');
 			}
 		} else {
 			console.log('canceled');
+			setMessage('Deletion canceled!');
 		}
 	};
 
@@ -66,6 +69,9 @@ export function ListItem({
 	const urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
 
 	return (
+
+    	<>
+			<span>{message}</span>
 		<li className="ListItem">
 			<label htmlFor={`${name}`}>
 				<input
@@ -81,5 +87,6 @@ export function ListItem({
 				Delete
 			</button>
 		</li>
+    </>
 	);
 }
