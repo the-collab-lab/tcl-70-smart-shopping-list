@@ -80,7 +80,7 @@ export function Home({ data, setListPath, userEmail, userId }) {
 			) : (
 				<p>Please log in</p>
 			)}
-			<ul>
+			<ul className="lists-container">
 				{/* Renders the `lists` array so we can see which lists the user has access to.  */}
 				{data.map((list) => {
 					return (

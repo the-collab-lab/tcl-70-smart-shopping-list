@@ -16,8 +16,11 @@ export function SingleList({ name, path, setListPath }) {
 
 	return (
 		<li className="SingleList">
-			<button onClick={handleViewClick}>{name}</button>
-			<button onClick={handleManageClick}>Manage</button>{' '}
+			<div className="SingleList-card">
+				<img></img>
+				<button onClick={handleViewClick}>{name}</button>
+				<button onClick={handleManageClick}>Manage</button>{' '}
+			</div>
 		</li>
 	);
 }
