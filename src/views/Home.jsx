@@ -54,9 +54,32 @@ export function Home({ data, setListPath, userEmail, userId }) {
 
 	return (
 		<div className="Home">
-			<p>
-				Hello from the home (<code>/</code>) page!
-			</p>
+			{userId && userEmail ? (
+				<div>
+					<p>
+						<strong>Instruction:</strong> If you click on List name, you will be
+						redirected to items in the list. If you click on Manage, you will be
+						redirected to list details and able to Edit/Delete the list.
+					</p>
+					<form>
+						<label htmlFor="shopping-list-name">
+							Enter shopping list name:
+						</label>
+						<input
+							type="text"
+							name="shopping-list-name"
+							id="shopping-list-name"
+							onChange={handleOnChange}
+							value={shoppingListName}
+						/>
+						<button onClick={handleSubmit} type="submit">
+							Create list
+						</button>
+					</form>
+				</div>
+			) : (
+				<p>Please log in</p>
+			)}
 			<ul>
 				{/* Renders the `lists` array so we can see which lists the user has access to.  */}
 				{data.map((list) => {
@@ -71,23 +94,6 @@ export function Home({ data, setListPath, userEmail, userId }) {
 				})}
 			</ul>
 			{notificationMessage && <p>{notificationMessage}</p>}
-			{userId && userEmail ? (
-				<form>
-					<label htmlFor="shopping-list-name">Enter shopping list name:</label>
-					<input
-						type="text"
-						name="shopping-list-name"
-						id="shopping-list-name"
-						onChange={handleOnChange}
-						value={shoppingListName}
-					/>
-					<button onClick={handleSubmit} type="submit">
-						Create list
-					</button>
-				</form>
-			) : (
-				<p>Please log in</p>
-			)}
 		</div>
 	);
 }
