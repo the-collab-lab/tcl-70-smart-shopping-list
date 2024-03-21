@@ -54,46 +54,44 @@ export function Home({ data, setListPath, userEmail, userId }) {
 
 	return (
 		<div className="Home">
-			{userId && userEmail ? (
+			{userId ? (
 				<div>
 					<p>
 						<strong>Instruction:</strong> If you click on List name, you will be
 						redirected to items in the list. If you click on Manage, you will be
 						redirected to list details and able to Edit/Delete the list.
 					</p>
-					<form>
-						<label htmlFor="shopping-list-name">
-							Enter shopping list name:
-						</label>
-						<input
-							type="text"
-							name="shopping-list-name"
-							id="shopping-list-name"
-							onChange={handleOnChange}
-							value={shoppingListName}
-						/>
-						<button onClick={handleSubmit} type="submit">
-							Create list
-						</button>
-					</form>
+					<ul className="lists-container">
+						<li className="SingleList create-list-card">
+							<div className="SingleList-card">
+								<form onSubmit={handleSubmit}>
+									<label htmlFor="shopping-list-name">Add list:</label>
+									<input
+										type="text"
+										name="shopping-list-name"
+										id="shopping-list-name"
+										onChange={handleOnChange}
+										value={shoppingListName}
+										placeholder="New list name"
+									/>
+									<button type="submit">Submit</button>
+									{notificationMessage && <p>{notificationMessage}</p>}
+								</form>
+							</div>
+						</li>
+						{data.map((list) => (
+							<SingleList
+								key={list.name}
+								name={list.name}
+								path={list.path}
+								setListPath={setListPath}
+							/>
+						))}
+					</ul>
 				</div>
 			) : (
 				<p>Please log in</p>
 			)}
-			<ul className="lists-container">
-				{/* Renders the `lists` array so we can see which lists the user has access to.  */}
-				{data.map((list) => {
-					return (
-						<SingleList
-							key={list.name}
-							name={list.name}
-							path={list.path}
-							setListPath={setListPath}
-						/>
-					);
-				})}
-			</ul>
-			{notificationMessage && <p>{notificationMessage}</p>}
 		</div>
 	);
 }

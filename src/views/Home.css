@@ -5,3 +5,21 @@
 	list-style: none;
 	justify-content: space-around;
 }
+
+.create-list-card input,
+.create-list-card button {
+	width: 60%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 20px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	background-color: #f1f1f1;
+	cursor: pointer;
+}
+
+.create-list-card label {
+	text-align: center;
+	width: 60%;
+	margin-bottom: 10px;
+}
