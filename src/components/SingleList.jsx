@@ -8,7 +8,18 @@ export function SingleList({ name, path, setListPath }) {
 	const { user } = useAuth();
 	const currentUserIsOwner = user && path.includes(user.uid);
 
-	const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+	function generateIconIndexFromPath(str) {
+		let hash = 0;
+		for (let i = 0; i < str.length; i++) {
+			const char = str.charCodeAt(i);
+			hash = (hash << 5) - hash + char;
+			hash &= hash;
+		}
+		return Math.abs(hash) % icons.length;
+	}
+
+	const iconIndex = generateIconIndexFromPath(path);
+	const icon = icons[iconIndex];
 
 	function handleViewClick() {
 		setListPath(path);
@@ -25,7 +36,7 @@ export function SingleList({ name, path, setListPath }) {
 	return (
 		<li className="SingleList">
 			<div className="SingleList-card">
-				<img src={`/img/food-icons/${randomIcon}`} alt="List" />
+				<img src={`/img/food-icons/${icon}`} alt={`${name} list icon`} />
 				<button onClick={handleViewClick}>{name}</button>
 				{currentUserIsOwner && (
 					<button onClick={handleManageClick}>Manage</button>
