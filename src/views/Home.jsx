@@ -44,12 +44,21 @@ export function Home({ data, setListPath, userEmail, userId }) {
 		<div className="Home">
 			{userId ? (
 				<div>
-					<strong>Instruction:</strong>
-					<ul>
-						<li>Click on List name to redirect to items in the list. </li>
-						<li>Click on edit icon to modify list name.</li>
-						<li>Click on share icon to share your list.</li>
-					</ul>
+					<br></br>
+					<details>
+						<summary>Quick Guide:</summary>
+						<ul>
+							<li>Click on the list name to redirect to items in the list.</li>
+							<li>
+								(If you are the list owner) Click on the edit icon to modify the
+								list name.
+							</li>
+							<li>
+								(If you are the list owner) Click on the share icon to share the
+								list with others.
+							</li>
+						</ul>
+					</details>
 					<br></br>
 					<ul className="lists-container">
 						<li className="SingleList">
