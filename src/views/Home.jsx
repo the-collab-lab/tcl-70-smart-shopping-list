@@ -46,11 +46,13 @@ export function Home({ data, setListPath, userEmail, userId }) {
 		<div className="Home">
 			{userId ? (
 				<div>
-					<p>
-						<strong>Instruction:</strong> If you click on List name, you will be
-						redirected to items in the list. If you click on Manage, you will be
-						redirected to list details and able to Edit/Delete the list.
-					</p>
+					<strong>Instruction:</strong>
+					<ul>
+						<li>Click on List name to redirect to items in the list. </li>
+						<li>Click on edit icon to modify list name.</li>
+						<li>Click on share icon to share your list.</li>
+					</ul>
+					<br></br>
 					<ul className="lists-container">
 						<li className="SingleList">
 							<div className="SingleList-card">
