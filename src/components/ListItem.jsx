@@ -2,6 +2,8 @@ import './ListItem.css';
 import { useEffect, useState } from 'react';
 import { updateItem, deleteItem, calculateUrgency } from '../api/firebase';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates';
+import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export function ListItem({
 	name,
@@ -69,24 +71,27 @@ export function ListItem({
 	const urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
 
 	return (
-
-    	<>
+		<>
 			<span>{message}</span>
-		<li className="ListItem">
-			<label htmlFor={`${name}`}>
-				<input
-					disabled={expired}
-					id={`${name}`}
-					type="checkbox"
-					checked={isChecked}
-					onChange={handleChange}
-				/>
-				{`${name}-${urgency}`}
-			</label>
-			<button onClick={handleClick} type="button">
-				Delete
-			</button>
-		</li>
-    </>
+			<li className="ListItem">
+				<label htmlFor={`${name}`}>
+					<input
+						disabled={expired}
+						id={`${name}`}
+						type="checkbox"
+						checked={isChecked}
+						onChange={handleChange}
+					/>
+					{`${name}-${urgency}`}
+				</label>
+				<Button
+					onClick={handleClick}
+					variant="outlined"
+					startIcon={<DeleteIcon />}
+				>
+					Delete
+				</Button>
+			</li>
+		</>
 	);
 }
