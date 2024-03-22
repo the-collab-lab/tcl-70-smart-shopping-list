@@ -1,27 +1,16 @@
-.lists-container {
-	display: flex;
-	flex-wrap: wrap;
-	padding: 0;
-	list-style: none;
-	justify-content: space-around;
-}
-
-.create-list-card input,
-.create-list-card button {
-	width: 60% !important;
+.input-button-common {
+	width: 60%;
 	padding: 10px;
 	margin-bottom: 10px;
 	border-radius: 20px;
-	border: 1px solid #ccc;
-	box-sizing: border-box;
-	background: none !important;
+	background: none;
 	cursor: pointer;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.create-list-card label {
+.centered-block {
 	text-align: center;
 	width: 60%;
 	margin-bottom: 10px;
@@ -30,9 +19,62 @@
 	margin-right: auto;
 }
 
+.lists-container {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0;
+	list-style: none;
+	justify-content: space-around;
+}
+
 .add-icon {
-	width: 70px !important;
+	width: 70px;
 	height: auto;
 	display: block;
 	margin: 0 auto;
+}
+
+.SingleList-card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	transition: 0.3s;
+	width: 200px;
+	height: 280px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.food-icons {
+	width: 100%;
+	height: auto;
+}
+
+.util-icons {
+	width: 30px;
+}
+
+.icon-container {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+}
+
+.icon-button {
+	background: none;
+	border: none;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.list-name-button {
+	border: none;
+	padding: 10px;
+	width: calc(100% - 20px);
+	margin-bottom: 10px;
+	box-sizing: border-box;
+	background-color: #f1f1f1;
+	cursor: pointer;
 }

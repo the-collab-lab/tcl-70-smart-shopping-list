@@ -62,10 +62,15 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						redirected to list details and able to Edit/Delete the list.
 					</p>
 					<ul className="lists-container">
-						<li className="SingleList create-list-card">
+						<li className="SingleList">
 							<div className="SingleList-card">
 								<form onSubmit={handleSubmit}>
-									<label htmlFor="shopping-list-name">Add list:</label>
+									<label
+										htmlFor="shopping-list-name"
+										className="centered-block"
+									>
+										Add list:
+									</label>
 									<input
 										type="text"
 										name="shopping-list-name"
@@ -73,13 +78,17 @@ export function Home({ data, setListPath, userEmail, userId }) {
 										onChange={handleOnChange}
 										value={shoppingListName}
 										placeholder="New list name"
+										className="input-button-common"
 									/>
-									<button type="submit" className="icon-button">
+									<button
+										type="submit"
+										className="icon-button input-button-common"
+									>
 										<img
 											src="img/add.svg"
-											class="add-icon"
+											className="add-icon"
 											alt="add icon"
-										></img>
+										/>
 									</button>
 									{notificationMessage && <p>{notificationMessage}</p>}
 								</form>

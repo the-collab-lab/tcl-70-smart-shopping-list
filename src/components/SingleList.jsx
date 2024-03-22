@@ -34,12 +34,25 @@ export function SingleList({ name, path, setListPath }) {
 	}
 
 	return (
-		<li className="SingleList">
+		<li>
 			<div className="SingleList-card">
-				<img src={`/img/food-icons/${icon}`} alt={`${name} list icon`} />
-				<button onClick={handleViewClick}>{name}</button>
+				<img
+					src={`/img/food-icons/${icon}`}
+					className="food-icons"
+					alt={`${name} list icon`}
+				/>
+				<button onClick={handleViewClick} className="list-name-button">
+					{name}
+				</button>
 				{currentUserIsOwner && (
-					<button onClick={handleManageClick}>Manage</button>
+					<div className="icon-container">
+						<button onClick={handleManageClick} className="icon-button">
+							<img src="img/edit.png" className="util-icons" alt="Edit" />
+						</button>
+						<button onClick={handleManageClick} className="icon-button">
+							<img src="img/share.png" className="util-icons" alt="Share" />
+						</button>
+					</div>
 				)}
 			</div>
 		</li>
