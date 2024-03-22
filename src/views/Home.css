@@ -78,3 +78,7 @@
 	background-color: #f1f1f1;
 	cursor: pointer;
 }
+
+.notification-message {
+	font-size: 0.8em;
+}

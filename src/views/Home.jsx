@@ -80,7 +80,11 @@ export function Home({ data, setListPath, userEmail, userId }) {
 											alt="add icon"
 										/>
 									</button>
-									{notificationMessage && <p>{notificationMessage}</p>}
+									{notificationMessage && (
+										<p className="notification-message">
+											{notificationMessage}
+										</p>
+									)}
 								</form>
 							</div>
 						</li>
