@@ -13,20 +13,10 @@ export function Home({ data, setListPath, userEmail, userId }) {
 	useEffect(() => {
 		const newestList = data[data.length - 1];
 		setListPath(newestList?.path);
-
-		if (previousDataRef.current.length === 0) {
-			previousDataRef.current = data;
-			return;
-		}
-
-		if (previousDataRef.current.length !== data.length) {
-			navigate('/list');
-		}
-
 		return () => {
 			previousDataRef.current = data;
 		};
-	}, [data.length]);
+	}, [data, setListPath]);
 
 	const handleOnChange = (event) => {
 		setShoppingListName(event.target.value);
