@@ -74,7 +74,13 @@ export function Home({ data, setListPath, userEmail, userId }) {
 										value={shoppingListName}
 										placeholder="New list name"
 									/>
-									<button type="submit">Submit</button>
+									<button type="submit" className="icon-button">
+										<img
+											src="img/add.svg"
+											class="add-icon"
+											alt="add icon"
+										></img>
+									</button>
 									{notificationMessage && <p>{notificationMessage}</p>}
 								</form>
 							</div>
