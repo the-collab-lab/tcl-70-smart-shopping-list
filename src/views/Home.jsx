@@ -2,12 +2,10 @@ import './Home.css';
 import { SingleList } from '../components/SingleList';
 import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
-import { useNavigate } from 'react-router-dom';
 
 export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
 	const [notificationMessage, setNotificationMessage] = useState('');
-	const navigate = useNavigate();
 	const previousDataRef = useRef([]);
 
 	useEffect(() => {
