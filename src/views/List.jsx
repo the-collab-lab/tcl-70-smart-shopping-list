@@ -5,8 +5,8 @@ import { comparePurchaseUrgency, addItem } from '../api';
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
-	const [item, setItem] = useState({ name: '', urgency: 'soon' }); //NEEDED
-	const [submitted, setSubmitted] = useState(); //NEEDED
+	const [item, setItem] = useState({ name: '', urgency: 'soon' });
+	const [submitted, setSubmitted] = useState();
 
 	const handleChange = (e) => {
 		const searchTermLocal = e.target.value;
@@ -70,6 +70,9 @@ export function List({ data, listPath }) {
 		}
 	};
 
+	//Getting the name of the list
+	const listName = listPath.split('/')[1];
+
 	//Alerts based on "submitted" value
 	const alertText = (submittedValue) => {
 		switch (submittedValue) {
@@ -85,10 +88,6 @@ export function List({ data, listPath }) {
 				return '';
 		}
 	};
-
-	const listName = listPath.split('/')[1];
-
-	// const handleClick = () => navigate('/manage-list');
 
 	//useEffect triggered with change in searchTerm or data
 	useEffect(() => {
@@ -115,36 +114,44 @@ export function List({ data, listPath }) {
 			<>
 				{alertText(submitted)}
 				<form onSubmit={handleSubmit}>
-					<label htmlFor="itemName">Item name: </label>
-					<input
-						id="itemName"
-						type="text"
-						placeholder="Item Name"
-						name="name"
-						onChange={handleAddItemChange}
-						value={item.name}
-					/>
-					<label htmlFor="purchaseUrgency">Purchase urgency: </label>
-					<select
-						id="purchaseUrgency"
-						name="urgency"
-						onChange={handleAddItemChange}
-						defaultValue="soon"
-					>
-						<option value="soon">Soon</option>
-						<option value="kindOfSoon">Kind of Soon</option>
-						<option value="notSoon">Not soon</option>
-					</select>
+					<div className="newItemInputs">
+						<label htmlFor="itemName">Item name: </label>
+						<input
+							id="itemName"
+							type="text"
+							placeholder="Item Name"
+							name="name"
+							onChange={handleAddItemChange}
+							value={item.name}
+						/>
+						<br />
+						<label htmlFor="purchaseUrgency">
+							How soon will you buy this item:{' '}
+						</label>
+						<select
+							id="purchaseUrgency"
+							name="urgency"
+							onChange={handleAddItemChange}
+							defaultValue={''}
+							required
+						>
+							<option value="" disabled>
+								Please select an option:
+							</option>
+							<option value="soon">Soon</option>
+							<option value="kindOfSoon">Kind of Soon</option>
+							<option value="notSoon">Not soon</option>
+						</select>
+					</div>
+
 					<button type="submit" value="Submit">
 						Submit
 					</button>
 				</form>
-				<p>What does "purchase urgency" mean?</p>
-				<p>Select:</p>
 				<ul>
-					<li>"Soon" if you need the item in 7 days or less</li>
-					<li>"Kind of Soon" if you need the item between 7 and 30 days</li>
-					<li>"Not Soon" if you need the item from 30 to 59 days</li>
+					<li>Soon: Within 7 days</li>
+					<li>Kind of Soon: from 7 to 29 days</li>
+					<li>Not sure: From 30 to 59 days</li>
 				</ul>
 			</>
 		);
@@ -178,6 +185,14 @@ export function List({ data, listPath }) {
 						</button>
 					)}
 				</form>
+				<hr />
+				{addItemForm()}
+				<p>
+					<i>
+						*Items that have been on the list for 60 days or more are marked
+						"inactive"
+					</i>
+				</p>
 				<ul>
 					{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
 					{filteredData.map((item) => {
@@ -193,14 +208,6 @@ export function List({ data, listPath }) {
 						);
 					})}
 				</ul>
-				<p>
-					<i>
-						*Items that have been on the list for 60 days or more are marked
-						"inactive"
-					</i>
-				</p>
-				<p>Add more items:</p>
-				{addItemForm()}
 			</div>
 		);
 	};
@@ -212,7 +219,7 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-			<h2>Items from your {listName} list!</h2>
+			<h2>{listName} list</h2>
 
 			{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}
 		</>
