@@ -8,18 +8,18 @@ export function SingleList({ name, path, setListPath }) {
 	const { user } = useAuth();
 	const currentUserIsOwner = user && path.includes(user.uid);
 
+	const iconIndex = generateIconIndexFromPath(path);
+	const icon = icons[iconIndex];
+
+	// Converts path to a consistent icon index by hashing. This ensures the same path always selects the same icon.
 	function generateIconIndexFromPath(str) {
 		let hash = 0;
 		for (let i = 0; i < str.length; i++) {
 			const char = str.charCodeAt(i);
 			hash = (hash << 5) - hash + char;
-			hash &= hash;
 		}
 		return Math.abs(hash) % icons.length;
 	}
-
-	const iconIndex = generateIconIndexFromPath(path);
-	const icon = icons[iconIndex];
 
 	function handleViewClick() {
 		setListPath(path);
@@ -41,6 +41,7 @@ export function SingleList({ name, path, setListPath }) {
 					className="food-icons"
 					alt={`${name} list icon`}
 				/>
+				{/* Rachael: You might want to think about handling long list names. For example, you can truncate overflow with ellipses in css. */}
 				<button onClick={handleViewClick} className="list-name-button">
 					{name}
 				</button>

@@ -76,12 +76,13 @@ export function Home({ data, setListPath, userEmail, userId }) {
 										id="shopping-list-name"
 										onChange={handleOnChange}
 										value={shoppingListName}
-										placeholder="New list name"
+										placeholder="Add list"
 										className="input-button-common"
 									/>
 									<button
 										type="submit"
 										className="icon-button input-button-common"
+										disabled={shoppingListName.length === 0}
 									>
 										<img
 											src="img/add.svg"
@@ -90,7 +91,10 @@ export function Home({ data, setListPath, userEmail, userId }) {
 										/>
 									</button>
 									{notificationMessage && (
-										<p className="notification-message">
+										<p
+											className="notification-message"
+											title={notificationMessage}
+										>
 											{notificationMessage}
 										</p>
 									)}
