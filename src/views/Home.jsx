@@ -2,31 +2,19 @@ import './Home.css';
 import { SingleList } from '../components/SingleList';
 import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
-import { useNavigate } from 'react-router-dom';
 
 export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
 	const [notificationMessage, setNotificationMessage] = useState('');
-	const navigate = useNavigate();
 	const previousDataRef = useRef([]);
 
 	useEffect(() => {
 		const newestList = data[data.length - 1];
 		setListPath(newestList?.path);
-
-		if (previousDataRef.current.length === 0) {
-			previousDataRef.current = data;
-			return;
-		}
-
-		if (previousDataRef.current.length !== data.length) {
-			navigate('/list');
-		}
-
 		return () => {
 			previousDataRef.current = data;
 		};
-	}, [data.length]);
+	}, [data, setListPath]);
 
 	const handleOnChange = (event) => {
 		setShoppingListName(event.target.value);
@@ -54,37 +42,75 @@ export function Home({ data, setListPath, userEmail, userId }) {
 
 	return (
 		<div className="Home">
-			<p>
-				Hello from the home (<code>/</code>) page!
-			</p>
-			<ul>
-				{/* Renders the `lists` array so we can see which lists the user has access to.  */}
-				{data.map((list) => {
-					return (
-						<SingleList
-							key={list.name}
-							name={list.name}
-							path={list.path}
-							setListPath={setListPath}
-						/>
-					);
-				})}
-			</ul>
-			{notificationMessage && <p>{notificationMessage}</p>}
-			{userId && userEmail ? (
-				<form>
-					<label htmlFor="shopping-list-name">Enter shopping list name:</label>
-					<input
-						type="text"
-						name="shopping-list-name"
-						id="shopping-list-name"
-						onChange={handleOnChange}
-						value={shoppingListName}
-					/>
-					<button onClick={handleSubmit} type="submit">
-						Create list
-					</button>
-				</form>
+			{userId ? (
+				<div>
+					<br></br>
+					<details>
+						<summary>Quick Guide:</summary>
+						<ul>
+							<li>Click on the list name to redirect to items in the list.</li>
+							<li>
+								(If you are the list owner) Click on the edit icon to modify the
+								list name.
+							</li>
+							<li>
+								(If you are the list owner) Click on the share icon to share the
+								list with others.
+							</li>
+						</ul>
+					</details>
+					<br></br>
+					<ul className="lists-container">
+						<li className="SingleList">
+							<div className="SingleList-card">
+								<form onSubmit={handleSubmit}>
+									<label
+										htmlFor="shopping-list-name"
+										className="centered-block"
+									>
+										Add list:
+									</label>
+									<input
+										type="text"
+										name="shopping-list-name"
+										id="shopping-list-name"
+										onChange={handleOnChange}
+										value={shoppingListName}
+										placeholder="Add list"
+										className="input-button-common"
+									/>
+									<button
+										type="submit"
+										className="icon-button input-button-common"
+										disabled={shoppingListName.length === 0}
+									>
+										<img
+											src="img/add.svg"
+											className="add-icon"
+											alt="add icon"
+										/>
+									</button>
+									{notificationMessage && (
+										<p
+											className="notification-message"
+											title={notificationMessage}
+										>
+											{notificationMessage}
+										</p>
+									)}
+								</form>
+							</div>
+						</li>
+						{data.map((list) => (
+							<SingleList
+								key={list.name}
+								name={list.name}
+								path={list.path}
+								setListPath={setListPath}
+							/>
+						))}
+					</ul>
+				</div>
 			) : (
 				<p>Please log in</p>
 			)}

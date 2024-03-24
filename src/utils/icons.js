@@ -1,0 +1,25 @@
+const icons = [
+	'apple.svg',
+	'bread-egg.svg',
+	'carrot.svg',
+	'cheeseburger.svg',
+	'cherries.svg',
+	'cookie.svg',
+	'donut.svg',
+	'french-fries.svg',
+	'fried-chicken.svg',
+	'grapes.svg',
+	'hotdog.svg',
+	'ice-cupcake.svg',
+	'lemon.svg',
+	'macaron-cookies.svg',
+	'pear.svg',
+	'pizza.svg',
+	'popcorn.svg',
+	'sliced-pizza.svg',
+	'soft-ice-cream.svg',
+	'strawberry-magnum.svg',
+	'vanilla-cupcake.svg',
+];
+
+export default icons;
