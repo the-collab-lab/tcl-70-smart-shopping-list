@@ -5,7 +5,7 @@ import { comparePurchaseUrgency, addItem } from '../api';
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
-	const [item, setItem] = useState({ name: '', urgency: 'soon' });
+	const [item, setItem] = useState({ name: '', urgency: '' });
 	const [submitted, setSubmitted] = useState();
 
 	const handleChange = (e) => {
@@ -64,6 +64,7 @@ export function List({ data, listPath }) {
 				daysUntilNextPurchase: nextPurchasedDate,
 			});
 			setSubmitted('added');
+			setItem({ ...item, name: '' });
 		} catch (err) {
 			console.log(err);
 			setSubmitted('failed');
@@ -111,11 +112,12 @@ export function List({ data, listPath }) {
 
 	const addItemForm = () => {
 		return (
-			<>
+			<section className="addAnItemForm">
+				<h3>Add an item</h3>
 				{alertText(submitted)}
 				<form onSubmit={handleSubmit}>
 					<div className="newItemInputs">
-						<label htmlFor="itemName">Item name: </label>
+						<label htmlFor="itemName">Enter item name: </label>
 						<input
 							id="itemName"
 							type="text"
@@ -132,7 +134,7 @@ export function List({ data, listPath }) {
 							id="purchaseUrgency"
 							name="urgency"
 							onChange={handleAddItemChange}
-							defaultValue={''}
+							defaultValue={item.urgency}
 							required
 						>
 							<option value="" disabled>
@@ -153,7 +155,7 @@ export function List({ data, listPath }) {
 					<li>Kind of Soon: from 7 to 29 days</li>
 					<li>Not sure: From 30 to 59 days</li>
 				</ul>
-			</>
+			</section>
 		);
 	};
 
