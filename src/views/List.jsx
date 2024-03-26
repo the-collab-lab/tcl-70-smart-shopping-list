@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { ListItem } from '../components';
 import { comparePurchaseUrgency, addItem } from '../api';
+import SearchIcon from '@mui/icons-material/Search';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Button from '@mui/material/Button';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -172,21 +178,25 @@ export function List({ data, listPath }) {
 	const renderItemList = () => {
 		return (
 			<div>
-				<form>
-					<label htmlFor="itemSearch">Search for an item: </label>
-					<input
-						type="text"
+				<FormControl variant="standard">
+					<InputLabel htmlFor="itemSearch">Search for an item:</InputLabel>
+					<Input
 						id="itemSearch"
 						placeholder="Search items..."
 						value={searchTerm}
 						onChange={handleChange}
-					></input>
+						startAdornment={
+							<InputAdornment position="start">
+								<SearchIcon />
+							</InputAdornment>
+						}
+					/>
 					{searchTerm && (
-						<button type="button" onClick={clearSearch}>
+						<Button type="button" onClick={clearSearch}>
 							Clear
-						</button>
+						</Button>
 					)}
-				</form>
+				</FormControl>
 				<hr />
 				{addItemForm()}
 				<p>
