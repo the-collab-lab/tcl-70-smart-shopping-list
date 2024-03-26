@@ -7,6 +7,8 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -122,45 +124,38 @@ export function List({ data, listPath }) {
 				<h3>Add an item</h3>
 				{alertText(submitted)}
 				<form onSubmit={handleSubmit}>
-					<div className="newItemInputs">
-						<label htmlFor="itemName">Enter item name: </label>
-						<input
+					<FormControl variant="standard">
+						<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
+						<Input
 							id="itemName"
-							type="text"
 							placeholder="Item Name"
+							value={item.name}
 							name="name"
 							onChange={handleAddItemChange}
-							value={item.name}
 						/>
-						<br />
-						<label htmlFor="purchaseUrgency">
-							How soon will you buy this item:{' '}
-						</label>
-						<select
+					</FormControl>
+					<FormControl variant="standard">
+						<InputLabel id="purchaseUrgencyInput">
+							How soon will you buy this item:
+						</InputLabel>
+						<Select
+							labelId="purchaseUrgencyInput"
 							id="purchaseUrgency"
 							name="urgency"
+							label="How soon will you buy this item:"
 							onChange={handleAddItemChange}
-							defaultValue={item.urgency}
+							value={item.urgency}
 							required
 						>
-							<option value="" disabled>
-								Please select an option:
-							</option>
-							<option value="soon">Soon</option>
-							<option value="kindOfSoon">Kind of Soon</option>
-							<option value="notSoon">Not soon</option>
-						</select>
-					</div>
-
-					<button type="submit" value="Submit">
+							<MenuItem value="soon">Soon</MenuItem>
+							<MenuItem value="kindOfSoon">Kind of Soon</MenuItem>
+							<MenuItem value="notSoon">Not soon</MenuItem>
+						</Select>
+					</FormControl>
+					<Button type="submit" value="Submit">
 						Submit
-					</button>
+					</Button>
 				</form>
-				<ul>
-					<li>Soon: Within 7 days</li>
-					<li>Kind of Soon: from 7 to 29 days</li>
-					<li>Not sure: From 30 to 59 days</li>
-				</ul>
 			</section>
 		);
 	};
