@@ -101,12 +101,12 @@ export function ListItem({
 							backgroundColor:
 								urgency === 'soon'
 									? '#FFFF00'
-									: urgency === 'kindOfSoon'
+									: urgency === 'kind of soon'
 										? '#00FF00'
-										: urgency === 'notSoon'
+										: urgency === 'not soon'
 											? '#FF00FF'
 											: '#808080',
-						}} //COME BACK TO THIS
+						}}
 					/>
 					<Button
 						onClick={handleClick}
