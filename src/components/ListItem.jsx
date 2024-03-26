@@ -4,6 +4,9 @@ import { updateItem, deleteItem, calculateUrgency } from '../api/firebase';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates';
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Card from '@mui/material/Card';
+import Chip from '@mui/material/Chip';
+import Checkbox from '@mui/material/Checkbox';
 
 export function ListItem({
 	name,
@@ -69,29 +72,59 @@ export function ListItem({
 	}, [isChecked, itemId, listPath]);
 
 	const urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
+	const label = { inputProps: { 'aria-label': `${name}` } };
+	const color =
+		urgency === 'soon'
+			? '#FFFF00'
+			: urgency === 'kindOfSoon'
+				? '#00FF00'
+				: urgency === 'notSoon'
+					? '#FF00FF'
+					: '#808080';
 
 	return (
 		<>
 			<span>{message}</span>
-			<li className="ListItem">
-				<label htmlFor={`${name}`}>
-					<input
+			<Card>
+				<li className="ListItem">
+					<Checkbox
+						{...label}
+						onChange={handleChange}
 						disabled={expired}
 						id={`${name}`}
-						type="checkbox"
 						checked={isChecked}
-						onChange={handleChange}
 					/>
-					{`${name}-${urgency}`}
-				</label>
-				<Button
-					onClick={handleClick}
-					variant="outlined"
-					startIcon={<DeleteIcon />}
-				>
-					Delete
-				</Button>
-			</li>
+					{name}
+					<Chip
+						label={urgency}
+						sx={{
+							backgroundColor:
+								urgency === 'soon'
+									? '#FFFF00'
+									: urgency === 'kindOfSoon'
+										? '#00FF00'
+										: urgency === 'notSoon'
+											? '#FF00FF'
+											: '#808080',
+						}} //COME BACK TO THIS
+					/>
+					<Button
+						onClick={handleClick}
+						variant="outlined"
+						startIcon={<DeleteIcon />}
+					>
+						Delete
+					</Button>
+				</li>
+			</Card>
 		</>
 	);
+}
+// <TripOriginIcon sx={{ color: '#FFFF00' }} />
+{
+	/* <Typography>Soon: Within 7 days</Typography>
+<TripOriginIcon sx={{ color: '#00FF00' }} /> 
+<Typography>Kind of Soon: From 7 to 29 days</Typography>
+<TripOriginIcon sx={{ color: '#FF00FF' }} /> 
+<Typography>Not Sure: From 30 to 59 days</Typography> */
 }

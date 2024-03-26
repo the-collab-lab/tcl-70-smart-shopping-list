@@ -9,6 +9,10 @@ import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import Grid from '@mui/material/Grid';
+import TripOriginIcon from '@mui/icons-material/TripOrigin';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -192,8 +196,14 @@ export function List({ data, listPath }) {
 						</Button>
 					)}
 				</FormControl>
-				<hr />
+				<Divider />
 				{addItemForm()}
+				<TripOriginIcon sx={{ color: '#FFFF00' }} />
+				<Typography>Soon: Within 7 days</Typography>
+				<TripOriginIcon sx={{ color: '#00FF00' }} />
+				<Typography>Kind of Soon: From 7 to 29 days</Typography>
+				<TripOriginIcon sx={{ color: '#FF00FF' }} />
+				<Typography>Not Sure: From 30 to 59 days</Typography>
 				<p>
 					<i>
 						*Items that have been on the list for 60 days or more are marked
@@ -202,18 +212,22 @@ export function List({ data, listPath }) {
 				</p>
 				<ul>
 					{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
-					{filteredData.map((item) => {
-						return (
-							<ListItem
-								key={item.id}
-								daysUntilNextPurchase={item.daysUntilNextPurchase}
-								dateLastPurchased={item.dateLastPurchased}
-								itemId={item.id}
-								name={item.name}
-								listPath={listPath}
-							/>
-						);
-					})}
+					<Grid container spacing={2}>
+						{filteredData.map((item) => {
+							return (
+								<Grid item xs={12} md={6}>
+									<ListItem
+										key={item.id}
+										daysUntilNextPurchase={item.daysUntilNextPurchase}
+										dateLastPurchased={item.dateLastPurchased}
+										itemId={item.id}
+										name={item.name}
+										listPath={listPath}
+									/>
+								</Grid>
+							);
+						})}
+					</Grid>
 				</ul>
 			</div>
 		);
