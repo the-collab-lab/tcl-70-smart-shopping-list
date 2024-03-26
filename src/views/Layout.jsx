@@ -1,4 +1,9 @@
 import { Outlet, NavLink } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 import './Layout.css';
 import { auth } from '../api/config.js';
@@ -29,19 +34,44 @@ export function Layout() {
 						<SignInButton />
 					)}
 				</header>
+
+				<AppBar position="static">
+					<Container maxWidth="xl">
+						<Toolbar disableGutters>
+							<Typography
+								variant="h6"
+								noWrap
+								component="a"
+								href="#app-bar-with-responsive-menu"
+								sx={{
+									mr: 2,
+									display: { xs: 'none', md: 'flex' },
+									fontFamily: 'monospace',
+									fontWeight: 700,
+									letterSpacing: '.3rem',
+									color: 'inherit',
+									textDecoration: 'none',
+								}}
+							>
+								SwiftShop
+							</Typography>
+						</Toolbar>
+					</Container>
+				</AppBar>
+
 				<main className="Layout-main">
 					<Outlet />
 				</main>
 				<nav className="Nav">
 					<div className="Nav-container">
 						<NavLink to="/" className="Nav-link">
-							Home
+							<Button>Home</Button>
 						</NavLink>
 						<NavLink to="/list" className="Nav-link">
-							List
+							<Button>List</Button>
 						</NavLink>
 						<NavLink to="/manage-list" className="Nav-link">
-							Manage List
+							<Button>Manage List</Button>
 						</NavLink>
 					</div>
 				</nav>
