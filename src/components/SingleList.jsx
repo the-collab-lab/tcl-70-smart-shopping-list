@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SingleList.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../api/useAuth.jsx';
@@ -6,7 +6,8 @@ import icons from '../utils/icons.js';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
 import EditIcon from '@mui/icons-material/Edit';
-import { Modal, Box, Typography, TextField } from '@mui/material';
+import { Modal, Box } from '@mui/material';
+import { shareList } from '../api/firebase.js';
 
 const style = {
 	position: 'absolute',
@@ -20,7 +21,7 @@ const style = {
 	p: 4,
 };
 
-export function SingleList({ name, path, setListPath }) {
+export function SingleList({ name, path, setListPath, userId }) {
 	const navigate = useNavigate();
 	const { user } = useAuth();
 	const currentUserIsOwner = user && path.includes(user.uid);
@@ -28,6 +29,9 @@ export function SingleList({ name, path, setListPath }) {
 	const [openModal, setOpenModal] = React.useState(false);
 	const handleOpenModal = () => setOpenModal(true);
 	const handleCloseModal = () => setOpenModal(false);
+	// email invite state
+	const [emailInvite, setEmailInvite] = useState('');
+	const [emailExists, setEmailExists] = useState();
 
 	const iconIndex = generateIconIndexFromPath(path);
 	const icon = icons[iconIndex];
@@ -54,6 +58,22 @@ export function SingleList({ name, path, setListPath }) {
 		}
 	}
 
+	const handleEmailInviteChange = (e) => {
+		setEmailInvite(e.target.value);
+	};
+
+	const handleEmailInviteSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			await shareList(path, userId, emailInvite);
+			setEmailExists('Your list was shared!');
+			setEmailInvite('');
+		} catch (err) {
+			console.log(err);
+			setEmailExists(err.message);
+		}
+	};
+
 	return (
 		<li>
 			<div className="SingleList-card">
@@ -79,7 +99,18 @@ export function SingleList({ name, path, setListPath }) {
 							aria-describedby="modal-modal-description"
 						>
 							<Box sx={style}>
-								<div>please be centered</div>
+								<form onSubmit={handleEmailInviteSubmit}>
+									<label htmlFor="emailInvite">Email invite</label>
+									<input
+										id="emailInvite"
+										placeholder="Type user email to invite"
+										name="emailInvite"
+										type="email"
+										onChange={handleEmailInviteChange}
+										value={emailInvite}
+									/>
+									<button>Submit</button>
+								</form>
 							</Box>
 						</Modal>
 					</>
