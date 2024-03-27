@@ -100,11 +100,11 @@ export function ListItem({
 						sx={{
 							backgroundColor:
 								urgency === 'soon'
-									? '#FFFF00'
+									? '#feff70'
 									: urgency === 'kind of soon'
-										? '#00FF00'
+										? '#80ff00'
 										: urgency === 'not soon'
-											? '#FF00FF'
+											? '#ff94ff'
 											: '#808080',
 						}}
 					/>
