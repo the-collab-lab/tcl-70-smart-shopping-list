@@ -2,6 +2,14 @@ import './SingleList.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../api/useAuth.jsx';
 import icons from '../utils/icons.js';
+import {
+	EditIcon,
+	ShareIcon,
+	DeleteIcon,
+	SmileIcon,
+} from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import { Typography } from '@mui/material';
 
 export function SingleList({ name, path, setListPath }) {
 	const navigate = useNavigate();
@@ -41,7 +49,6 @@ export function SingleList({ name, path, setListPath }) {
 					className="food-icons"
 					alt={`${name} list icon`}
 				/>
-				{/* Rachael: You might want to think about handling long list names. For example, you can truncate overflow with ellipses in css. */}
 				<button onClick={handleViewClick} className="list-name-button">
 					{name}
 				</button>
