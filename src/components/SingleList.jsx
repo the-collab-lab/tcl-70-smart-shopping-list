@@ -100,7 +100,7 @@ export function SingleList({ name, path, setListPath, userId }) {
 						>
 							<Box sx={style}>
 								<form onSubmit={handleEmailInviteSubmit}>
-									<label htmlFor="emailInvite">Email invite</label>
+									<label htmlFor="emailInvite">Email invite: </label>
 									<input
 										id="emailInvite"
 										placeholder="Type user email to invite"
@@ -109,7 +109,7 @@ export function SingleList({ name, path, setListPath, userId }) {
 										onChange={handleEmailInviteChange}
 										value={emailInvite}
 									/>
-									<button>Submit</button>
+									<button>Invite</button>
 								</form>
 							</Box>
 						</Modal>
