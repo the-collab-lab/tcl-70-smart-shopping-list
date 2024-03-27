@@ -2,14 +2,9 @@ import './SingleList.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../api/useAuth.jsx';
 import icons from '../utils/icons.js';
-import {
-	EditIcon,
-	ShareIcon,
-	DeleteIcon,
-	SmileIcon,
-} from '@mui/icons-material';
-import { IconButton } from '@mui/material';
-import { Typography } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ShareIcon from '@mui/icons-material/Share';
+import EditIcon from '@mui/icons-material/Edit';
 
 export function SingleList({ name, path, setListPath }) {
 	const navigate = useNavigate();
@@ -54,12 +49,9 @@ export function SingleList({ name, path, setListPath }) {
 				</button>
 				{currentUserIsOwner && (
 					<div className="icon-container">
-						<button onClick={handleManageClick} className="icon-button">
-							<img src="img/edit.png" className="util-icons" alt="Edit" />
-						</button>
-						<button onClick={handleManageClick} className="icon-button">
-							<img src="img/share.png" className="util-icons" alt="Share" />
-						</button>
+						<EditIcon onClick={handleManageClick} />
+						<ShareIcon onClick={handleManageClick} />
+						<DeleteIcon onClick={handleManageClick} />
 					</div>
 				)}
 			</div>
