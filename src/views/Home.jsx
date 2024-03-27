@@ -2,6 +2,7 @@ import './Home.css';
 import { SingleList } from '../components/SingleList';
 import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
+import { InputLabel, Input, Box, Button } from '@mui/material';
 
 export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
@@ -60,47 +61,37 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						</ul>
 					</details>
 					<br></br>
+					<Box
+						component="form"
+						onSubmit={handleSubmit}
+						sx={{
+							'& .MuiTextField-root': { m: 1, width: '25ch' },
+						}}
+						noValidate
+						autoComplete="off"
+					>
+						<InputLabel htmlFor="shopping-list-name" className="centered-block">
+							Add list
+						</InputLabel>
+						<Input
+							type="text"
+							name="shopping-list-name"
+							id="shopping-list-name"
+							onChange={handleOnChange}
+							value={shoppingListName}
+							placeholder="Add list"
+							className="input-button-common"
+						/>
+						<Button type="submit" disabled={shoppingListName.length === 0}>
+							Submit
+						</Button>
+						{notificationMessage && (
+							<p className="notification-message" title={notificationMessage}>
+								{notificationMessage}
+							</p>
+						)}
+					</Box>
 					<ul className="lists-container">
-						<li className="SingleList">
-							<div className="SingleList-card">
-								<form onSubmit={handleSubmit}>
-									<label
-										htmlFor="shopping-list-name"
-										className="centered-block"
-									>
-										Add list:
-									</label>
-									<input
-										type="text"
-										name="shopping-list-name"
-										id="shopping-list-name"
-										onChange={handleOnChange}
-										value={shoppingListName}
-										placeholder="Add list"
-										className="input-button-common"
-									/>
-									<button
-										type="submit"
-										className="icon-button input-button-common"
-										disabled={shoppingListName.length === 0}
-									>
-										<img
-											src="img/add.svg"
-											className="add-icon"
-											alt="add icon"
-										/>
-									</button>
-									{notificationMessage && (
-										<p
-											className="notification-message"
-											title={notificationMessage}
-										>
-											{notificationMessage}
-										</p>
-									)}
-								</form>
-							</div>
-						</li>
 						{data.map((list) => (
 							<SingleList
 								key={list.name}
