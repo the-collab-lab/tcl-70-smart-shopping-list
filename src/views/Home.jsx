@@ -2,7 +2,7 @@ import './Home.css';
 import { SingleList } from '../components/SingleList';
 import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
-import { InputLabel, Input, Box, Button } from '@mui/material';
+import { InputLabel, Input, Box, Button, Stack } from '@mui/material';
 
 export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
@@ -70,21 +70,32 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						noValidate
 						autoComplete="off"
 					>
-						<InputLabel htmlFor="shopping-list-name" className="centered-block">
-							Add list
-						</InputLabel>
-						<Input
-							type="text"
-							name="shopping-list-name"
-							id="shopping-list-name"
-							onChange={handleOnChange}
-							value={shoppingListName}
-							placeholder="Add list"
-							className="input-button-common"
-						/>
-						<Button type="submit" disabled={shoppingListName.length === 0}>
-							Submit
-						</Button>
+						<Stack
+							direction="row"
+							spacing={2}
+							alignItems="center"
+							justifyContent="center"
+						>
+							<InputLabel
+								htmlFor="shopping-list-name"
+								size="normal"
+								// className="centered-block"
+							>
+								Enter new list name:
+							</InputLabel>
+							<Input
+								type="text"
+								name="shopping-list-name"
+								id="shopping-list-name"
+								onChange={handleOnChange}
+								value={shoppingListName}
+								placeholder="Add list"
+								className="input-button-common"
+							/>
+							<Button type="submit" disabled={shoppingListName.length === 0}>
+								Submit
+							</Button>
+						</Stack>
 						{notificationMessage && (
 							<p className="notification-message" title={notificationMessage}>
 								{notificationMessage}
