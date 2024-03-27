@@ -198,12 +198,45 @@ export function List({ data, listPath }) {
 				</FormControl>
 				<Divider />
 				{addItemForm()}
-				<TripOriginIcon sx={{ color: '#FFFF00' }} />
-				<Typography>Soon: Within 7 days</Typography>
-				<TripOriginIcon sx={{ color: '#00FF00' }} />
-				<Typography>Kind of Soon: From 7 to 29 days</Typography>
-				<TripOriginIcon sx={{ color: '#FF00FF' }} />
-				<Typography>Not Sure: From 30 to 59 days</Typography>
+				<Grid
+					container
+					alignItems="center"
+					justifyContent="space-around"
+					spacing={2}
+				>
+					<Grid item>
+						<Grid container alignItems="center" spacing={1}>
+							<Grid item>
+								<TripOriginIcon sx={{ color: '#feff70' }} />
+							</Grid>
+							<Grid item>
+								<Typography>Soon: Within 7 days</Typography>
+							</Grid>
+						</Grid>
+					</Grid>
+
+					<Grid item>
+						<Grid container alignItems="center" spacing={1}>
+							<Grid item>
+								<TripOriginIcon sx={{ color: '#80ff00' }} />
+							</Grid>
+							<Grid item>
+								<Typography>Kind of Soon: From 7 to 29 days</Typography>
+							</Grid>
+						</Grid>
+					</Grid>
+
+					<Grid item>
+						<Grid container alignItems="center" spacing={1}>
+							<Grid item>
+								<TripOriginIcon sx={{ color: '#ff94ff' }} />
+							</Grid>
+							<Grid item>
+								<Typography>Not Sure: From 30 to 59 days</Typography>
+							</Grid>
+						</Grid>
+					</Grid>
+				</Grid>
 				<p>
 					<i>
 						*Items that have been on the list for 60 days or more are marked
