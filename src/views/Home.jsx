@@ -108,6 +108,7 @@ export function Home({ data, setListPath, userEmail, userId }) {
 								key={list.name}
 								name={list.name}
 								path={list.path}
+								userId={userId}
 								setListPath={setListPath}
 							/>
 						))}
