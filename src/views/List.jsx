@@ -138,7 +138,7 @@ export function List({ data, listPath }) {
 							onChange={handleAddItemChange}
 						/>
 					</FormControl>
-					<FormControl variant="standard">
+					<FormControl variant="standard" sx={{ m: 0, minWidth: 200 }}>
 						<InputLabel id="purchaseUrgencyInput">
 							How soon will you buy this item:
 						</InputLabel>
