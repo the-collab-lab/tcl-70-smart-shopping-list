@@ -60,10 +60,16 @@ export function SingleList({ name, path, setListPath, userId }) {
 
 	const handleEmailInviteChange = (e) => {
 		setEmailInvite(e.target.value);
+		setEmailExists('');
 	};
 
 	const handleEmailInviteSubmit = async (e) => {
 		e.preventDefault();
+		const isValidGmail = emailInvite.endsWith('@gmail.com');
+		if (!isValidGmail) {
+			setEmailExists('Please enter a valid Gmail address.');
+			return;
+		}
 		try {
 			await shareList(path, userId, emailInvite);
 			setEmailExists('Your list was shared!');
@@ -110,6 +116,7 @@ export function SingleList({ name, path, setListPath, userId }) {
 										value={emailInvite}
 									/>
 									<button>Invite</button>
+									<div>{emailExists}</div>
 								</form>
 							</Box>
 						</Modal>
