@@ -130,49 +130,61 @@ export function List({ data, listPath }) {
 	const addItemForm = () => {
 		return (
 			<section className="addAnItemForm">
-				{/* <h3>Add an item</h3>
-				{alertText(submitted)} */}
 				<form onSubmit={handleSubmit}>
 					{/* Add item form for larger screens */}
-					<Box sx={{ display: { xs: 'none', md: 'block' }, mr: 1 }}>
-						<h3>Add an item</h3>
-						{alertText(submitted)}
-						<FormControl variant="standard">
-							<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
-							<Input
-								id="itemName"
-								placeholder="Item Name"
-								value={item.name}
-								name="name"
-								onChange={handleAddItemChange}
-							/>
-						</FormControl>
-						<FormControl variant="standard" sx={{ m: 0, minWidth: 200 }}>
-							<InputLabel id="purchaseUrgencyInput">
-								How soon will you buy this item:
-							</InputLabel>
-							<Select
-								labelId="purchaseUrgencyInput"
-								id="purchaseUrgency"
-								name="urgency"
-								label="How soon will you buy this item:"
-								onChange={handleAddItemChange}
-								value={item.urgency}
-								required
-							>
-								<MenuItem value="soon">Soon</MenuItem>
-								<MenuItem value="kindOfSoon">Kind of Soon</MenuItem>
-								<MenuItem value="notSoon">Not soon</MenuItem>
-							</Select>
-						</FormControl>
-						<Button type="submit" value="Submit">
-							Submit
-						</Button>
+					<Box
+						sx={{ width: '100%', display: { xs: 'none', md: 'block' }, mr: 1 }}
+					>
+						<Grid container alignItems="flex-end" spacing={2}>
+							<Grid item>
+								<Typography
+									variant="h4"
+									component="div"
+									sx={{ display: 'flex', alignItems: 'flex-end' }}
+								>
+									Add an item
+								</Typography>
+							</Grid>
+							{alertText(submitted)}
+							<Grid item xs>
+								<FormControl variant="standard" fullWidth>
+									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
+									<Input
+										id="itemName"
+										placeholder="Item Name"
+										value={item.name}
+										name="name"
+										onChange={handleAddItemChange}
+									/>
+								</FormControl>
+							</Grid>
+							<Grid item>
+								<FormControl variant="standard" sx={{ minWidth: 200 }}>
+									<InputLabel id="purchaseUrgencyInput">
+										How soon will you buy this item:
+									</InputLabel>
+									<Select
+										labelId="purchaseUrgencyInput"
+										id="purchaseUrgency"
+										name="urgency"
+										label="How soon will you buy this item:"
+										value={item.urgency}
+										onChange={handleAddItemChange}
+										required
+									>
+										<MenuItem value="soon">Soon</MenuItem>
+										<MenuItem value="kindOfSoon">Kind of Soon</MenuItem>
+										<MenuItem value="notSoon">Not soon</MenuItem>
+									</Select>
+								</FormControl>
+							</Grid>
+							<Grid item>
+								<Button type="submit">Submit</Button>
+							</Grid>
+						</Grid>
 					</Box>
 					{/* Add item form for smaller screens */}
 					<Box sx={{ display: { md: 'none' } }}>
-						{/* <h3>Add an item + </h3>
-						{alertText(submitted)} */}
 						<Accordion>
 							<AccordionSummary expandIcon={<ExpandMoreIcon />}>
 								Add an item +{' '}
@@ -221,6 +233,7 @@ export function List({ data, listPath }) {
 	const renderAddFirstItemCTA = () => {
 		return (
 			<div>
+				<h2>{listName} List</h2>
 				<p>Your shopping list is empty!</p>
 				<p>Use the form below to add your first item!</p>
 				{addItemForm()}
@@ -231,32 +244,53 @@ export function List({ data, listPath }) {
 	const renderItemList = () => {
 		return (
 			<div>
-				<FormControl variant="standard">
-					<InputLabel htmlFor="itemSearch">Search for an item:</InputLabel>
-					<Input
-						id="itemSearch"
-						placeholder="Search items..."
-						value={searchTerm}
-						onChange={handleChange}
-						startAdornment={
-							<InputAdornment position="start">
-								<SearchIcon />
-							</InputAdornment>
-						}
-					/>
-					{searchTerm && (
-						<Button type="button" onClick={clearSearch}>
-							Clear
-						</Button>
-					)}
-				</FormControl>
-				<Divider />
+				<Box
+					sx={{
+						flexDirection: { xs: 'column', md: 'row' },
+						'& > *:not(last-child)': {
+							mb: { xs: 2 },
+						},
+						display: 'flex',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+						width: '100%',
+					}}
+				>
+					<h2>{listName} List</h2>
+					<Box sx={{ display: 'flex', alignItems: 'center' }}>
+						<FormControl variant="standard" sx={{ width: '250px' }}>
+							<InputLabel htmlFor="itemSearch">Search for an item:</InputLabel>
+							<Input
+								id="itemSearch"
+								placeholder="Search items"
+								value={searchTerm}
+								onChange={handleChange}
+								startAdornment={
+									<InputAdornment position="start">
+										<SearchIcon />
+									</InputAdornment>
+								}
+								endAdornment={
+									searchTerm && (
+										<InputAdornment position="end">
+											<Button onClick={clearSearch} sx={{ minWidth: 'auto' }}>
+												Clear
+											</Button>
+										</InputAdornment>
+									)
+								}
+							/>
+						</FormControl>
+					</Box>
+				</Box>
+				<Divider sx={{ borderBottomWidth: '3px', mb: { xs: 2 } }} />
 				{addItemForm()}
 				<Grid
 					container
 					alignItems="center"
 					justifyContent="space-around"
 					spacing={2}
+					mt={1}
 				>
 					<Grid item>
 						<Grid container alignItems="center" spacing={1}>
@@ -291,12 +325,14 @@ export function List({ data, listPath }) {
 						</Grid>
 					</Grid>
 				</Grid>
-				<p>
-					<i>
-						*Items that have been on the list for 60 days or more are marked
-						"inactive"
-					</i>
-				</p>
+				<Typography
+					variant="body2"
+					align="right"
+					sx={{ fontStyle: 'italic', mt: 2, mb: 0 }}
+				>
+					*Items that have been on the list for 60 days or more are marked
+					"inactive"
+				</Typography>
 				<ul>
 					{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
 					<Grid container spacing={2}>
@@ -325,11 +361,5 @@ export function List({ data, listPath }) {
 		setSearchTerm('');
 	};
 
-	return (
-		<>
-			<h2>{listName} list</h2>
-
-			{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}
-		</>
-	);
+	return <>{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}</>;
 }
