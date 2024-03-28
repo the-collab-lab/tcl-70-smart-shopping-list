@@ -328,12 +328,12 @@ export function List({ data, listPath }) {
 				<Typography
 					variant="body2"
 					align="right"
-					sx={{ fontStyle: 'italic', mt: 2, mb: 0 }}
+					sx={{ fontStyle: 'italic', mt: 2, mb: 1 }}
 				>
 					*Items that have been on the list for 60 days or more are marked
 					"inactive"
 				</Typography>
-				<ul>
+				<ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
 					{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
 					<Grid container spacing={2}>
 						{filteredData.map((item) => {
