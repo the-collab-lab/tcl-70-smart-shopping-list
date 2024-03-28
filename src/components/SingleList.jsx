@@ -82,7 +82,7 @@ export function SingleList({ name, path, setListPath, userId }) {
 
 	return (
 		<li>
-			<Card sx={{ width: 200, margin: 2 }}>
+			<Card>
 				<CardContent>
 					<img
 						src={`/img/food-icons/${icon}`}
