@@ -35,30 +35,6 @@ export function Layout() {
 					)}
 				</header>
 
-				<AppBar position="static">
-					<Container maxWidth="xl">
-						<Toolbar disableGutters>
-							<Typography
-								variant="h6"
-								noWrap
-								component="a"
-								href="#app-bar-with-responsive-menu"
-								sx={{
-									mr: 2,
-									display: { xs: 'none', md: 'flex' },
-									fontFamily: 'monospace',
-									fontWeight: 700,
-									letterSpacing: '.3rem',
-									color: 'inherit',
-									textDecoration: 'none',
-								}}
-							>
-								SwiftShop
-							</Typography>
-						</Toolbar>
-					</Container>
-				</AppBar>
-
 				<main className="Layout-main">
 					<Outlet />
 				</main>
