@@ -164,6 +164,7 @@ export function List({ data, listPath }) {
 		);
 	};
 
+	// shown when list is empty
 	const renderAddFirstItemCTA = () => {
 		return (
 			<div>

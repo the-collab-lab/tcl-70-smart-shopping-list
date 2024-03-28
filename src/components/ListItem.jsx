@@ -120,11 +120,3 @@ export function ListItem({
 		</>
 	);
 }
-// <TripOriginIcon sx={{ color: '#FFFF00' }} />
-{
-	/* <Typography>Soon: Within 7 days</Typography>
-<TripOriginIcon sx={{ color: '#00FF00' }} /> 
-<Typography>Kind of Soon: From 7 to 29 days</Typography>
-<TripOriginIcon sx={{ color: '#FF00FF' }} /> 
-<Typography>Not Sure: From 30 to 59 days</Typography> */
-}
