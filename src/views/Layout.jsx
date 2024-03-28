@@ -1,11 +1,9 @@
-import { Outlet, NavLink } from 'react-router-dom';
-
-import Button from '@mui/material/Button';
+import { Outlet } from 'react-router-dom';
 
 import './Layout.css';
 // import { auth } from '../api/config.js';
 // import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
-import NavBar from './Navbar.jsx';
+import NavBar from './NavBar';
 
 /**
  * TODO: The links defined in this file don't work!
@@ -30,19 +28,6 @@ export function Layout() {
 				<main className="Layout-main">
 					<Outlet />
 				</main>
-				{/* <nav className="Nav">
-					<div className="Nav-container">
-						<NavLink to="/" className="Nav-link">
-							<Button>Home</Button>
-						</NavLink>
-						<NavLink to="/list" className="Nav-link">
-							<Button>List</Button>
-						</NavLink>
-						<NavLink to="/manage-list" className="Nav-link">
-							<Button>Manage List</Button>
-						</NavLink>
-					</div>
-				</nav> */}
 			</div>
 		</>
 	);
