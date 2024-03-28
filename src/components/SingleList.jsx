@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './SingleList.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../api/useAuth.jsx';
@@ -26,7 +26,7 @@ export function SingleList({ name, path, setListPath, userId }) {
 	const { user } = useAuth();
 	const currentUserIsOwner = user && path.includes(user.uid);
 	// modal state
-	const [openModal, setOpenModal] = React.useState(false);
+	const [openModal, setOpenModal] = useState(false);
 	const handleOpenModal = () => setOpenModal(true);
 	const handleCloseModal = () => setOpenModal(false);
 	// email invite state
@@ -107,16 +107,18 @@ export function SingleList({ name, path, setListPath, userId }) {
 							>
 								<Box sx={style}>
 									<form onSubmit={handleEmailInviteSubmit}>
-										<label htmlFor="emailInvite">Email invite: </label>
+										<label htmlFor="emailInvite">
+											Email invite (Gmail addresses only):
+										</label>
 										<input
 											id="emailInvite"
-											placeholder="Type user email to invite"
+											placeholder="Type Gmail address to invite"
 											name="emailInvite"
 											type="email"
 											onChange={handleEmailInviteChange}
 											value={emailInvite}
 										/>
-										<button>Invite</button>
+										<button type="submit">Invite</button>
 										<div>{emailExists}</div>
 									</form>
 								</Box>
