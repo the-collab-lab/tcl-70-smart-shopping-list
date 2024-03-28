@@ -289,8 +289,9 @@ export function List({ data, listPath }) {
 					container
 					alignItems="center"
 					justifyContent="space-around"
-					spacing={2}
+					spacing={{ xs: 0, md: 2 }}
 					mt={1}
+					sx={{ mt: { xs: 1 }, mb: { xs: 0 } }}
 				>
 					<Grid item>
 						<Grid container alignItems="center" spacing={1}>
