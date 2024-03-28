@@ -86,35 +86,47 @@ export function ListItem({
 		<>
 			<span>{message}</span>
 			<Card>
-				<li className="ListItem">
-					<Checkbox
-						{...label}
-						onChange={handleChange}
-						disabled={expired}
-						id={`${name}`}
-						checked={isChecked}
-					/>
-					{name}
-					<Chip
-						label={urgency}
-						sx={{
-							backgroundColor:
-								urgency === 'soon'
-									? '#feff70'
-									: urgency === 'kind of soon'
-										? '#80ff00'
-										: urgency === 'not soon'
-											? '#ff94ff'
-											: '#808080',
-						}}
-					/>
-					<Button
-						onClick={handleClick}
-						variant="outlined"
-						startIcon={<DeleteIcon />}
-					>
-						Delete
-					</Button>
+				<li
+					className="ListItem"
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'space-between',
+					}}
+				>
+					<div style={{ display: 'flex', alignItems: 'center' }}>
+						<Checkbox
+							{...label}
+							onChange={handleChange}
+							disabled={expired}
+							id={`${name}`}
+							checked={isChecked}
+						/>
+						<span style={{ marginRight: 'auto' }}>{name}</span>
+					</div>
+					<div style={{ display: 'flex', alignItems: 'center' }}>
+						<Chip
+							label={urgency}
+							sx={{
+								marginRight: 2,
+								backgroundColor:
+									urgency === 'soon'
+										? '#feff70'
+										: urgency === 'kind of soon'
+											? '#80ff00'
+											: urgency === 'not soon'
+												? '#ff94ff'
+												: '#808080',
+							}}
+						/>
+						<Button
+							onClick={handleClick}
+							variant="outlined"
+							startIcon={<DeleteIcon />}
+						>
+							Delete
+						</Button>
+					</div>
 				</li>
 			</Card>
 		</>
