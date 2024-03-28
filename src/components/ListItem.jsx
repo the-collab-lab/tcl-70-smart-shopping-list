@@ -73,14 +73,6 @@ export function ListItem({
 
 	const urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
 	const label = { inputProps: { 'aria-label': `${name}` } };
-	const color =
-		urgency === 'soon'
-			? '#FFFF00'
-			: urgency === 'kindOfSoon'
-				? '#00FF00'
-				: urgency === 'notSoon'
-					? '#FF00FF'
-					: '#808080';
 
 	return (
 		<>
@@ -131,12 +123,4 @@ export function ListItem({
 			</Card>
 		</>
 	);
-}
-// <TripOriginIcon sx={{ color: '#FFFF00' }} />
-{
-	/* <Typography>Soon: Within 7 days</Typography>
-<TripOriginIcon sx={{ color: '#00FF00' }} /> 
-<Typography>Kind of Soon: From 7 to 29 days</Typography>
-<TripOriginIcon sx={{ color: '#FF00FF' }} /> 
-<Typography>Not Sure: From 30 to 59 days</Typography> */
 }
