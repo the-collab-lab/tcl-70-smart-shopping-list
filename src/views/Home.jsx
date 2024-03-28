@@ -2,7 +2,7 @@ import './Home.css';
 import { SingleList } from '../components/SingleList';
 import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
-import { InputLabel, Input, Box, Button, Stack } from '@mui/material';
+import { InputLabel, Input, Box, Button, Stack, Grid } from '@mui/material';
 
 export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
@@ -103,15 +103,19 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						)}
 					</Box>
 					<ul className="lists-container">
-						{data.map((list) => (
-							<SingleList
-								key={list.name}
-								name={list.name}
-								path={list.path}
-								userId={userId}
-								setListPath={setListPath}
-							/>
-						))}
+						<Grid container spacing={2}>
+							{data.map((list) => (
+								<Grid item xs={6} md={4}>
+									<SingleList
+										key={list.name}
+										name={list.name}
+										path={list.path}
+										userId={userId}
+										setListPath={setListPath}
+									/>
+								</Grid>
+							))}
+						</Grid>
 					</ul>
 				</div>
 			) : (
