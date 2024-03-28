@@ -135,15 +135,9 @@ export function List({ data, listPath }) {
 					<Box
 						sx={{ width: '100%', display: { xs: 'none', md: 'block' }, mr: 1 }}
 					>
-						<Grid container alignItems="flex-end" spacing={2}>
+						<Grid container alignItems="flex-end" spacing={2} ml={4}>
 							<Grid item>
-								<Typography
-									variant="h4"
-									component="div"
-									sx={{ display: 'flex', alignItems: 'flex-end' }}
-								>
-									Add an item
-								</Typography>
+								<Typography variant="h4">Add an item</Typography>
 							</Grid>
 							{alertText(submitted)}
 							<Grid item xs>
@@ -178,7 +172,7 @@ export function List({ data, listPath }) {
 									</Select>
 								</FormControl>
 							</Grid>
-							<Grid item>
+							<Grid item mr={10}>
 								<Button type="submit">Submit</Button>
 							</Grid>
 						</Grid>
