@@ -6,7 +6,7 @@ import icons from '../utils/icons.js';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
 import EditIcon from '@mui/icons-material/Edit';
-import { Modal, Box } from '@mui/material';
+import { Modal, Box, Card, CardContent } from '@mui/material';
 import { shareList } from '../api/firebase.js';
 
 const style = {
@@ -82,47 +82,49 @@ export function SingleList({ name, path, setListPath, userId }) {
 
 	return (
 		<li>
-			<div className="SingleList-card">
-				<img
-					src={`/img/food-icons/${icon}`}
-					className="food-icons"
-					alt={`${name} list icon`}
-				/>
-				<button onClick={handleViewClick} className="list-name-button">
-					{name}
-				</button>
-				{currentUserIsOwner && (
-					<>
-						<div className="icon-container">
-							<EditIcon onClick={handleManageClick} />
-							<ShareIcon onClick={handleOpenModal} />
-							<DeleteIcon onClick={handleManageClick} />
-						</div>
-						<Modal
-							open={openModal}
-							onClose={handleCloseModal}
-							aria-labelledby="modal-modal-title"
-							aria-describedby="modal-modal-description"
-						>
-							<Box sx={style}>
-								<form onSubmit={handleEmailInviteSubmit}>
-									<label htmlFor="emailInvite">Email invite: </label>
-									<input
-										id="emailInvite"
-										placeholder="Type user email to invite"
-										name="emailInvite"
-										type="email"
-										onChange={handleEmailInviteChange}
-										value={emailInvite}
-									/>
-									<button>Invite</button>
-									<div>{emailExists}</div>
-								</form>
-							</Box>
-						</Modal>
-					</>
-				)}
-			</div>
+			<Card sx={{ width: 200, margin: 2 }}>
+				<CardContent>
+					<img
+						src={`/img/food-icons/${icon}`}
+						className="food-icons"
+						alt={`${name} list icon`}
+					/>
+					<button onClick={handleViewClick} className="list-name-button">
+						{name}
+					</button>
+					{currentUserIsOwner && (
+						<>
+							<div className="icon-container">
+								<EditIcon onClick={handleManageClick} />
+								<ShareIcon onClick={handleOpenModal} />
+								<DeleteIcon onClick={handleManageClick} />
+							</div>
+							<Modal
+								open={openModal}
+								onClose={handleCloseModal}
+								aria-labelledby="modal-modal-title"
+								aria-describedby="modal-modal-description"
+							>
+								<Box sx={style}>
+									<form onSubmit={handleEmailInviteSubmit}>
+										<label htmlFor="emailInvite">Email invite: </label>
+										<input
+											id="emailInvite"
+											placeholder="Type user email to invite"
+											name="emailInvite"
+											type="email"
+											onChange={handleEmailInviteChange}
+											value={emailInvite}
+										/>
+										<button>Invite</button>
+										<div>{emailExists}</div>
+									</form>
+								</Box>
+							</Modal>
+						</>
+					)}
+				</CardContent>
+			</Card>
 		</li>
 	);
 }
