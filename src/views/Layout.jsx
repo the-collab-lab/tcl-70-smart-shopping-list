@@ -1,8 +1,9 @@
 import { Outlet, NavLink } from 'react-router-dom';
 
 import './Layout.css';
-import { auth } from '../api/config.js';
-import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
+// import { auth } from '../api/config.js';
+// import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
+import { NavBar } from '../components';
 
 /**
  * TODO: The links defined in this file don't work!
@@ -13,38 +14,20 @@ import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
  */
 
 export function Layout() {
-	const { user } = useAuth();
+	// const { user } = useAuth();
 
 	return (
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
-					<h1>Smart shopping list</h1>
-					{!!user ? (
-						<span>
-							<p>Signed in as {user.displayName}</p>
-							<SignOutButton />
-						</span>
-					) : (
-						<SignInButton />
-					)}
+					<h1>SwiftShop</h1>
+
+					<NavBar />
+
+					<main className="Layout-main">
+						<Outlet />
+					</main>
 				</header>
-				<main className="Layout-main">
-					<Outlet />
-				</main>
-				<nav className="Nav">
-					<div className="Nav-container">
-						<NavLink to="/" className="Nav-link">
-							Home
-						</NavLink>
-						<NavLink to="/list" className="Nav-link">
-							List
-						</NavLink>
-						<NavLink to="/manage-list" className="Nav-link">
-							Manage List
-						</NavLink>
-					</div>
-				</nav>
 			</div>
 		</>
 	);
