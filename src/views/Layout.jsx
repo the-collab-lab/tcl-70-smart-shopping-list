@@ -19,15 +19,11 @@ export function Layout() {
 	return (
 		<>
 			<div className="Layout">
-				<header className="Layout-header">
-					<h1>SwiftShop</h1>
-
-					<NavBar />
-
-					<main className="Layout-main">
-						<Outlet />
-					</main>
-				</header>
+				<header className="Layout-header"></header>
+				<NavBar />
+				<main className="Layout-main">
+					<Outlet />
+				</main>
 			</div>
 		</>
 	);

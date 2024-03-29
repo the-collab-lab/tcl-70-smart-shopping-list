@@ -19,14 +19,31 @@
 
 .Layout-header {
 	background-color: var(--color-bg);
-	padding-bottom: 0.5rem;
-	padding-top: max(env(safe-area-inset-top), 1rem);
+	/* padding-bottom: 0.5rem;
+	padding-top: max(env(safe-area-inset-top), 1rem); */
+	padding: 0;
 	text-align: center;
+	margin: 0;
+	padding: 15rem;
+	background-color: #fdeecd;
+	color: #003780;
+	background-image: url('/public/img/header-img.png');
+	background-position: center;
+	background-size: 30%;
+	background-repeat: no-repeat;
 }
 
-.Layout-header > h1 {
+/* .Layout-header > h1 {
 	margin: 0;
-}
+	padding:100px;
+	background-color: #FDEECD;
+	color: #003780;
+	background-image:url("/public/img/header-img.png");
+	background-position: center;
+	background-size: 30%;
+	background-repeat: no-repeat;
+
+} */
 
 .Layout-main {
 	margin: 0 auto;
