@@ -31,8 +31,11 @@ export function NavBar() {
 	const [value, setValue] = React.useState('/');
 
 	return (
-		<AppBar position="static">
-			<Container maxWidth="xl">
+		<AppBar
+			position="static"
+			sx={{ backgroundColor: '#003780', color: '#fdeecd' }}
+		>
+			<Container maxWidth="xl" className="nav-bar">
 				<Toolbar variant="dense" disableGutters>
 					{/*Logo and app name for medium or larger screens*/}
 					<SvgIcon
