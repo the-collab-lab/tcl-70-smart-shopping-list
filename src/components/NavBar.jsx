@@ -232,3 +232,4 @@ export function NavBar() {
 		</AppBar>
 	);
 }
+// end of nav
