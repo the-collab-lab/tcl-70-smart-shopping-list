@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,7 +16,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 
 export function NavBar() {
 	const { user } = useAuth();
-	const [anchorElNav, setAnchorElNav] = React.useState(null);
+	const [anchorElNav, setAnchorElNav] = useState(null);
 
 	const handleOpenNavMenu = (event) => {
 		setAnchorElNav(event.currentTarget);
