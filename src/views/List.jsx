@@ -1,6 +1,23 @@
 import { useState, useEffect } from 'react';
 import { ListItem } from '../components';
 import { comparePurchaseUrgency, addItem } from '../api';
+import SearchIcon from '@mui/icons-material/Search';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Grid from '@mui/material/Grid';
+import TripOriginIcon from '@mui/icons-material/TripOrigin';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -113,48 +130,96 @@ export function List({ data, listPath }) {
 	const addItemForm = () => {
 		return (
 			<section className="addAnItemForm">
-				<h3>Add an item</h3>
-				{alertText(submitted)}
 				<form onSubmit={handleSubmit}>
-					<div className="newItemInputs">
-						<label htmlFor="itemName">Enter item name: </label>
-						<input
-							id="itemName"
-							type="text"
-							placeholder="Item Name"
-							name="name"
-							onChange={handleAddItemChange}
-							value={item.name}
-						/>
-						<br />
-						<label htmlFor="purchaseUrgency">
-							How soon will you buy this item:{' '}
-						</label>
-						<select
-							id="purchaseUrgency"
-							name="urgency"
-							onChange={handleAddItemChange}
-							defaultValue={item.urgency}
-							required
-						>
-							<option value="" disabled>
-								Please select an option:
-							</option>
-							<option value="soon">Soon</option>
-							<option value="kindOfSoon">Kind of Soon</option>
-							<option value="notSoon">Not soon</option>
-						</select>
-					</div>
-
-					<button type="submit" value="Submit">
-						Submit
-					</button>
+					{/* Add item form for larger screens */}
+					<Box
+						sx={{ width: '100%', display: { xs: 'none', md: 'block' }, mr: 1 }}
+					>
+						<Grid container alignItems="flex-end" spacing={2} ml={4}>
+							<Grid item>
+								<Typography variant="h4">Add an item</Typography>
+							</Grid>
+							{alertText(submitted)}
+							<Grid item xs>
+								<FormControl variant="standard" fullWidth>
+									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
+									<Input
+										id="itemName"
+										placeholder="Item Name"
+										value={item.name}
+										name="name"
+										onChange={handleAddItemChange}
+									/>
+								</FormControl>
+							</Grid>
+							<Grid item>
+								<FormControl variant="standard" sx={{ minWidth: 200 }}>
+									<InputLabel id="purchaseUrgencyInput">
+										How soon will you buy this item:
+									</InputLabel>
+									<Select
+										labelId="purchaseUrgencyInput"
+										id="purchaseUrgency"
+										name="urgency"
+										label="How soon will you buy this item:"
+										value={item.urgency}
+										onChange={handleAddItemChange}
+										required
+									>
+										<MenuItem value="soon">Soon</MenuItem>
+										<MenuItem value="kindOfSoon">Kind of Soon</MenuItem>
+										<MenuItem value="notSoon">Not soon</MenuItem>
+									</Select>
+								</FormControl>
+							</Grid>
+							<Grid item mr={10}>
+								<Button type="submit">Submit</Button>
+							</Grid>
+						</Grid>
+					</Box>
+					{/* Add item form for smaller screens */}
+					<Box sx={{ display: { md: 'none' } }}>
+						<Accordion>
+							<AccordionSummary expandIcon={<ExpandMoreIcon />}>
+								Add an item +{' '}
+							</AccordionSummary>
+							{alertText(submitted)}
+							<AccordionDetails>
+								<FormControl variant="standard">
+									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
+									<Input
+										id="itemName"
+										placeholder="Item Name"
+										value={item.name}
+										name="name"
+										onChange={handleAddItemChange}
+									/>
+								</FormControl>
+								<FormControl variant="standard" sx={{ m: 0, minWidth: 200 }}>
+									<InputLabel id="purchaseUrgencyInput">
+										How soon will you buy this item:
+									</InputLabel>
+									<Select
+										labelId="purchaseUrgencyInput"
+										id="purchaseUrgency"
+										name="urgency"
+										label="How soon will you buy this item:"
+										onChange={handleAddItemChange}
+										value={item.urgency}
+										required
+									>
+										<MenuItem value="soon">Soon</MenuItem>
+										<MenuItem value="kindOfSoon">Kind of Soon</MenuItem>
+										<MenuItem value="notSoon">Not soon</MenuItem>
+									</Select>
+								</FormControl>
+								<Button type="submit" value="Submit">
+									Submit
+								</Button>
+							</AccordionDetails>
+						</Accordion>
+					</Box>
 				</form>
-				<ul>
-					<li>Soon: Within 7 days</li>
-					<li>Kind of Soon: from 7 to 29 days</li>
-					<li>Not sure: From 30 to 59 days</li>
-				</ul>
 			</section>
 		);
 	};
@@ -162,6 +227,7 @@ export function List({ data, listPath }) {
 	const renderAddFirstItemCTA = () => {
 		return (
 			<div>
+				<h2>{listName} List</h2>
 				<p>Your shopping list is empty!</p>
 				<p>Use the form below to add your first item!</p>
 				{addItemForm()}
@@ -172,43 +238,114 @@ export function List({ data, listPath }) {
 	const renderItemList = () => {
 		return (
 			<div>
-				<form>
-					<label htmlFor="itemSearch">Search for an item: </label>
-					<input
-						type="text"
-						id="itemSearch"
-						placeholder="Search items..."
-						value={searchTerm}
-						onChange={handleChange}
-					></input>
-					{searchTerm && (
-						<button type="button" onClick={clearSearch}>
-							Clear
-						</button>
-					)}
-				</form>
-				<hr />
-				{addItemForm()}
-				<p>
-					<i>
-						*Items that have been on the list for 60 days or more are marked
-						"inactive"
-					</i>
-				</p>
-				<ul>
-					{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
-					{filteredData.map((item) => {
-						return (
-							<ListItem
-								key={item.id}
-								daysUntilNextPurchase={item.daysUntilNextPurchase}
-								dateLastPurchased={item.dateLastPurchased}
-								itemId={item.id}
-								name={item.name}
-								listPath={listPath}
+				<Box
+					sx={{
+						flexDirection: { xs: 'column', md: 'row' },
+						'& > *:not(last-child)': {
+							mb: { xs: 2 },
+						},
+						display: 'flex',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+						width: '100%',
+					}}
+				>
+					<h2>{listName} List</h2>
+					<Box sx={{ display: 'flex', alignItems: 'center' }}>
+						<FormControl variant="standard" sx={{ width: '250px' }}>
+							<InputLabel htmlFor="itemSearch">Search for an item:</InputLabel>
+							<Input
+								id="itemSearch"
+								placeholder="Search items"
+								value={searchTerm}
+								onChange={handleChange}
+								startAdornment={
+									<InputAdornment position="start">
+										<SearchIcon />
+									</InputAdornment>
+								}
+								endAdornment={
+									searchTerm && (
+										<InputAdornment position="end">
+											<Button onClick={clearSearch} sx={{ minWidth: 'auto' }}>
+												Clear
+											</Button>
+										</InputAdornment>
+									)
+								}
 							/>
-						);
-					})}
+						</FormControl>
+					</Box>
+				</Box>
+				<Divider sx={{ borderBottomWidth: '3px', mb: { xs: 2 } }} />
+				{addItemForm()}
+				<Grid
+					container
+					alignItems="center"
+					justifyContent="space-around"
+					spacing={{ xs: 0, md: 2 }}
+					mt={1}
+					sx={{ mt: { xs: 1 }, mb: { xs: 0 } }}
+				>
+					<Grid item>
+						<Grid container alignItems="center" spacing={1}>
+							<Grid item>
+								<TripOriginIcon sx={{ color: '#feff70' }} />
+							</Grid>
+							<Grid item>
+								<Typography>Soon: Within 7 days</Typography>
+							</Grid>
+						</Grid>
+					</Grid>
+
+					<Grid item>
+						<Grid container alignItems="center" spacing={1}>
+							<Grid item>
+								<TripOriginIcon sx={{ color: '#80ff00' }} />
+							</Grid>
+							<Grid item>
+								<Typography>Kind of Soon: From 7 to 29 days</Typography>
+							</Grid>
+						</Grid>
+					</Grid>
+
+					<Grid item>
+						<Grid container alignItems="center" spacing={1}>
+							<Grid item>
+								<TripOriginIcon sx={{ color: '#ff94ff' }} />
+							</Grid>
+							<Grid item>
+								<Typography>Not Sure: From 30 to 59 days</Typography>
+							</Grid>
+						</Grid>
+					</Grid>
+				</Grid>
+				<Typography
+					variant="body2"
+					align="right"
+					sx={{ fontStyle: 'italic', mt: 2, mb: 1 }}
+				>
+					*Items that have been on the list for 60 days or more are marked
+					"inactive"
+				</Typography>
+				<ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+					{/* Renders the `data` array using the `ListItem` component that's imported at the top of this file.*/}
+					<Grid container spacing={2}>
+						{filteredData.map((item) => {
+							return (
+								<Grid item xs={12} md={6}>
+									<ListItem
+										key={item.id}
+										daysUntilNextPurchase={item.daysUntilNextPurchase}
+										dateLastPurchased={item.dateLastPurchased}
+										itemId={item.id}
+										name={item.name}
+										listPath={listPath}
+									/>
+								</Grid>
+							);
+						})}
+					</Grid>
 				</ul>
 			</div>
 		);
@@ -219,11 +356,5 @@ export function List({ data, listPath }) {
 		setSearchTerm('');
 	};
 
-	return (
-		<>
-			<h2>{listName} list</h2>
-
-			{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}
-		</>
-	);
+	return <>{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}</>;
 }

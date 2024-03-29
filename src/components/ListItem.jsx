@@ -4,6 +4,9 @@ import { updateItem, deleteItem, calculateUrgency } from '../api/firebase';
 import { ONE_DAY_IN_MILLISECONDS } from '../utils/dates';
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Card from '@mui/material/Card';
+import Chip from '@mui/material/Chip';
+import Checkbox from '@mui/material/Checkbox';
 
 export function ListItem({
 	name,
@@ -69,29 +72,63 @@ export function ListItem({
 	}, [isChecked, itemId, listPath]);
 
 	const urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
+	const label = { inputProps: { 'aria-label': `${name}` } };
+	let chipBackgroundColor;
+
+	switch (urgency) {
+		case 'soon':
+			chipBackgroundColor = '#feff70';
+			break;
+		case 'kind of soon':
+			chipBackgroundColor = '#80ff00';
+			break;
+		case 'not soon':
+			chipBackgroundColor = '#ff94ff';
+			break;
+		default:
+			chipBackgroundColor = '#808080';
+	}
 
 	return (
 		<>
 			<span>{message}</span>
-			<li className="ListItem">
-				<label htmlFor={`${name}`}>
-					<input
-						disabled={expired}
-						id={`${name}`}
-						type="checkbox"
-						checked={isChecked}
-						onChange={handleChange}
-					/>
-					{`${name}-${urgency}`}
-				</label>
-				<Button
-					onClick={handleClick}
-					variant="outlined"
-					startIcon={<DeleteIcon />}
+			<Card>
+				<li
+					className="ListItem"
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'space-between',
+					}}
 				>
-					Delete
-				</Button>
-			</li>
+					<div style={{ display: 'flex', alignItems: 'center' }}>
+						<Checkbox
+							{...label}
+							onChange={handleChange}
+							disabled={expired}
+							id={`${name}`}
+							checked={isChecked}
+						/>
+						<span style={{ marginRight: 'auto' }}>{name}</span>
+					</div>
+					<div style={{ display: 'flex', alignItems: 'center' }}>
+						<Chip
+							label={urgency}
+							sx={{
+								marginRight: 2,
+								backgroundColor: chipBackgroundColor,
+							}}
+						/>
+						<Button
+							onClick={handleClick}
+							variant="outlined"
+							startIcon={<DeleteIcon />}
+						>
+							Delete
+						</Button>
+					</div>
+				</li>
+			</Card>
 		</>
 	);
 }
