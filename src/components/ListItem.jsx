@@ -73,6 +73,21 @@ export function ListItem({
 
 	const urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
 	const label = { inputProps: { 'aria-label': `${name}` } };
+	let chipBackgroundColor;
+
+	switch (urgency) {
+		case 'soon':
+			chipBackgroundColor = '#feff70';
+			break;
+		case 'kind of soon':
+			chipBackgroundColor = '#80ff00';
+			break;
+		case 'not soon':
+			chipBackgroundColor = '#ff94ff';
+			break;
+		default:
+			chipBackgroundColor = '#808080';
+	}
 
 	return (
 		<>
@@ -101,14 +116,7 @@ export function ListItem({
 							label={urgency}
 							sx={{
 								marginRight: 2,
-								backgroundColor:
-									urgency === 'soon'
-										? '#feff70'
-										: urgency === 'kind of soon'
-											? '#80ff00'
-											: urgency === 'not soon'
-												? '#ff94ff'
-												: '#808080',
+								backgroundColor: chipBackgroundColor,
 							}}
 						/>
 						<Button
