@@ -1,4 +1,5 @@
-import { Outlet } from 'react-router-dom';
+
+import { Outlet, NavLink } from 'react-router-dom';
 
 import './Layout.css';
 // import { auth } from '../api/config.js';
@@ -21,13 +22,13 @@ export function Layout() {
 			<div className="Layout">
 				<header className="Layout-header">
 					<h1>SwiftShop</h1>
-				</header>
 
 				<NavBar />
 
 				<main className="Layout-main">
 					<Outlet />
 				</main>
+
 			</div>
 		</>
 	);

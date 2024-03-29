@@ -2,6 +2,7 @@ import './Home.css';
 import { SingleList } from '../components/SingleList';
 import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
+import { InputLabel, Input, Box, Button, Stack, Grid } from '@mui/material';
 
 export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
@@ -60,55 +61,61 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						</ul>
 					</details>
 					<br></br>
-					<ul className="lists-container">
-						<li className="SingleList">
-							<div className="SingleList-card">
-								<form onSubmit={handleSubmit}>
-									<label
-										htmlFor="shopping-list-name"
-										className="centered-block"
-									>
-										Add list:
-									</label>
-									<input
-										type="text"
-										name="shopping-list-name"
-										id="shopping-list-name"
-										onChange={handleOnChange}
-										value={shoppingListName}
-										placeholder="Add list"
-										className="input-button-common"
-									/>
-									<button
-										type="submit"
-										className="icon-button input-button-common"
-										disabled={shoppingListName.length === 0}
-									>
-										<img
-											src="img/add.svg"
-											className="add-icon"
-											alt="add icon"
-										/>
-									</button>
-									{notificationMessage && (
-										<p
-											className="notification-message"
-											title={notificationMessage}
-										>
-											{notificationMessage}
-										</p>
-									)}
-								</form>
-							</div>
-						</li>
-						{data.map((list) => (
-							<SingleList
-								key={list.name}
-								name={list.name}
-								path={list.path}
-								setListPath={setListPath}
+					<Box
+						component="form"
+						onSubmit={handleSubmit}
+						sx={{
+							'& .MuiTextField-root': { m: 1, width: '25ch' },
+						}}
+						noValidate
+						autoComplete="off"
+					>
+						<Stack
+							direction="row"
+							spacing={2}
+							alignItems="center"
+							justifyContent="center"
+						>
+							<InputLabel
+								htmlFor="shopping-list-name"
+								size="normal"
+								// className="centered-block"
+							>
+								Enter new list name:
+							</InputLabel>
+							<Input
+								type="text"
+								name="shopping-list-name"
+								id="shopping-list-name"
+								onChange={handleOnChange}
+								value={shoppingListName}
+								placeholder="Add list"
+								className="input-button-common"
 							/>
-						))}
+							<Button type="submit" disabled={shoppingListName.length === 0}>
+								Submit
+							</Button>
+						</Stack>
+						{notificationMessage && (
+							<p className="notification-message" title={notificationMessage}>
+								{notificationMessage}
+							</p>
+						)}
+					</Box>
+					<ul className="lists-container">
+						<Grid container spacing={2}>
+							{data.map((list) => (
+								<Grid item xs={6} md={4}>
+									<SingleList
+										key={list.name}
+										name={list.name}
+										path={list.path}
+										userId={userId}
+										setListPath={setListPath}
+									/>
+								</Grid>
+							))}
+						</Grid>
 					</ul>
 				</div>
 			) : (
