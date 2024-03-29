@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from 'react-router-dom';
 import SvgIcon from '@mui/material/SvgIcon';
 
-function NavBar() {
+export function NavBar() {
 	const { user } = useAuth();
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -247,4 +247,3 @@ function NavBar() {
 		</AppBar>
 	);
 }
-export default NavBar;

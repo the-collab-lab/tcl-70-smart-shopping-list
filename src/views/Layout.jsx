@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import './Layout.css';
 // import { auth } from '../api/config.js';
 // import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
-import NavBar from './NavBar';
+import { NavBar } from '../components';
 
 /**
  * TODO: The links defined in this file don't work!
