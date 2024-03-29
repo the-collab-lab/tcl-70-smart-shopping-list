@@ -13,18 +13,22 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from 'react-router-dom';
 import SvgIcon from '@mui/material/SvgIcon';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import RestoreIcon from '@mui/icons-material/Restore';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import ArchiveIcon from '@mui/icons-material/Archive';
+import Paper from '@mui/material/Paper';
 
 export function NavBar() {
 	const { user } = useAuth();
 	const [anchorElNav, setAnchorElNav] = useState(null);
 
-	const handleOpenNavMenu = (event) => {
-		setAnchorElNav(event.currentTarget);
-	};
-
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
 	};
+
+	const [value, setValue] = React.useState('/');
 
 	return (
 		<AppBar position="static">
@@ -147,60 +151,23 @@ export function NavBar() {
 					>
 						SwiftShop
 					</Typography>
-					{/* nav links for smaller screens */}
 					<Box
 						sx={{
 							flexGrow: 1,
+							flexDirection: 'row',
 							display: { xs: 'flex', md: 'none' },
 							justifyContent: 'end',
 						}}
 					>
-						<IconButton
-							size="large"
-							aria-label="account of current user"
-							aria-controls="menu-appbar"
-							aria-haspopup="true"
-							onClick={handleOpenNavMenu}
-							color="inherit"
-						>
-							<MenuIcon />
-						</IconButton>
-
-						<Menu
-							id="menu-appbar"
-							anchorEl={anchorElNav}
-							anchorOrigin={{
-								vertical: 'bottom',
-								horizontal: 'left',
-							}}
-							keepMounted
-							transformOrigin={{
-								vertical: 'top',
-								horizontal: 'left',
-							}}
-							open={!!anchorElNav}
-							onClose={handleCloseNavMenu}
-							sx={{
-								display: { xs: 'block', md: 'none' },
-							}}
-						>
-							<MenuItem onClick={handleCloseNavMenu}>
-								<NavLink to="/" className="Nav-link">
-									<Typography textAlign="center">Home</Typography>
-								</NavLink>
-							</MenuItem>
-							<MenuItem onClick={handleCloseNavMenu}>
-								<NavLink to="/list" className="Nav-link">
-									<Typography textAlign="center">List</Typography>
-								</NavLink>
-							</MenuItem>
-							<MenuItem onClick={handleCloseNavMenu}>
-								<NavLink to="/manage-list" className="Nav-link">
-									<Typography textAlign="center">Manage List</Typography>
-								</NavLink>
-							</MenuItem>
-						</Menu>
+						{!!user ? (
+							<Typography>
+								Signed in as {user.displayName} <SignOutButton />
+							</Typography>
+						) : (
+							<SignInButton />
+						)}
 					</Box>
+					{/* nav links for smaller screens */}
 
 					{/* username and signin/signout button for larger screens */}
 					<Box
@@ -222,29 +189,46 @@ export function NavBar() {
 				</Toolbar>
 
 				{/* username and signin/signout button for smaller screens */}
-				<Toolbar
-					variant="dense"
-					disableGutters
-					sx={{ display: { xs: 'flex', md: 'none' }, padding: 0 }}
-				>
-					<Box
-						sx={{
-							flexGrow: 1,
-							flexDirection: 'row',
-							display: { xs: 'flex', md: 'none' },
-							justifyContent: 'start',
-						}}
-					>
-						{!!user ? (
-							<Typography>
-								Signed in as {user.displayName} <SignOutButton />
-							</Typography>
-						) : (
-							<SignInButton />
-						)}
-					</Box>
-				</Toolbar>
 			</Container>
+			<Paper
+				sx={{
+					display: { xs: 'flex', md: 'none' },
+					justifyContent: 'space-around',
+					position: 'fixed',
+					bottom: 0,
+					left: 0,
+					right: 0,
+				}}
+				elevation={3}
+			>
+				<BottomNavigation
+					showLabels
+					value={value}
+					onChange={(event, newValue) => {
+						setValue(newValue);
+					}}
+					sx={{ width: '100%' }}
+				>
+					<BottomNavigationAction
+						label="Home"
+						icon={<RestoreIcon />}
+						component={NavLink}
+						to="/"
+					/>
+					<BottomNavigationAction
+						label="List"
+						icon={<FavoriteIcon />}
+						component={NavLink}
+						to="/list"
+					/>
+					<BottomNavigationAction
+						label="About"
+						icon={<ArchiveIcon />}
+						component={NavLink}
+						to="/manage-list"
+					/>
+				</BottomNavigation>
+			</Paper>
 		</AppBar>
 	);
 }
