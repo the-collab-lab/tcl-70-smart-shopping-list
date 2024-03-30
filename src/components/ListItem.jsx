@@ -7,6 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Card from '@mui/material/Card';
 import Chip from '@mui/material/Chip';
 import Checkbox from '@mui/material/Checkbox';
+import { Snackbar } from '@mui/material';
 
 export function ListItem({
 	name,
@@ -18,6 +19,7 @@ export function ListItem({
 	const [isChecked, setIsChecked] = useState(false);
 	const [expired, setExpired] = useState();
 	const [message, setMessage] = useState();
+	const [openSnackBar, setOpenSnackBar] = useState(false);
 
 	const handleChange = async () => {
 		if (!isChecked) {
@@ -35,11 +37,17 @@ export function ListItem({
 			} catch (error) {
 				console.log('error: ', error);
 				setMessage('Oops! Something went wrong! Please try again!');
+				setOpenSnackBar(true);
 			}
 		} else {
 			console.log('canceled');
 			setMessage('Deletion canceled!');
+			setOpenSnackBar(true);
 		}
+	};
+
+	const handleClose = () => {
+		setOpenSnackBar(false);
 	};
 
 	useEffect(() => {
@@ -87,12 +95,17 @@ export function ListItem({
 			break;
 		default:
 			chipBackgroundColor = '#808080';
-			urgency = 'inactive';
 	}
 
 	return (
 		<>
-			<span>{message}</span>
+			<Snackbar
+				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+				open={openSnackBar}
+				onClose={handleClose}
+				message={message}
+				autoHideDuration={3000}
+			/>
 			<Card>
 				<li
 					className="ListItem"
