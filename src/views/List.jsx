@@ -130,6 +130,7 @@ export function List({ data, listPath }) {
 	const addItemForm = () => {
 		return (
 			<section className="addAnItemForm">
+				{alertText(submitted)}
 				<form onSubmit={handleSubmit}>
 					{/* Add item form for larger screens */}
 					<Box
@@ -139,7 +140,6 @@ export function List({ data, listPath }) {
 							<Grid item>
 								<Typography variant="h4">Add an item</Typography>
 							</Grid>
-							{alertText(submitted)}
 							<Grid item xs>
 								<FormControl variant="standard" fullWidth>
 									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
