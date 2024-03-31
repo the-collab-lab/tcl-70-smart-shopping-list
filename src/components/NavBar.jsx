@@ -18,6 +18,7 @@ import Paper from '@mui/material/Paper';
 import { useThemeContext } from './ThemeContext';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
+import { IconButton } from '@mui/material';
 
 export function NavBar() {
 	const { user } = useAuth();
