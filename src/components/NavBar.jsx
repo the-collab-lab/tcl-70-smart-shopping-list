@@ -4,31 +4,22 @@ import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from 'react-router-dom';
 import SvgIcon from '@mui/material/SvgIcon';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ArchiveIcon from '@mui/icons-material/Archive';
+import HomeIcon from '@mui/icons-material/Home';
+import ChecklistIcon from '@mui/icons-material/Checklist';
+import InfoIcon from '@mui/icons-material/Info';
 import Paper from '@mui/material/Paper';
 
 export function NavBar() {
 	const { user } = useAuth();
-	const [anchorElNav, setAnchorElNav] = useState(null);
 
-	const handleCloseNavMenu = () => {
-		setAnchorElNav(null);
-	};
-
-	const [value, setValue] = React.useState('/');
+	const [value, setValue] = useState('/');
 
 	return (
 		<AppBar
@@ -84,26 +75,17 @@ export function NavBar() {
 					{/* nav links for larger screens */}
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						<NavLink to="/" className="Nav-link">
-							<Button
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: 'white', display: 'block' }}
-							>
+							<Button sx={{ my: 2, color: 'white', display: 'block' }}>
 								Home
 							</Button>
 						</NavLink>
 						<NavLink to="/list" className="Nav-link">
-							<Button
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: 'white', display: 'block' }}
-							>
+							<Button sx={{ my: 2, color: 'white', display: 'block' }}>
 								List
 							</Button>
 						</NavLink>
 						<NavLink to="/manage-list" className="Nav-link">
-							<Button
-								onClick={handleCloseNavMenu}
-								sx={{ my: 2, color: 'white', display: 'block' }}
-							>
+							<Button sx={{ my: 2, color: 'white', display: 'block' }}>
 								Manage List
 							</Button>
 						</NavLink>
@@ -201,6 +183,9 @@ export function NavBar() {
 					bottom: 0,
 					left: 0,
 					right: 0,
+					zIndex: 1,
+					backgroundColor: '#003780',
+					color: '#fdeecd',
 				}}
 				elevation={3}
 			>
@@ -210,25 +195,32 @@ export function NavBar() {
 					onChange={(event, newValue) => {
 						setValue(newValue);
 					}}
-					sx={{ width: '100%' }}
+					sx={{
+						width: '100%',
+						backgroundColor: '#003780',
+						color: '#fdeecd',
+					}}
 				>
 					<BottomNavigationAction
 						label="Home"
-						icon={<RestoreIcon />}
+						icon={<HomeIcon fontSize="large" />}
 						component={NavLink}
 						to="/"
+						sx={{ color: '#fdeecd' }}
 					/>
 					<BottomNavigationAction
 						label="List"
-						icon={<FavoriteIcon />}
+						icon={<ChecklistIcon fontSize="large" />}
 						component={NavLink}
 						to="/list"
+						sx={{ color: '#fdeecd' }}
 					/>
 					<BottomNavigationAction
 						label="About"
-						icon={<ArchiveIcon />}
+						icon={<InfoIcon fontSize="large" />}
 						component={NavLink}
 						to="/manage-list"
+						sx={{ color: '#fdeecd' }}
 					/>
 				</BottomNavigation>
 			</Paper>
