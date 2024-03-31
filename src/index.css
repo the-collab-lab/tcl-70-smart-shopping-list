@@ -21,7 +21,9 @@ html {
 }
 
 body {
-	background-color: var(--color-bg);
+	background-image: url('/img/main-background-image.png');
+	background-size: 65%;
+	background-position-y: top;
 	color: var(--color-text);
 	font-family:
 		-apple-system,
