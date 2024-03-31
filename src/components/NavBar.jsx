@@ -15,9 +15,13 @@ import HomeIcon from '@mui/icons-material/Home';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import InfoIcon from '@mui/icons-material/Info';
 import Paper from '@mui/material/Paper';
+import { useThemeContext } from './ThemeContext';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
 
 export function NavBar() {
 	const { user } = useAuth();
+	const { toggleColorMode, mode } = useThemeContext();
 
 	const [value, setValue] = useState('/');
 
@@ -171,6 +175,14 @@ export function NavBar() {
 							<SignInButton />
 						)}
 					</Box>
+					<IconButton
+						onClick={toggleColorMode}
+						color="inherit"
+						aria-label="toggle theme"
+						edge="end"
+					>
+						{mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+					</IconButton>
 				</Toolbar>
 
 				{/* username and signin/signout button for smaller screens */}
