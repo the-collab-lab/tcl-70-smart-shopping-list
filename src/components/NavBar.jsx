@@ -19,10 +19,14 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import Paper from '@mui/material/Paper';
+import { useThemeContext } from './ThemeContext';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
 
 export function NavBar() {
 	const { user } = useAuth();
 	const [anchorElNav, setAnchorElNav] = useState(null);
+	const { toggleColorMode, mode } = useThemeContext();
 
 	const handleCloseNavMenu = () => {
 		setAnchorElNav(null);
@@ -189,6 +193,14 @@ export function NavBar() {
 							<SignInButton />
 						)}
 					</Box>
+					<IconButton
+						onClick={toggleColorMode}
+						color="inherit"
+						aria-label="toggle theme"
+						edge="end"
+					>
+						{mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+					</IconButton>
 				</Toolbar>
 
 				{/* username and signin/signout button for smaller screens */}

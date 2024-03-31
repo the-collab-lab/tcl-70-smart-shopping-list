@@ -8,6 +8,8 @@ import { useShoppingListData, useShoppingLists } from './api';
 
 import { useStateWithStorage } from './utils';
 
+import { ThemeProvider } from './components/ThemeContext';
+
 export function App() {
 	/**
 	 * This custom hook takes the path of a shopping list
@@ -43,32 +45,34 @@ export function App() {
 	const data = useShoppingListData(listPath);
 
 	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route
-						index
-						element={
-							<Home
-								data={lists}
-								setListPath={setListPath}
-								userId={userId}
-								userEmail={userEmail}
-							/>
-						}
-					/>
-					<Route
-						path="/list"
-						element={<List data={data} listPath={listPath} />}
-					/>
-					<Route
-						path="/manage-list"
-						element={
-							<ManageList listPath={listPath} userId={userId} data={data} />
-						}
-					/>
-				</Route>
-			</Routes>
-		</Router>
+		<ThemeProvider>
+			<Router>
+				<Routes>
+					<Route path="/" element={<Layout />}>
+						<Route
+							index
+							element={
+								<Home
+									data={lists}
+									setListPath={setListPath}
+									userId={userId}
+									userEmail={userEmail}
+								/>
+							}
+						/>
+						<Route
+							path="/list"
+							element={<List data={data} listPath={listPath} />}
+						/>
+						<Route
+							path="/manage-list"
+							element={
+								<ManageList listPath={listPath} userId={userId} data={data} />
+							}
+						/>
+					</Route>
+				</Routes>
+			</Router>
+		</ThemeProvider>
 	);
 }
