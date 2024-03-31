@@ -11,9 +11,9 @@ import { NavLink } from 'react-router-dom';
 import SvgIcon from '@mui/material/SvgIcon';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ArchiveIcon from '@mui/icons-material/Archive';
+import HomeIcon from '@mui/icons-material/Home';
+import ChecklistIcon from '@mui/icons-material/Checklist';
+import InfoIcon from '@mui/icons-material/Info';
 import Paper from '@mui/material/Paper';
 
 export function NavBar() {
@@ -203,21 +203,21 @@ export function NavBar() {
 				>
 					<BottomNavigationAction
 						label="Home"
-						icon={<RestoreIcon />}
+						icon={<HomeIcon fontSize="large" />}
 						component={NavLink}
 						to="/"
 						sx={{ color: '#fdeecd' }}
 					/>
 					<BottomNavigationAction
 						label="List"
-						icon={<FavoriteIcon />}
+						icon={<ChecklistIcon fontSize="large" />}
 						component={NavLink}
 						to="/list"
 						sx={{ color: '#fdeecd' }}
 					/>
 					<BottomNavigationAction
 						label="About"
-						icon={<ArchiveIcon />}
+						icon={<InfoIcon fontSize="large" />}
 						component={NavLink}
 						to="/manage-list"
 						sx={{ color: '#fdeecd' }}
