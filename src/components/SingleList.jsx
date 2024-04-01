@@ -113,7 +113,9 @@ export function SingleList({ name, path, setListPath, userId }) {
 							</Button>
 							{currentUserIsOwner && (
 								<>
-									<ButtonGroup>
+									<ButtonGroup
+										sx={{ display: 'flex', justifyContent: 'space-between' }}
+									>
 										<IconButton>
 											<EditIcon
 												// onClick={handleManageClick}
