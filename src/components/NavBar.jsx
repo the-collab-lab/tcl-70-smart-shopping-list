@@ -29,7 +29,7 @@ export function NavBar() {
 	return (
 		<AppBar
 			position="static"
-			sx={{ backgroundColor: '#003780', color: '#fdeecd' }}
+			sx={{ backgroundColor: '#003780', color: '#fdeecd', mb: '20px' }}
 		>
 			<Container maxWidth="xl" className="nav-bar">
 				<Toolbar variant="dense" disableGutters>
@@ -71,7 +71,7 @@ export function NavBar() {
 							fontFamily: 'monospace',
 							fontWeight: 700,
 							letterSpacing: '.3rem',
-							color: 'inherit',
+							color: '#FDEECD',
 							textDecoration: 'none',
 						}}
 					>
@@ -80,17 +80,17 @@ export function NavBar() {
 					{/* nav links for larger screens */}
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						<NavLink to="/" className="Nav-link">
-							<Button sx={{ my: 2, color: 'white', display: 'block' }}>
+							<Button sx={{ my: 2, color: '#FDEECD', display: 'block' }}>
 								Home
 							</Button>
 						</NavLink>
 						<NavLink to="/list" className="Nav-link">
-							<Button sx={{ my: 2, color: 'white', display: 'block' }}>
+							<Button sx={{ my: 2, color: '#FDEECD', display: 'block' }}>
 								List
 							</Button>
 						</NavLink>
 						<NavLink to="/about" className="Nav-link">
-							<Button sx={{ my: 2, color: 'white', display: 'block' }}>
+							<Button sx={{ my: 2, color: '#FDEECD', display: 'block' }}>
 								About
 							</Button>
 						</NavLink>
