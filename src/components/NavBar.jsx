@@ -149,12 +149,10 @@ export function NavBar() {
 							justifyContent: 'end',
 						}}
 					>
-						{!!user ? (
+						{!!user && (
 							<Typography>
 								Signed in as {user.displayName} <SignOutButton />
 							</Typography>
-						) : (
-							<SignInButton />
 						)}
 					</Box>
 					{/* nav links for smaller screens */}
@@ -168,12 +166,10 @@ export function NavBar() {
 							justifyContent: 'end',
 						}}
 					>
-						{!!user ? (
+						{!!user && (
 							<Typography>
 								Signed in as {user.displayName} <SignOutButton />
 							</Typography>
-						) : (
-							<SignInButton />
 						)}
 					</Box>
 					<IconButton

@@ -3,6 +3,7 @@ import { SingleList } from '../components/SingleList';
 import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
 import { InputLabel, Input, Box, Button, Stack, Grid } from '@mui/material';
+import { SignInButton } from '../api/useAuth';
 
 export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
@@ -43,7 +44,20 @@ export function Home({ data, setListPath, userEmail, userId }) {
 
 	return (
 		<div className="Home">
-			{userId ? (
+			{!userId ? (
+				<Box
+					display="flex"
+					flexDirection="column"
+					alignItems="center"
+					minHeight="100vh"
+					sx={{
+						mt: '10vh',
+						boxSizing: 'border-box',
+					}}
+				>
+					<SignInButton />
+				</Box>
+			) : (
 				<div>
 					<br></br>
 					<details>
@@ -118,8 +132,6 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						</Grid>
 					</ul>
 				</div>
-			) : (
-				<p>Please log in</p>
 			)}
 		</div>
 	);
