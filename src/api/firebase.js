@@ -279,11 +279,7 @@ export const calculateUrgency = (daysUntilNextPurchase, dateLastPurchased) => {
 		daysSinceLastPurchase = Math.floor(timeDiff / ONE_DAY_IN_MILLISECONDS);
 	}
 
-	if (
-		daysSinceLastPurchase >= 60 ||
-		!daysSinceLastPurchase ||
-		!daysUntilNextPurchase
-	) {
+	if (daysSinceLastPurchase >= 60) {
 		return 'inactive';
 	} else if (daysUntilNextPurchase <= 7) {
 		return 'soon';
@@ -291,5 +287,9 @@ export const calculateUrgency = (daysUntilNextPurchase, dateLastPurchased) => {
 		return 'kind of soon';
 	} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
 		return 'not soon';
+	} else if (!daysUntilNextPurchase) {
+		return 'inactive';
+	} else if (!daysSinceLastPurchase) {
+		return 'inactive';
 	}
 };
