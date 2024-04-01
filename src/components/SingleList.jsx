@@ -82,7 +82,7 @@ export function SingleList({ name, path, setListPath, userId }) {
 
 	return (
 		<li>
-			<Card>
+			<Card sx={{ border: '1.5px solid #003780', borderRadius: '10px' }}>
 				<CardContent>
 					<img
 						src={`/img/food-icons/${icon}`}
