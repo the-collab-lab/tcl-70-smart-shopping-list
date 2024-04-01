@@ -130,6 +130,7 @@ export function List({ data, listPath }) {
 	const addItemForm = () => {
 		return (
 			<section className="addAnItemForm">
+				{/* {alertText(submitted)} */}
 				<form onSubmit={handleSubmit}>
 					{/* Add item form for larger screens */}
 					<Box
@@ -139,7 +140,6 @@ export function List({ data, listPath }) {
 							<Grid item>
 								<Typography variant="h4">Add an item</Typography>
 							</Grid>
-							{alertText(submitted)}
 							<Grid item xs>
 								<FormControl variant="standard" fullWidth>
 									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
@@ -183,7 +183,7 @@ export function List({ data, listPath }) {
 							<AccordionSummary expandIcon={<ExpandMoreIcon />}>
 								Add an item +{' '}
 							</AccordionSummary>
-							{alertText(submitted)}
+							{/* {alertText(submitted)} */}
 							<AccordionDetails>
 								<FormControl variant="standard">
 									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
@@ -357,5 +357,10 @@ export function List({ data, listPath }) {
 		setSearchTerm('');
 	};
 
-	return <>{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}</>;
+	return (
+		<>
+			{alertText(submitted)}
+			{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}
+		</>
+	);
 }

@@ -287,5 +287,9 @@ export const calculateUrgency = (daysUntilNextPurchase, dateLastPurchased) => {
 		return 'kind of soon';
 	} else if (daysUntilNextPurchase >= 30 && daysUntilNextPurchase < 60) {
 		return 'not soon';
+	} else if (!daysUntilNextPurchase) {
+		return 'inactive';
+	} else if (!daysSinceLastPurchase) {
+		return 'inactive';
 	}
 };

@@ -71,7 +71,7 @@ export function ListItem({
 		}
 	}, [isChecked, itemId, listPath]);
 
-	const urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
+	let urgency = calculateUrgency(daysUntilNextPurchase, dateLastPurchased);
 	const label = { inputProps: { 'aria-label': `${name}` } };
 	let chipBackgroundColor;
 
@@ -117,6 +117,7 @@ export function ListItem({
 							sx={{
 								marginRight: 2,
 								backgroundColor: chipBackgroundColor,
+								width: 75,
 							}}
 						/>
 						<Button
