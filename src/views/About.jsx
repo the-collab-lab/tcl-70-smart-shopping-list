@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { shareList } from '../api'; // IMPORT ADDITEM IN LIST.JSX
 
-export function ManageList({ listPath, userId, data }) {
+export function About({ listPath, userId, data }) {
 	// const [item, setItem] = useState({ name: '', urgency: 'soon' });
 	// const [submitted, setSubmitted] = useState();
 	const [emailInvite, setEmailInvite] = useState('');

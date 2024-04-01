@@ -89,9 +89,9 @@ export function NavBar() {
 								List
 							</Button>
 						</NavLink>
-						<NavLink to="/manage-list" className="Nav-link">
+						<NavLink to="/about" className="Nav-link">
 							<Button sx={{ my: 2, color: 'white', display: 'block' }}>
-								Manage List
+								About
 							</Button>
 						</NavLink>
 					</Box>
@@ -232,7 +232,7 @@ export function NavBar() {
 						label="About"
 						icon={<InfoIcon fontSize="large" />}
 						component={NavLink}
-						to="/manage-list"
+						to="/about"
 						sx={{ color: '#fdeecd' }}
 					/>
 				</BottomNavigation>
