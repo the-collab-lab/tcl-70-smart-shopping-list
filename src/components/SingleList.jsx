@@ -93,75 +93,82 @@ export function SingleList({ name, path, setListPath, userId }) {
 	};
 
 	return (
-		<li>
-			<Card sx={{ border: '1.5px solid #003780', borderRadius: '10px' }}>
-				<Stack direction="column">
-					<CardMedia>
-						<img
-							src={`/img/food-icons/${icon}`}
-							className="food-icons"
-							alt={`${name} list icon`}
-						/>
-					</CardMedia>
-					<CardActions sx={{ justifyContent: 'center' }}>
-						<Stack direction="column" sx={{ width: '100%' }}>
-							<Button
-								sx={{ border: '1.5px solid #003780', borderRadius: '10px' }}
-								onClick={handleViewClick}
-							>
-								<Typography variant="body1">{name}</Typography>
-							</Button>
-							{currentUserIsOwner && (
-								<>
-									<ButtonGroup
-										sx={{ display: 'flex', justifyContent: 'space-between' }}
-									>
-										<IconButton>
-											<EditIcon
-												// onClick={handleManageClick}
-												aria-label="edit list"
+		<Card
+			sx={{
+				border: '1.5px solid #003780',
+				borderRadius: '10px',
+				paddingX: '1.5rem',
+				display: 'flex',
+				flexDirection: 'column',
+				flex: '1',
+			}}
+		>
+			<Stack direction="column">
+				<CardMedia>
+					<img
+						src={`/img/food-icons/${icon}`}
+						className="food-icons"
+						alt={`${name} list icon`}
+					/>
+				</CardMedia>
+				<CardActions sx={{ justifyContent: 'center' }}>
+					<Stack direction="column" sx={{ width: '100%' }}>
+						<Button
+							sx={{ border: '1.5px solid #003780', borderRadius: '10px' }}
+							onClick={handleViewClick}
+						>
+							<Typography variant="body1">{name}</Typography>
+						</Button>
+						{currentUserIsOwner && (
+							<>
+								<ButtonGroup
+									sx={{ display: 'flex', justifyContent: 'space-between' }}
+								>
+									<IconButton>
+										<EditIcon
+											// onClick={handleManageClick}
+											aria-label="edit list"
+										/>
+									</IconButton>
+									<IconButton onClick={handleOpenModal}>
+										<ShareIcon aria-label="share" />
+									</IconButton>
+									<IconButton>
+										<DeleteIcon
+											// onClick={handleManageClick}
+											aria-label="delete list"
+										/>
+									</IconButton>
+								</ButtonGroup>
+								<Modal
+									open={openModal}
+									onClose={handleCloseModal}
+									aria-labelledby="modal-modal-title"
+									aria-describedby="modal-modal-description"
+								>
+									<Box sx={style}>
+										<form onSubmit={handleEmailInviteSubmit}>
+											<label htmlFor="emailInvite">
+												Email invite (Gmail addresses only):
+											</label>
+											<input
+												id="emailInvite"
+												placeholder="Type Gmail address to invite"
+												name="emailInvite"
+												type="email"
+												onChange={handleEmailInviteChange}
+												value={emailInvite}
 											/>
-										</IconButton>
-										<IconButton onClick={handleOpenModal}>
-											<ShareIcon aria-label="share" />
-										</IconButton>
-										<IconButton>
-											<DeleteIcon
-												// onClick={handleManageClick}
-												aria-label="delete list"
-											/>
-										</IconButton>
-									</ButtonGroup>
-									<Modal
-										open={openModal}
-										onClose={handleCloseModal}
-										aria-labelledby="modal-modal-title"
-										aria-describedby="modal-modal-description"
-									>
-										<Box sx={style}>
-											<form onSubmit={handleEmailInviteSubmit}>
-												<label htmlFor="emailInvite">
-													Email invite (Gmail addresses only):
-												</label>
-												<input
-													id="emailInvite"
-													placeholder="Type Gmail address to invite"
-													name="emailInvite"
-													type="email"
-													onChange={handleEmailInviteChange}
-													value={emailInvite}
-												/>
-												<button type="submit">Invite</button>
-												<div>{emailExists}</div>
-											</form>
-										</Box>
-									</Modal>
-								</>
-							)}
-						</Stack>
-					</CardActions>
-				</Stack>
-			</Card>
-		</li>
+											<button type="submit">Invite</button>
+											<div>{emailExists}</div>
+										</form>
+									</Box>
+								</Modal>
+							</>
+						)}
+					</Stack>
+				</CardActions>
+			</Stack>
+		</Card>
 	);
 }
