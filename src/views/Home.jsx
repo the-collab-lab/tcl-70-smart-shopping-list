@@ -2,7 +2,15 @@ import './Home.css';
 import { SingleList } from '../components/SingleList';
 import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
-import { InputLabel, Input, Box, Button, Stack, Grid } from '@mui/material';
+import {
+	InputLabel,
+	Input,
+	Box,
+	Button,
+	Stack,
+	Grid,
+	Typography,
+} from '@mui/material';
 import { SignInButton } from '../api/useAuth';
 
 export function Home({ data, setListPath, userEmail, userId }) {
@@ -55,6 +63,9 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						boxSizing: 'border-box',
 					}}
 				>
+					<Typography variant="h4" component="h1" gutterBottom>
+						Welcome to Swift Shop! Sign in with below button to shop.
+					</Typography>
 					<SignInButton />
 				</Box>
 			) : (
