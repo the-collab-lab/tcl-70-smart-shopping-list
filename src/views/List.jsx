@@ -323,7 +323,7 @@ export function List({ data, listPath }) {
 					sx={{ mt: { xs: 1 }, mb: { xs: 0 } }}
 				>
 					<Grid item sx={{ ml: 4, mr: 4 }}>
-						<Grid container spacing={1}>
+						<Grid container>
 							<Grid item>
 								<TripOriginIcon sx={{ color: '#feff70' }} />
 							</Grid>
@@ -334,7 +334,7 @@ export function List({ data, listPath }) {
 					</Grid>
 
 					<Grid item sx={{ ml: 4, mr: 4 }}>
-						<Grid container spacing={1}>
+						<Grid container>
 							<Grid item>
 								<TripOriginIcon sx={{ color: '#80ff00' }} />
 							</Grid>
@@ -345,7 +345,7 @@ export function List({ data, listPath }) {
 					</Grid>
 
 					<Grid item sx={{ ml: 4, mr: 4 }}>
-						<Grid container spacing={1}>
+						<Grid container>
 							<Grid item>
 								<TripOriginIcon sx={{ color: '#ff94ff' }} />
 							</Grid>
