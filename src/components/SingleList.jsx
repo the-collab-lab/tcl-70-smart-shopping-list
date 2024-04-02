@@ -10,7 +10,6 @@ import {
 	Modal,
 	Box,
 	Card,
-	CardContent,
 	CardMedia,
 	CardActions,
 	IconButton,
