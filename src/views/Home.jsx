@@ -105,7 +105,7 @@ export function Home({ data, setListPath, userEmail, userId }) {
 					<ul className="lists-container">
 						<Grid container spacing={2}>
 							{data.map((list) => (
-								<Grid item xs={6} md={4}>
+								<Grid key={list.name} item display="flex" xs={6} md={4}>
 									<SingleList
 										key={list.name}
 										name={list.name}
