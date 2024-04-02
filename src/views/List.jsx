@@ -129,19 +129,27 @@ export function List({ data, listPath }) {
 
 	const addItemForm = () => {
 		return (
-			<section className="addAnItemForm">
+			<section>
 				{/* {alertText(submitted)} */}
 				<form onSubmit={handleSubmit}>
 					{/* Add item form for larger screens */}
 					<Box
 						sx={{ width: '100%', display: { xs: 'none', md: 'block' }, mr: 1 }}
 					>
-						<Grid container alignItems="flex-end" spacing={2} ml={4}>
+						<Grid
+							container
+							alignItems="flex-end"
+							spacing={2}
+							justifyContent="center"
+						>
 							<Grid item>
 								<Typography variant="h4">Add an item</Typography>
 							</Grid>
-							<Grid item xs>
-								<FormControl variant="standard" fullWidth>
+							<Grid item>
+								<FormControl
+									variant="standard"
+									sx={{ minWidth: { md: 140, lg: 210 } }}
+								>
 									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
 									<Input
 										id="itemName"
@@ -153,7 +161,10 @@ export function List({ data, listPath }) {
 								</FormControl>
 							</Grid>
 							<Grid item>
-								<FormControl variant="standard" sx={{ minWidth: 200 }}>
+								<FormControl
+									variant="standard"
+									sx={{ minWidth: { md: 165, lg: 210 } }}
+								>
 									<InputLabel id="purchaseUrgencyInput">
 										How soon will you buy this item:
 									</InputLabel>
@@ -172,8 +183,10 @@ export function List({ data, listPath }) {
 									</Select>
 								</FormControl>
 							</Grid>
-							<Grid item mr={10}>
-								<Button type="submit">Submit</Button>
+							<Grid item>
+								<Button type="submit" variant="outlined">
+									Submit
+								</Button>
 							</Grid>
 						</Grid>
 					</Box>
@@ -184,8 +197,21 @@ export function List({ data, listPath }) {
 								Add an item +{' '}
 							</AccordionSummary>
 							{/* {alertText(submitted)} */}
-							<AccordionDetails>
-								<FormControl variant="standard">
+							<AccordionDetails
+								sx={{
+									display: 'flex',
+									flexDirection: { xs: 'column', sm: 'row' },
+									flexWrap: 'wrap',
+									alignItems: 'center',
+									justifyContent: 'center',
+									ml: '4px',
+									mr: '4px',
+								}}
+							>
+								<FormControl
+									variant="standard"
+									sx={{ minWidth: { xs: 156, sm: 100 }, mr: 2 }}
+								>
 									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
 									<Input
 										id="itemName"
@@ -195,7 +221,10 @@ export function List({ data, listPath }) {
 										onChange={handleAddItemChange}
 									/>
 								</FormControl>
-								<FormControl variant="standard" sx={{ m: 0, minWidth: 200 }}>
+								<FormControl
+									variant="standard"
+									sx={{ m: 0, minWidth: { xs: 156, sm: 170 }, mr: 2 }}
+								>
 									<InputLabel id="purchaseUrgencyInput">
 										How soon will you buy this item:
 									</InputLabel>
@@ -213,7 +242,12 @@ export function List({ data, listPath }) {
 										<MenuItem value="notSoon">Not soon</MenuItem>
 									</Select>
 								</FormControl>
-								<Button type="submit" value="Submit">
+								<Button
+									type="submit"
+									value="Submit"
+									variant="outlined"
+									sx={{ mt: 2 }}
+								>
 									Submit
 								</Button>
 							</AccordionDetails>
@@ -251,7 +285,7 @@ export function List({ data, listPath }) {
 						width: '100%',
 					}}
 				>
-					<h2>{listName} List</h2>
+					<h1>{listName} List</h1>
 					<Box sx={{ display: 'flex', alignItems: 'center' }}>
 						<FormControl variant="standard" sx={{ width: '250px' }}>
 							<InputLabel htmlFor="itemSearch">Search for an item:</InputLabel>
@@ -283,13 +317,13 @@ export function List({ data, listPath }) {
 				<Grid
 					container
 					alignItems="center"
-					justifyContent="space-around"
+					justifyContent="center"
 					spacing={{ xs: 0, md: 2 }}
 					mt={1}
 					sx={{ mt: { xs: 1 }, mb: { xs: 0 } }}
 				>
-					<Grid item>
-						<Grid container alignItems="center" spacing={1}>
+					<Grid item sx={{ ml: 4, mr: 4 }}>
+						<Grid container>
 							<Grid item>
 								<TripOriginIcon sx={{ color: '#feff70' }} />
 							</Grid>
@@ -299,8 +333,8 @@ export function List({ data, listPath }) {
 						</Grid>
 					</Grid>
 
-					<Grid item>
-						<Grid container alignItems="center" spacing={1}>
+					<Grid item sx={{ ml: 4, mr: 4 }}>
+						<Grid container>
 							<Grid item>
 								<TripOriginIcon sx={{ color: '#80ff00' }} />
 							</Grid>
@@ -310,8 +344,8 @@ export function List({ data, listPath }) {
 						</Grid>
 					</Grid>
 
-					<Grid item>
-						<Grid container alignItems="center" spacing={1}>
+					<Grid item sx={{ ml: 4, mr: 4 }}>
+						<Grid container>
 							<Grid item>
 								<TripOriginIcon sx={{ color: '#ff94ff' }} />
 							</Grid>

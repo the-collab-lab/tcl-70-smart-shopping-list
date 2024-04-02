@@ -14,7 +14,7 @@
 }
 
 .Layout > * {
-	padding-inline: min(5dvw, 3.2rem);
+	/* padding-inline: min(5dvw, 3.2rem); */
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -72,7 +72,7 @@
 	margin: 0 auto;
 	padding-block: 0;
 	padding-block-end: 6.26rem;
-	width: min(140ch, 100%);
+	width: min(70%);
 }
 
 @media (600px < width < 900px) {
