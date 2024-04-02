@@ -336,6 +336,8 @@ export function List({ data, listPath }) {
 										itemId={item.id}
 										name={item.name}
 										listPath={listPath}
+										setSubmitted={setSubmitted}
+										setOpenSnackbar={setOpenSnackbar}
 									/>
 								</Grid>
 							);
