@@ -9,6 +9,10 @@ import {
 	addDoc,
 	increment,
 	deleteDoc,
+	query,
+	where,
+	limit,
+	getDocs,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
@@ -292,4 +296,22 @@ export const calculateUrgency = (daysUntilNextPurchase, dateLastPurchased) => {
 	} else if (!daysSinceLastPurchase) {
 		return 'inactive';
 	}
+};
+
+//Find user details based on id	c
+
+export const findUserDetails = async (listUserId, currentUser) => {
+	let name;
+	const q = await query(
+		collection(db, 'users'),
+		limit(1),
+		where('uid', '==', listUserId),
+		where('uid', '!=', currentUser),
+	);
+	await getDocs(q).then((res) => {
+		res.forEach(async (doc) => {
+			name = await doc.data().name;
+		});
+	});
+	return name;
 };

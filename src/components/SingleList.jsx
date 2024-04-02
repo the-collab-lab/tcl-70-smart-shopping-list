@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './SingleList.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../api/useAuth.jsx';
 import icons from '../utils/icons.js';
-import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
-import EditIcon from '@mui/icons-material/Edit';
-import { Modal, Box, Card, CardContent } from '@mui/material';
-import { shareList } from '../api/firebase.js';
+import {
+	Modal,
+	Box,
+	Card,
+	CardContent,
+	Typography,
+	Button,
+} from '@mui/material';
+import { shareList, findUserDetails } from '../api/firebase.js';
 
 const style = {
 	position: 'absolute',
@@ -36,6 +41,13 @@ export function SingleList({ name, path, setListPath, userId }) {
 	const iconIndex = generateIconIndexFromPath(path);
 	const icon = icons[iconIndex];
 
+	const [ownerName, setOwnerName] = useState('');
+	const userIdFromPath = path.split('/')[0];
+
+	useEffect(() => {
+		findUserDetails(userIdFromPath, userId).then((res) => setOwnerName(res));
+	}, [userIdFromPath, userId]);
+
 	// Converts path to a consistent icon index by hashing. This ensures the same path always selects the same icon.
 	function generateIconIndexFromPath(str) {
 		let hash = 0;
@@ -49,13 +61,6 @@ export function SingleList({ name, path, setListPath, userId }) {
 	function handleViewClick() {
 		setListPath(path);
 		navigate('/list');
-	}
-
-	function handleManageClick() {
-		if (currentUserIsOwner) {
-			setListPath(path);
-			navigate('/manage-list');
-		}
 	}
 
 	const handleEmailInviteChange = (e) => {
@@ -94,11 +99,25 @@ export function SingleList({ name, path, setListPath, userId }) {
 					</button>
 					{currentUserIsOwner && (
 						<>
-							<div className="icon-container">
-								<EditIcon onClick={handleManageClick} />
-								<ShareIcon onClick={handleOpenModal} />
-								<DeleteIcon onClick={handleManageClick} />
-							</div>
+							<Button
+								onClick={handleOpenModal}
+								sx={{ width: '100%', textAlign: 'center' }}
+							>
+								<Typography
+									sx={{
+										textAlign: 'center',
+										fontSize: '1.5rem',
+										color: '#003780',
+										fontWeight: '600',
+										textTransform: 'none',
+									}}
+								>
+									Share this list{' '}
+								</Typography>{' '}
+								<ShareIcon
+									sx={{ color: '#003780', margin: '0 5px', fontSize: '1.5rem' }}
+								/>
+							</Button>
 							<Modal
 								open={openModal}
 								onClose={handleCloseModal}
@@ -124,6 +143,18 @@ export function SingleList({ name, path, setListPath, userId }) {
 								</Box>
 							</Modal>
 						</>
+					)}
+					{!currentUserIsOwner && (
+						<Typography
+							sx={{
+								textAlign: 'center',
+								fontSize: '1.5rem',
+								color: '#003780',
+								fontWeight: '600',
+							}}
+						>
+							Shared by {ownerName}
+						</Typography>
 					)}
 				</CardContent>
 			</Card>
