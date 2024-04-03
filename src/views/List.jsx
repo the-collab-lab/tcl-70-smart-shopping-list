@@ -361,6 +361,16 @@ export function List({ data, listPath }) {
 				onClose={handleSnackbarClose}
 				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
 				message={submitted}
+				sx={{
+					'& .MuiSnackbarContent-root': {
+						backgroundColor: 'white',
+						color: 'black',
+						borderRadius: '5px',
+						border: '1px solid #003780',
+						display: 'flex',
+						justifyContent: 'center',
+					},
+				}}
 			/>
 			{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}
 		</>
