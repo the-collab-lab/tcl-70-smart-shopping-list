@@ -125,7 +125,11 @@ export function ListItem({
 							}}
 						/>
 						<Button
-							sx={{ color: '#003780', border: '1px solid #003780' }}
+							sx={{
+								color: '#003780',
+								border: '1px solid #003780',
+								width: '80px',
+							}}
 							onClick={handleClick}
 							variant="outlined"
 							startIcon={<DeleteIcon />}

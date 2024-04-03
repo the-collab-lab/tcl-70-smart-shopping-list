@@ -160,7 +160,10 @@ export function List({ data, listPath }) {
 									variant="standard"
 									sx={{ minWidth: { md: 165, lg: 210 } }}
 								>
-									<InputLabel id="purchaseUrgencyInput">
+									<InputLabel
+										id="purchaseUrgencyInput"
+										sx={{ fontSize: '0.9rem' }}
+									>
 										How soon will you buy this item:
 									</InputLabel>
 									<Select
@@ -220,7 +223,10 @@ export function List({ data, listPath }) {
 									variant="standard"
 									sx={{ m: 0, minWidth: { xs: 156, sm: 170 }, mr: 2 }}
 								>
-									<InputLabel id="purchaseUrgencyInput">
+									<InputLabel
+										id="purchaseUrgencyInput"
+										sx={{ fontSize: '0.9rem' }}
+									>
 										How soon will you buy this item:
 									</InputLabel>
 									<Select
