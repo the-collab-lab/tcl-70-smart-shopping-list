@@ -19,7 +19,6 @@ export function ListItem({
 }) {
 	const [isChecked, setIsChecked] = useState(false);
 	const [expired, setExpired] = useState();
-	const [message, setMessage] = useState();
 
 	const handleChange = async () => {
 		if (!isChecked) {
@@ -97,7 +96,6 @@ export function ListItem({
 
 	return (
 		<>
-			<span>{message}</span>
 			<Card sx={{ border: '1px solid #003780', borderRadius: 2 }}>
 				<li
 					className="ListItem"
