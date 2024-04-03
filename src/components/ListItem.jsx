@@ -14,6 +14,8 @@ export function ListItem({
 	itemId,
 	dateLastPurchased,
 	daysUntilNextPurchase,
+	setSubmitted,
+	setOpenSnackbar,
 }) {
 	const [isChecked, setIsChecked] = useState(false);
 	const [expired, setExpired] = useState();
@@ -32,13 +34,17 @@ export function ListItem({
 		if (window.confirm('Do you really want to delete this item?')) {
 			try {
 				await deleteItem(listPath, itemId);
+				setSubmitted('Item successfully deleted!');
+				setOpenSnackbar(true);
 			} catch (error) {
 				console.log('error: ', error);
-				setMessage('Oops! Something went wrong! Please try again!');
+				setSubmitted('Oops! Something went wrong! Please try again!');
+				setOpenSnackbar(true);
 			}
 		} else {
 			console.log('canceled');
-			setMessage('Deletion canceled!');
+			setSubmitted('Deletion canceled!');
+			setOpenSnackbar(true);
 		}
 	};
 
