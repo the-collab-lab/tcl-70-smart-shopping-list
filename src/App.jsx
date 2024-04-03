@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { Home, Layout, List, ManageList } from './views';
+import { Home, Layout, List, About } from './views';
 
 import { useAuth } from './api';
 
@@ -65,9 +65,9 @@ export function App() {
 							element={<List data={data} listPath={listPath} />}
 						/>
 						<Route
-							path="/manage-list"
+							path="/about"
 							element={
-								<ManageList listPath={listPath} userId={userId} data={data} />
+								<About listPath={listPath} userId={userId} data={data} />
 							}
 						/>
 					</Route>

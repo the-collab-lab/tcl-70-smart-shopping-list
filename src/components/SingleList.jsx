@@ -6,7 +6,18 @@ import icons from '../utils/icons.js';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShareIcon from '@mui/icons-material/Share';
 import EditIcon from '@mui/icons-material/Edit';
-import { Modal, Box, Card, CardContent } from '@mui/material';
+import {
+	Modal,
+	Box,
+	Card,
+	CardMedia,
+	CardActions,
+	IconButton,
+	ButtonGroup,
+	Button,
+	Stack,
+	Typography,
+} from '@mui/material';
 import { shareList } from '../api/firebase.js';
 
 const style = {
@@ -81,52 +92,82 @@ export function SingleList({ name, path, setListPath, userId }) {
 	};
 
 	return (
-		<li>
-			<Card>
-				<CardContent>
+		<Card
+			sx={{
+				border: '1.5px solid #003780',
+				borderRadius: '10px',
+				paddingX: '1.5rem',
+				display: 'flex',
+				flexDirection: 'column',
+				flex: '1',
+			}}
+		>
+			<Stack direction="column">
+				<CardMedia>
 					<img
 						src={`/img/food-icons/${icon}`}
 						className="food-icons"
 						alt={`${name} list icon`}
 					/>
-					<button onClick={handleViewClick} className="list-name-button">
-						{name}
-					</button>
-					{currentUserIsOwner && (
-						<>
-							<div className="icon-container">
-								<EditIcon onClick={handleManageClick} />
-								<ShareIcon onClick={handleOpenModal} />
-								<DeleteIcon onClick={handleManageClick} />
-							</div>
-							<Modal
-								open={openModal}
-								onClose={handleCloseModal}
-								aria-labelledby="modal-modal-title"
-								aria-describedby="modal-modal-description"
-							>
-								<Box sx={style}>
-									<form onSubmit={handleEmailInviteSubmit}>
-										<label htmlFor="emailInvite">
-											Email invite (Gmail addresses only):
-										</label>
-										<input
-											id="emailInvite"
-											placeholder="Type Gmail address to invite"
-											name="emailInvite"
-											type="email"
-											onChange={handleEmailInviteChange}
-											value={emailInvite}
+				</CardMedia>
+				<CardActions sx={{ justifyContent: 'center' }}>
+					<Stack direction="column" sx={{ width: '100%' }}>
+						<Button
+							sx={{ border: '1.5px solid #003780', borderRadius: '10px' }}
+							onClick={handleViewClick}
+						>
+							<Typography variant="body1">{name}</Typography>
+						</Button>
+						{currentUserIsOwner && (
+							<>
+								<ButtonGroup
+									sx={{ display: 'flex', justifyContent: 'space-between' }}
+								>
+									<IconButton>
+										<EditIcon
+											// onClick={handleManageClick}
+											aria-label="edit list"
 										/>
-										<button type="submit">Invite</button>
-										<div>{emailExists}</div>
-									</form>
-								</Box>
-							</Modal>
-						</>
-					)}
-				</CardContent>
-			</Card>
-		</li>
+									</IconButton>
+									<IconButton onClick={handleOpenModal}>
+										<ShareIcon aria-label="share" />
+									</IconButton>
+									<IconButton>
+										<DeleteIcon
+											// onClick={handleManageClick}
+											aria-label="delete list"
+										/>
+									</IconButton>
+								</ButtonGroup>
+								<Modal
+									open={openModal}
+									onClose={handleCloseModal}
+									aria-labelledby="modal-modal-title"
+									aria-describedby="modal-modal-description"
+								>
+									<Box sx={style}>
+										<form onSubmit={handleEmailInviteSubmit}>
+											<label htmlFor="emailInvite">
+												Email invite (Gmail addresses only):
+											</label>
+											<input
+												id="emailInvite"
+												placeholder="Type Gmail address to invite"
+												name="emailInvite"
+												type="email"
+												onChange={handleEmailInviteChange}
+												value={emailInvite}
+											/>
+											<button type="submit">Invite</button>
+											<div>{emailExists}</div>
+										</form>
+									</Box>
+								</Modal>
+							</>
+						)}
+					</Stack>
+				</CardActions>
+			</Stack>
+		</Card>
 	);
 }

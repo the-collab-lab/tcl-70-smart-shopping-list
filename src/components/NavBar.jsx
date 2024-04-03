@@ -29,7 +29,7 @@ export function NavBar() {
 	return (
 		<AppBar
 			position="static"
-			sx={{ backgroundColor: '#003780', color: '#fdeecd' }}
+			sx={{ backgroundColor: '#003780', color: '#fdeecd', mb: '20px' }}
 		>
 			<Container maxWidth="xl" className="nav-bar">
 				<Toolbar variant="dense" disableGutters>
@@ -71,7 +71,7 @@ export function NavBar() {
 							fontFamily: 'monospace',
 							fontWeight: 700,
 							letterSpacing: '.3rem',
-							color: 'inherit',
+							color: '#FDEECD',
 							textDecoration: 'none',
 						}}
 					>

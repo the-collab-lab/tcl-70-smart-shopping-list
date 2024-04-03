@@ -92,7 +92,7 @@ export function ListItem({
 	return (
 		<>
 			<span>{message}</span>
-			<Card>
+			<Card sx={{ border: '1px solid #003780', borderRadius: 2 }}>
 				<li
 					className="ListItem"
 					style={{
@@ -121,6 +121,7 @@ export function ListItem({
 							}}
 						/>
 						<Button
+							sx={{ color: '#003780', border: '1px solid #003780' }}
 							onClick={handleClick}
 							variant="outlined"
 							startIcon={<DeleteIcon />}
