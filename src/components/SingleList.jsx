@@ -17,7 +17,6 @@ import {
 	ButtonGroup,
 	Stack,
 } from '@mui/material';
-import { shareList } from '../api/firebase.js';
 import '../views/Home.css';
 import { shareList, findUserDetails } from '../api/firebase.js';
 
