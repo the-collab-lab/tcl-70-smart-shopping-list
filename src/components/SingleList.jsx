@@ -19,6 +19,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { shareList } from '../api/firebase.js';
+import '../views/Home.css';
 
 const style = {
 	position: 'absolute',
@@ -93,6 +94,7 @@ export function SingleList({ name, path, setListPath, userId }) {
 
 	return (
 		<Card
+			className="card"
 			sx={{
 				border: '1.5px solid #003780',
 				borderRadius: '10px',
@@ -104,11 +106,13 @@ export function SingleList({ name, path, setListPath, userId }) {
 		>
 			<Stack direction="column">
 				<CardMedia>
-					<img
-						src={`/img/food-icons/${icon}`}
-						className="food-icons"
-						alt={`${name} list icon`}
-					/>
+					<Box className="icon-background">
+						<img
+							src={`/img/food-icon2/${icon}`}
+							className="food-icons"
+							alt={`${name} list icon`}
+						/>
+					</Box>
 				</CardMedia>
 				<CardActions sx={{ justifyContent: 'center' }}>
 					<Stack direction="column" sx={{ width: '100%' }}>
