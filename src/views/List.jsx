@@ -18,12 +18,14 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Snackbar from '@mui/material/Snackbar';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
 	const [item, setItem] = useState({ name: '', urgency: '' });
 	const [submitted, setSubmitted] = useState();
+	const [openSnackbar, setOpenSnackbar] = useState(false);
 
 	const handleChange = (e) => {
 		const searchTermLocal = e.target.value;
@@ -33,7 +35,6 @@ export function List({ data, listPath }) {
 
 	const handleAddItemChange = (e) => {
 		setItem({ ...item, [e.target.name]: e.target.value });
-		setSubmitted('');
 	};
 
 	const handleSubmit = async (e) => {
@@ -45,7 +46,8 @@ export function List({ data, listPath }) {
 
 		//Empty inputs return an error
 		if (!submittedItem) {
-			setSubmitted('empty');
+			setSubmitted('Please enter an item to add to your list');
+			setOpenSnackbar(true);
 			return;
 		}
 
@@ -56,7 +58,8 @@ export function List({ data, listPath }) {
 		);
 
 		if (match) {
-			setSubmitted('duplicate');
+			setSubmitted('Item already exists!');
+			setOpenSnackbar(true);
 			return;
 		}
 
@@ -80,31 +83,22 @@ export function List({ data, listPath }) {
 				itemName: name,
 				daysUntilNextPurchase: nextPurchasedDate,
 			});
-			setSubmitted('added');
+			setSubmitted('Your item was added!');
+			setOpenSnackbar(true);
 			setItem({ ...item, name: '' });
 		} catch (err) {
 			console.log(err);
-			setSubmitted('failed');
+			setSubmitted("Your item wasn't added!");
+			setOpenSnackbar(true);
 		}
 	};
 
 	//Getting the name of the list
 	const listName = listPath.split('/')[1];
 
-	//Alerts based on "submitted" value
-	const alertText = (submittedValue) => {
-		switch (submittedValue) {
-			case 'added':
-				return <span>Your item was added!</span>;
-			case 'failed':
-				return <span>Your item wasn't added!</span>;
-			case 'empty':
-				return <span>Please enter an item to add to your list</span>;
-			case 'duplicate':
-				return <span>Item already exists!</span>;
-			default:
-				return '';
-		}
+	const handleSnackbarClose = () => {
+		setOpenSnackbar(false);
+		setSubmitted('');
 	};
 
 	//useEffect triggered with change in searchTerm or data
@@ -129,27 +123,19 @@ export function List({ data, listPath }) {
 
 	const addItemForm = () => {
 		return (
-			<section>
+			<section className="addAnItemForm">
 				{/* {alertText(submitted)} */}
 				<form onSubmit={handleSubmit}>
 					{/* Add item form for larger screens */}
 					<Box
 						sx={{ width: '100%', display: { xs: 'none', md: 'block' }, mr: 1 }}
 					>
-						<Grid
-							container
-							alignItems="flex-end"
-							spacing={2}
-							justifyContent="center"
-						>
+						<Grid container alignItems="flex-end" spacing={2} ml={4}>
 							<Grid item>
 								<Typography variant="h4">Add an item</Typography>
 							</Grid>
-							<Grid item>
-								<FormControl
-									variant="standard"
-									sx={{ minWidth: { md: 140, lg: 210 } }}
-								>
+							<Grid item xs>
+								<FormControl variant="standard" fullWidth>
 									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
 									<Input
 										id="itemName"
@@ -161,10 +147,7 @@ export function List({ data, listPath }) {
 								</FormControl>
 							</Grid>
 							<Grid item>
-								<FormControl
-									variant="standard"
-									sx={{ minWidth: { md: 165, lg: 210 } }}
-								>
+								<FormControl variant="standard" sx={{ minWidth: 200 }}>
 									<InputLabel id="purchaseUrgencyInput">
 										How soon will you buy this item:
 									</InputLabel>
@@ -183,10 +166,8 @@ export function List({ data, listPath }) {
 									</Select>
 								</FormControl>
 							</Grid>
-							<Grid item>
-								<Button type="submit" variant="outlined">
-									Submit
-								</Button>
+							<Grid item mr={10}>
+								<Button type="submit">Submit</Button>
 							</Grid>
 						</Grid>
 					</Box>
@@ -197,21 +178,8 @@ export function List({ data, listPath }) {
 								Add an item +{' '}
 							</AccordionSummary>
 							{/* {alertText(submitted)} */}
-							<AccordionDetails
-								sx={{
-									display: 'flex',
-									flexDirection: { xs: 'column', sm: 'row' },
-									flexWrap: 'wrap',
-									alignItems: 'center',
-									justifyContent: 'center',
-									ml: '4px',
-									mr: '4px',
-								}}
-							>
-								<FormControl
-									variant="standard"
-									sx={{ minWidth: { xs: 156, sm: 100 }, mr: 2 }}
-								>
+							<AccordionDetails>
+								<FormControl variant="standard">
 									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
 									<Input
 										id="itemName"
@@ -221,10 +189,7 @@ export function List({ data, listPath }) {
 										onChange={handleAddItemChange}
 									/>
 								</FormControl>
-								<FormControl
-									variant="standard"
-									sx={{ m: 0, minWidth: { xs: 156, sm: 170 }, mr: 2 }}
-								>
+								<FormControl variant="standard" sx={{ m: 0, minWidth: 200 }}>
 									<InputLabel id="purchaseUrgencyInput">
 										How soon will you buy this item:
 									</InputLabel>
@@ -242,12 +207,7 @@ export function List({ data, listPath }) {
 										<MenuItem value="notSoon">Not soon</MenuItem>
 									</Select>
 								</FormControl>
-								<Button
-									type="submit"
-									value="Submit"
-									variant="outlined"
-									sx={{ mt: 2 }}
-								>
+								<Button type="submit" value="Submit">
 									Submit
 								</Button>
 							</AccordionDetails>
@@ -285,7 +245,7 @@ export function List({ data, listPath }) {
 						width: '100%',
 					}}
 				>
-					<h1>{listName} List</h1>
+					<h2>{listName} List</h2>
 					<Box sx={{ display: 'flex', alignItems: 'center' }}>
 						<FormControl variant="standard" sx={{ width: '250px' }}>
 							<InputLabel htmlFor="itemSearch">Search for an item:</InputLabel>
@@ -317,13 +277,13 @@ export function List({ data, listPath }) {
 				<Grid
 					container
 					alignItems="center"
-					justifyContent="center"
+					justifyContent="space-around"
 					spacing={{ xs: 0, md: 2 }}
 					mt={1}
 					sx={{ mt: { xs: 1 }, mb: { xs: 0 } }}
 				>
-					<Grid item sx={{ ml: 4, mr: 4 }}>
-						<Grid container>
+					<Grid item>
+						<Grid container alignItems="center" spacing={1}>
 							<Grid item>
 								<TripOriginIcon sx={{ color: '#feff70' }} />
 							</Grid>
@@ -333,8 +293,8 @@ export function List({ data, listPath }) {
 						</Grid>
 					</Grid>
 
-					<Grid item sx={{ ml: 4, mr: 4 }}>
-						<Grid container>
+					<Grid item>
+						<Grid container alignItems="center" spacing={1}>
 							<Grid item>
 								<TripOriginIcon sx={{ color: '#80ff00' }} />
 							</Grid>
@@ -344,8 +304,8 @@ export function List({ data, listPath }) {
 						</Grid>
 					</Grid>
 
-					<Grid item sx={{ ml: 4, mr: 4 }}>
-						<Grid container>
+					<Grid item>
+						<Grid container alignItems="center" spacing={1}>
 							<Grid item>
 								<TripOriginIcon sx={{ color: '#ff94ff' }} />
 							</Grid>
@@ -376,6 +336,8 @@ export function List({ data, listPath }) {
 										itemId={item.id}
 										name={item.name}
 										listPath={listPath}
+										setSubmitted={setSubmitted}
+										setOpenSnackbar={setOpenSnackbar}
 									/>
 								</Grid>
 							);
@@ -393,7 +355,23 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-			{alertText(submitted)}
+			<Snackbar
+				open={openSnackbar}
+				autoHideDuration={3000}
+				onClose={handleSnackbarClose}
+				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+				message={submitted}
+				sx={{
+					'& .MuiSnackbarContent-root': {
+						backgroundColor: '#f8f9fa',
+						color: 'black',
+						borderRadius: '5px',
+						border: '1px solid #003780',
+						display: 'flex',
+						justifyContent: 'center',
+					},
+				}}
+			/>
 			{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}
 		</>
 	);
