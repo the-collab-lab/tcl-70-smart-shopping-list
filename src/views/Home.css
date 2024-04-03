@@ -34,6 +34,11 @@
 	margin: 0 auto;
 }
 
+.food-icons {
+	width: 100%;
+	height: auto;
+}
+
 .util-icons {
 	width: 30px;
 }
@@ -95,39 +100,4 @@ details[open] {
 details[open] summary {
 	border-bottom: 1px solid #aaa;
 	margin-bottom: 0.5em;
-}
-
-.icon-background {
-	border: 1.5px solid #003780;
-	background-color: white;
-	border-radius: 50%;
-	width: 20vmin;
-	height: 20vmin;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.food-icons {
-	max-width: 80%;
-	max-height: 80%;
-}
-
-.card {
-	height: 300px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-@media (max-width: 600px) {
-	.icon-background {
-		width: 30vmin;
-		height: 30vmin;
-	}
-
-	.card {
-		height: auto;
-	}
 }
