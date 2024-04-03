@@ -363,7 +363,7 @@ export function List({ data, listPath }) {
 				message={submitted}
 				sx={{
 					'& .MuiSnackbarContent-root': {
-						backgroundColor: 'white',
+						backgroundColor: '#f8f9fa',
 						color: 'black',
 						borderRadius: '5px',
 						border: '1px solid #003780',
