@@ -24,6 +24,9 @@ export const ThemeProvider = ({ children }) => {
 		palette: {
 			mode,
 		},
+		typography: {
+			fontSize: 16,
+		},
 	});
 
 	return (

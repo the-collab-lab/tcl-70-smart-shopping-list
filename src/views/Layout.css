@@ -7,6 +7,7 @@
  *
  * @see: https://developer.mozilla.org/en-US/docs/Web/CSS/env
  */
+
 .Layout {
 	display: flex;
 	flex-direction: column;
@@ -14,7 +15,7 @@
 }
 
 .Layout > * {
-	padding-inline: min(5dvw, 3.2rem);
+	/* padding-inline: min(5dvw, 3.2rem); */
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -23,18 +24,11 @@
 
 .Layout-header {
 	background-color: var(--color-bg);
-	/* padding-bottom: 0.5rem;
-	padding-top: max(env(safe-area-inset-top), 1rem); */
-	padding: 0;
 	text-align: center;
-	margin: 0;
-	padding: 1rem;
+	margin: 0.2rem;
+	/* padding: 0.2rem; */
 	background-image: radial-gradient(#f8f9fa 0%, #fdeecd 60%);
 	color: #003780;
-	/* background-image: url('/public/img/header-img.png');
-	background-position: center;
-	background-size: 30%;
-	background-repeat: no-repeat; */
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -42,12 +36,7 @@
 }
 
 .Layout-header img {
-	width: 20%;
-}
-
-.Layout-header h1 {
-	display: flex;
-	flex-direction: column;
+	width: 200px;
 }
 
 .swift-header {
@@ -55,8 +44,9 @@
 	font-weight: 700;
 	font-style: italic;
 	letter-spacing: 0.2rem;
-	font-size: 12rem;
+	font-size: 7rem;
 	text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+	margin: 0;
 }
 
 .shop-header {
@@ -64,68 +54,39 @@
 	font-family: 'Spectral', Georgia, 'Times New Roman', Times, serif;
 	font-weight: 400;
 	letter-spacing: 2rem;
-	font-size: 4rem;
+	font-size: 3rem;
 	text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+	text-align: center;
+	margin: 0;
 }
 
 .Layout-main {
 	margin: 0 auto;
 	padding-block: 0;
 	padding-block-end: 6.26rem;
-	width: min(140ch, 100%);
+	width: min(70%);
 }
 
 @media (600px < width < 900px) {
 	.Layout-header img {
-		width: 40%;
-	}
-}
-
-@media (width < 600px) {
-	.Layout-header img {
-		width: 45%;
+		width: 150px;
 	}
 	.swift-header {
-		font-size: 6rem;
+		font-size: 5.5rem;
 	}
 	.shop-header {
 		font-size: 2rem;
 	}
 }
-/* 
-.Nav {
-	background-color: var(--color-bg);
-	border-top: 1px solid var(--color-border);
-	bottom: 0;
-	display: flex;
-	flex-direction: row;
-	padding-bottom: max(env(safe-area-inset-bottom), 1rem);
-	padding-top: 1rem;
-	place-content: center;
-	position: fixed;
-	width: 100%;
+
+@media (width < 600px) {
+	.Layout-header img {
+		width: 100px;
+	}
+	.swift-header {
+		font-size: 4rem;
+	}
+	.shop-header {
+		font-size: 1rem;
+	}
 }
-
-.Nav-container {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	width: min(72ch, 100%);
-}
-
-.Nav-link {
-	--color-text: var(--color-accent);
-
-	color: var(--color-text);
-	font-size: 1.4em;
-	flex: 0 1 auto;
-	line-height: 1;
-	padding: 0.8rem;
-	text-align: center;
-	text-underline-offset: 0.1em;
-}
-
-.Nav-link.active {
-	text-decoration-thickness: 0.22em;
-	text-underline-offset: 0.1em;
-} */

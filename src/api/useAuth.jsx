@@ -2,19 +2,21 @@ import { useEffect, useState } from 'react';
 import { auth } from './config.js';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { addUserToDatabase } from './firebase.js';
-
+import { Button } from '@mui/material';
+import GoogleIcon from '@mui/icons-material/Google';
 /**
  * A button that signs the user in using Google OAuth. When clicked,
  * the button redirects the user to the Google OAuth sign-in page.
  * After the user signs in, they are redirected back to the app.
  */
 export const SignInButton = () => (
-	<button
-		type="button"
+	<Button
+		variant="contained"
+		startIcon={<GoogleIcon />}
 		onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
 	>
-		Sign In
-	</button>
+		Sign In with Google
+	</Button>
 );
 
 /**

@@ -11,8 +11,16 @@ import {
 	CardContent,
 	Typography,
 	Button,
+	CardMedia,
+	CardActions,
+	IconButton,
+	ButtonGroup,
+	Stack,
+	Typography,
 } from '@mui/material';
+
 import { shareList, findUserDetails } from '../api/firebase.js';
+
 
 const style = {
 	position: 'absolute',
@@ -86,20 +94,36 @@ export function SingleList({ name, path, setListPath, userId }) {
 	};
 
 	return (
-		<li>
-			<Card>
-				<CardContent>
+		<Card
+			sx={{
+				border: '1.5px solid #003780',
+				borderRadius: '10px',
+				paddingX: '1.5rem',
+				display: 'flex',
+				flexDirection: 'column',
+				flex: '1',
+			}}
+		>
+			<Stack direction="column">
+				<CardMedia>
 					<img
 						src={`/img/food-icons/${icon}`}
 						className="food-icons"
 						alt={`${name} list icon`}
 					/>
-					<button onClick={handleViewClick} className="list-name-button">
-						{name}
-					</button>
-					{currentUserIsOwner && (
-						<>
-							<Button
+
+				</CardMedia>
+				<CardActions sx={{ justifyContent: 'center' }}>
+					<Stack direction="column" sx={{ width: '100%' }}>
+						<Button
+							sx={{ border: '1.5px solid #003780', borderRadius: '10px' }}
+							onClick={handleViewClick}
+						>
+							<Typography variant="body1">{name}</Typography>
+						</Button>
+						{currentUserIsOwner && (
+							<>
+						    <Button
 								onClick={handleOpenModal}
 								sx={{ width: '100%', textAlign: 'center' }}
 							>
@@ -118,33 +142,33 @@ export function SingleList({ name, path, setListPath, userId }) {
 									sx={{ color: '#003780', margin: '0 5px', fontSize: '1.5rem' }}
 								/>
 							</Button>
-							<Modal
-								open={openModal}
-								onClose={handleCloseModal}
-								aria-labelledby="modal-modal-title"
-								aria-describedby="modal-modal-description"
-							>
-								<Box sx={style}>
-									<form onSubmit={handleEmailInviteSubmit}>
-										<label htmlFor="emailInvite">
-											Email invite (Gmail addresses only):
-										</label>
-										<input
-											id="emailInvite"
-											placeholder="Type Gmail address to invite"
-											name="emailInvite"
-											type="email"
-											onChange={handleEmailInviteChange}
-											value={emailInvite}
-										/>
-										<button type="submit">Invite</button>
-										<div>{emailExists}</div>
-									</form>
-								</Box>
-							</Modal>
-						</>
-					)}
-					{!currentUserIsOwner && (
+								<Modal
+									open={openModal}
+									onClose={handleCloseModal}
+									aria-labelledby="modal-modal-title"
+									aria-describedby="modal-modal-description"
+								>
+									<Box sx={style}>
+										<form onSubmit={handleEmailInviteSubmit}>
+											<label htmlFor="emailInvite">
+												Email invite (Gmail addresses only):
+											</label>
+											<input
+												id="emailInvite"
+												placeholder="Type Gmail address to invite"
+												name="emailInvite"
+												type="email"
+												onChange={handleEmailInviteChange}
+												value={emailInvite}
+											/>
+											<button type="submit">Invite</button>
+											<div>{emailExists}</div>
+										</form>
+									</Box>
+								</Modal>
+							</>
+						)}
+           {!currentUserIsOwner && (
 						<Typography
 							sx={{
 								textAlign: 'center',
@@ -156,8 +180,10 @@ export function SingleList({ name, path, setListPath, userId }) {
 							Shared by {ownerName}
 						</Typography>
 					)}
-				</CardContent>
-			</Card>
-		</li>
+            
+					</Stack>
+				</CardActions>
+			</Stack>
+		</Card>
 	);
 }

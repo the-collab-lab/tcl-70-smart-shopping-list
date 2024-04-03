@@ -2,7 +2,16 @@ import './Home.css';
 import { SingleList } from '../components/SingleList';
 import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
-import { InputLabel, Input, Box, Button, Stack, Grid } from '@mui/material';
+import {
+	InputLabel,
+	Input,
+	Box,
+	Button,
+	Stack,
+	Grid,
+	Typography,
+} from '@mui/material';
+import { SignInButton } from '../api/useAuth';
 
 export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
@@ -43,7 +52,23 @@ export function Home({ data, setListPath, userEmail, userId }) {
 
 	return (
 		<div className="Home">
-			{userId ? (
+			{!userId ? (
+				<Box
+					display="flex"
+					flexDirection="column"
+					alignItems="center"
+					minHeight="100vh"
+					sx={{
+						mt: '10vh',
+						boxSizing: 'border-box',
+					}}
+				>
+					<Typography variant="h4" component="h1" gutterBottom>
+						Welcome to Swift Shop! Sign in with below button to shop.
+					</Typography>
+					<SignInButton />
+				</Box>
+			) : (
 				<div>
 					<br></br>
 					<details>
@@ -105,7 +130,7 @@ export function Home({ data, setListPath, userEmail, userId }) {
 					<ul className="lists-container">
 						<Grid container spacing={2}>
 							{data.map((list) => (
-								<Grid item xs={6} md={4}>
+								<Grid key={list.name} item display="flex" xs={6} md={4}>
 									<SingleList
 										key={list.name}
 										name={list.name}
@@ -118,8 +143,6 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						</Grid>
 					</ul>
 				</div>
-			) : (
-				<p>Please log in</p>
 			)}
 		</div>
 	);
