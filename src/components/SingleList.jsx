@@ -16,7 +16,6 @@ import {
 	IconButton,
 	ButtonGroup,
 	Stack,
-	Typography,
 } from '@mui/material';
 
 import { shareList, findUserDetails } from '../api/firebase.js';
