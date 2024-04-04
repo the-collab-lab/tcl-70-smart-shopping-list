@@ -30,9 +30,20 @@ export const SignInButton = () => (
  * A button that signs the user out of the app using Firebase Auth.
  */
 export const SignOutButton = () => (
-	<button type="button" onClick={() => auth.signOut()}>
+	<Button
+		type="button"
+		onClick={() => auth.signOut()}
+		sx={{
+			color: '#fdeecd',
+			backgroundColor: '#003780',
+			border: '1px solid #fdeecd',
+			fontSize: '1rem',
+			padding: '2px',
+			margin: '0 5px',
+		}}
+	>
 		Sign Out
-	</button>
+	</Button>
 );
 
 /**

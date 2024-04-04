@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
+import './NavBar.css';
+import { LogoIcon } from '../../public/svg-icons.jsx';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
-import SvgIcon from '@mui/material/SvgIcon';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import HomeIcon from '@mui/icons-material/Home';
@@ -34,114 +35,64 @@ export function NavBar() {
 			<Container maxWidth="xl" className="nav-bar">
 				<Toolbar variant="dense" disableGutters>
 					{/*Logo and app name for medium or larger screens*/}
-					<SvgIcon
-						sx={{
-							fontSize: '20px',
-							display: { xs: 'none', md: 'flex' },
-							mr: 1,
-						}}
-					>
-						<svg
-							height="200px"
-							width="200px"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 290.87 290.87"
-							xmlSpace="preserve"
-							fill="#000"
-							transform="scale(-1 1)"
-							stroke="#000"
-							strokeWidth={0.00290873}
-						>
-							<g fill="#010002">
-								<path d="M44.268 139.532L44.268 79.35 44.268 41.049 93.507 90.294z" />
-								<path d="M0 73.384L32.334 41.049 32.334 73.384z" />
-								<path d="M149.583 249.824L113.508 213.748 149.583 181.843z" />
-								<path d="M103.066 202.799L47.216 153.823 160.968 48.77 290.873 48.77z" />
-							</g>
-						</svg>
-					</SvgIcon>
+					<LogoIcon />
 					<Typography
 						variant="h6"
 						noWrap
 						component="a"
-						href="#app-bar-with-responsive-menu"
+						href="/"
 						sx={{
 							mr: 2,
+							ml: 1,
 							display: { xs: 'none', md: 'flex' },
-							fontFamily: 'monospace',
+							fontFamily: 'Newsreader',
 							fontWeight: 700,
+							fontStyle: 'italic',
 							letterSpacing: '.3rem',
 							color: '#FDEECD',
 							textDecoration: 'none',
 						}}
+						className="nav-app-name"
 					>
-						SwiftShop
+						Swift Shop
 					</Typography>
 					{user && (
 						<>
 							{/* nav links for larger screens */}
 							<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-								<NavLink to="/" className="Nav-link">
-									<Button sx={{ my: 2, color: '#FDEECD', display: 'block' }}>
-										Home
-									</Button>
+								<NavLink to="/" className="nav-link">
+									<Button className="nav-button">Home</Button>
 								</NavLink>
-								<NavLink to="/list" className="Nav-link">
-									<Button sx={{ my: 2, color: '#FDEECD', display: 'block' }}>
-										List
-									</Button>
+								<NavLink to="/list" className="nav-link">
+									<Button className="nav-button">List</Button>
 								</NavLink>
-								<NavLink to="/about" className="Nav-link">
-									<Button sx={{ my: 2, color: '#FDEECD', display: 'block' }}>
-										About
-									</Button>
+								<NavLink to="/about" className="nav-link">
+									<Button className="nav-button">About</Button>
 								</NavLink>
 							</Box>
 
 							{/* app logo for small screens */}
-							<SvgIcon
-								sx={{
-									fontSize: '20px',
-									display: { xs: 'flex', md: 'none' },
-									mr: 1,
-								}}
-							>
-								<svg
-									height="200px"
-									width="200px"
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 290.87 290.87"
-									xmlSpace="preserve"
-									fill="#000"
-									transform="scale(-1 1)"
-									stroke="#000"
-									strokeWidth={0.00290873}
-								>
-									<g fill="#010002">
-										<path d="M44.268 139.532L44.268 79.35 44.268 41.049 93.507 90.294z" />
-										<path d="M0 73.384L32.334 41.049 32.334 73.384z" />
-										<path d="M149.583 249.824L113.508 213.748 149.583 181.843z" />
-										<path d="M103.066 202.799L47.216 153.823 160.968 48.77 290.873 48.77z" />
-									</g>
-								</svg>
-							</SvgIcon>
+
 							<Typography
 								variant="h5"
 								noWrap
 								component="a"
-								href="#app-bar-with-responsive-menu"
+								href="/"
 								sx={{
 									mr: 2,
+									ml: 1,
 									display: { xs: 'flex', md: 'none' },
 									flexGrow: 1,
-									fontFamily: 'monospace',
+									fontFamily: 'Newsreader',
+									fontStyle: 'italic',
 									fontWeight: 700,
 									letterSpacing: '.3rem',
 									color: 'inherit',
 									textDecoration: 'none',
+									fontSize: '1.2rem',
 								}}
 							>
-								SwiftShop
+								Swift Shop
 							</Typography>
 							<Box
 								sx={{
@@ -168,8 +119,8 @@ export function NavBar() {
 						}}
 					>
 						{!!user && (
-							<Typography>
-								Signed in as {user.displayName} <SignOutButton />
+							<Typography sx={{ fontSize: '1.2rem' }}>
+								Signed in as <b>{user.displayName}</b> <SignOutButton />
 							</Typography>
 						)}
 					</Box>
