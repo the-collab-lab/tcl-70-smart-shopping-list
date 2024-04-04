@@ -1,138 +1,298 @@
-import { useState } from 'react';
-import { shareList } from '../api'; // IMPORT ADDITEM IN LIST.JSX
-
-export function About({ listPath, userId, data }) {
-	// const [item, setItem] = useState({ name: '', urgency: 'soon' });
-	// const [submitted, setSubmitted] = useState();
-	const [emailInvite, setEmailInvite] = useState('');
-	const [emailExists, setEmailExists] = useState();
-
-	const handleEmailInviteChange = (e) => {
-		setEmailInvite(e.target.value);
-	};
-
-	const handleEmailInviteSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			await shareList(listPath, userId, emailInvite);
-			setEmailExists('Your list was shared!');
-			setEmailInvite('');
-		} catch (err) {
-			console.log(err);
-			setEmailExists(err.message);
-		}
-	};
-
-	// const handleAddItemChange = (e) => {
-	// 	setItem({ ...item, [e.target.name]: e.target.value });
-	// };
-
-	// const handleSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	const { name, urgency } = item;
-
-	// 	//Changes input value to lowercase and removes spaces
-	// 	const submittedItem = name.toLowerCase().replace(/[^a-z]/g, '');
-
-	// 	//Empty inputs return an error
-	// 	if (!submittedItem) {
-	// 		setSubmitted('empty');
-	// 		return;
-	// 	}
-
-	// 	//Inputs matching exisitng list items return an error
-	// 	const match = data.find(
-	// 		(item) =>
-	// 			item.name.toLowerCase().replace(/[^a-z]/g, '') === submittedItem,
-	// 	);
-
-	// 	if (match) {
-	// 		setSubmitted('duplicate');
-	// 		return;
-	// 	}
-
-	// 	let nextPurchasedDate;
-	// 	switch (urgency) {
-	// 		case 'soon':
-	// 			nextPurchasedDate = 7;
-	// 			break;
-	// 		case 'kindOfSoon':
-	// 			nextPurchasedDate = 14;
-	// 			break;
-	// 		case 'notSoon':
-	// 			nextPurchasedDate = 30;
-	// 			break;
-	// 		default:
-	// 			console.log('Unrecognized selection');
-	// 			return;
-	// 	}
-	// 	try {
-	// 		await addItem(listPath, {
-	// 			itemName: name,
-	// 			daysUntilNextPurchase: nextPurchasedDate,
-	// 		});
-	// 		setSubmitted('added');
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 		setSubmitted('failed');
-	// 	}
-	// };
-
-	// //Alerts based on "submitted" value
-	// const alertText = (submittedValue) => {
-	// 	switch (submittedValue) {
-	// 		case 'added':
-	// 			return <span>Your item was added!</span>;
-	// 		case 'failed':
-	// 			return <span>Your item wasn't added!</span>;
-	// 		case 'empty':
-	// 			return <span>Please enter an item to add to your list</span>;
-	// 		case 'duplicate':
-	// 			return <span>Item already exists!</span>;
-	// 		default:
-	// 			return '';
-	// 	}
-	// };
-
+import {
+	Typography,
+	Link,
+	Card,
+	CardActionArea,
+	CardMedia,
+	CardContent,
+	Avatar,
+} from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import WebAssetIcon from '@mui/icons-material/WebAsset';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+// href="https://github.com/the-collab-lab/tcl-70-smart-shopping-list"
+// href="https://the-collab-lab.codes/"
+export function About() {
 	return (
-		<div>
-			<p>
-				Hello from the <code>/manage-list</code> page!
-			</p>
-			{/* {alertText(submitted)}
-			<form onSubmit={handleSubmit}>
-				<label htmlFor="itemName">Item name</label>
-				<input
-					id="itemName"
-					type="text"
-					placeholder="Item Name"
-					name="name"
-					onChange={handleAddItemChange}
-					value={item.name}
-				/>
-				<label htmlFor="purchaseUrgency">Purchase urgency</label>
-				<select id="purchaseUrgency" name="urgency" onChange={handleAddItemChange}>
-					<option value="soon">Soon</option>
-					<option value="kindOfSoon">Kind of Soon</option>
-					<option value="notSoon">Not soon</option>
-				</select>
-				<button type="submit" value="Submit">
-					Submit
-				</button>
-			</form> */}
-			{emailExists}
-			<form onSubmit={handleEmailInviteSubmit}>
-				<label htmlFor="emailInvite">Email invite</label>
-				<input
-					id="emailInvite"
-					placeholder="Type user email to invite"
-					name="emailInvite"
-					type="email"
-					onChange={handleEmailInviteChange}
-					value={emailInvite}
-				/>
-				<button>Submit</button>
-			</form>
-		</div>
+		<>
+			<div
+				style={{
+					padding: '20px',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+				}}
+			>
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'row',
+						justifyContent: 'space-between',
+						width: '100%',
+						marginBottom: '20px',
+					}}
+				>
+					<Typography variant="h2" style={{ width: '40%' }}>
+						About This App
+					</Typography>
+					<div style={{ width: '60%' }}>
+						<Typography>
+							The SwiftShop is a “smart” shopping list app that learns your
+							buying habits and helps you remember what you’re likely to need to
+							buy on your next trip to the store.
+						</Typography>
+						<Link
+							href="#"
+							style={{
+								display: 'flex',
+								alignItems: 'center',
+								marginTop: '10px',
+								textDecoration: 'none',
+								color: 'inherit',
+							}}
+						>
+							<GitHubIcon />
+							<Typography variant="subtitle1" style={{ marginLeft: '10px' }}>
+								Check out the project repository!
+							</Typography>
+						</Link>
+					</div>
+				</div>
+
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'row',
+						justifyContent: 'space-between',
+						width: '100%',
+						marginBottom: '20px',
+					}}
+				>
+					<div style={{ width: '60%' }}>
+						<Typography>
+							This project was brought to life as part of The Collab Lab, an
+							initiative designed to empower aspiring developers through
+							teamwork and real-world experience. Within this supportive and
+							dynamic environment, we honed our technical skills and learned the
+							essence of collaboration, greatly aided by the guidance of
+							experienced developers serving as mentors.
+						</Typography>
+						<Link
+							href="#"
+							style={{
+								display: 'flex',
+								alignItems: 'center',
+								marginTop: '10px',
+								textDecoration: 'none',
+								color: 'inherit',
+							}}
+						>
+							<WebAssetIcon />
+							<Typography variant="subtitle1" style={{ marginLeft: '10px' }}>
+								More about The Collab Lab!
+							</Typography>
+						</Link>
+					</div>
+					<Typography variant="h2" style={{ width: '40%', textAlign: 'right' }}>
+						Our Project & The Collab Lab
+					</Typography>
+				</div>
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'row',
+						gap: '20px',
+						flexWrap: 'wrap',
+						justifyContent: 'center',
+						width: '100%',
+					}}
+				>
+					<Card
+						className="card"
+						sx={{
+							border: '1.5px solid #003780',
+							borderRadius: '10px',
+							padding: '1.5rem',
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center',
+							flex: '1',
+							maxWidth: '240px',
+						}}
+					>
+						<CardActionArea
+							disableRipple
+							sx={{
+								'&:hover': { backgroundColor: 'transparent' },
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+							}}
+						>
+							<Avatar sx={{ width: 56, height: 56, marginBottom: 2 }} />
+							<CardContent>
+								<Typography
+									gutterBottom
+									variant="h5"
+									component="div"
+									textAlign="center"
+								>
+									Name
+								</Typography>
+								<div
+									style={{
+										display: 'flex',
+										justifyContent: 'center',
+										alignItems: 'center',
+										color: '#003780',
+									}}
+								>
+									<LinkedInIcon />
+									<GitHubIcon sx={{ marginLeft: 2 }} />
+								</div>
+							</CardContent>
+						</CardActionArea>
+					</Card>
+					<Card
+						className="card"
+						sx={{
+							border: '1.5px solid #003780',
+							borderRadius: '10px',
+							padding: '1.5rem',
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center',
+							flex: '1',
+							maxWidth: '240px',
+						}}
+					>
+						<CardActionArea
+							disableRipple
+							sx={{
+								'&:hover': { backgroundColor: 'transparent' },
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+							}}
+						>
+							<Avatar sx={{ width: 56, height: 56, marginBottom: 2 }} />
+							<CardContent>
+								<Typography
+									gutterBottom
+									variant="h5"
+									component="div"
+									textAlign="center"
+								>
+									Name
+								</Typography>
+								<div
+									style={{
+										display: 'flex',
+										justifyContent: 'center',
+										alignItems: 'center',
+										color: '#003780',
+									}}
+								>
+									<LinkedInIcon />
+									<GitHubIcon sx={{ marginLeft: 2 }} />
+								</div>
+							</CardContent>
+						</CardActionArea>
+					</Card>
+					<Card
+						className="card"
+						sx={{
+							border: '1.5px solid #003780',
+							borderRadius: '10px',
+							padding: '1.5rem',
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center',
+							flex: '1',
+							maxWidth: '240px',
+						}}
+					>
+						<CardActionArea
+							disableRipple
+							sx={{
+								'&:hover': { backgroundColor: 'transparent' },
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+							}}
+						>
+							<Avatar sx={{ width: 56, height: 56, marginBottom: 2 }} />
+							<CardContent>
+								<Typography
+									gutterBottom
+									variant="h5"
+									component="div"
+									textAlign="center"
+								>
+									Name
+								</Typography>
+								<div
+									style={{
+										display: 'flex',
+										justifyContent: 'center',
+										alignItems: 'center',
+										color: '#003780',
+									}}
+								>
+									<LinkedInIcon />
+									<GitHubIcon sx={{ marginLeft: 2 }} />
+								</div>
+							</CardContent>
+						</CardActionArea>
+					</Card>
+					<Card
+						className="card"
+						sx={{
+							border: '1.5px solid #003780',
+							borderRadius: '10px',
+							padding: '1.5rem',
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center',
+							flex: '1',
+							maxWidth: '240px',
+						}}
+					>
+						<CardActionArea
+							disableRipple
+							sx={{
+								'&:hover': { backgroundColor: 'transparent' },
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+							}}
+						>
+							<Avatar sx={{ width: 56, height: 56, marginBottom: 2 }} />
+							<CardContent>
+								<Typography
+									gutterBottom
+									variant="h5"
+									component="div"
+									textAlign="center"
+								>
+									Name
+								</Typography>
+								<div
+									style={{
+										display: 'flex',
+										justifyContent: 'center',
+										alignItems: 'center',
+										color: '#003780',
+									}}
+								>
+									<LinkedInIcon />
+									<GitHubIcon sx={{ marginLeft: 2 }} />
+								</div>
+							</CardContent>
+						</CardActionArea>
+					</Card>
+				</div>
+			</div>
+		</>
 	);
 }
