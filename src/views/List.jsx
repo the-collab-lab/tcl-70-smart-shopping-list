@@ -18,12 +18,14 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Snackbar from '@mui/material/Snackbar';
 
 export function List({ data, listPath }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState(data);
 	const [item, setItem] = useState({ name: '', urgency: '' });
 	const [submitted, setSubmitted] = useState();
+	const [openSnackbar, setOpenSnackbar] = useState(false);
 
 	const handleChange = (e) => {
 		const searchTermLocal = e.target.value;
@@ -45,7 +47,8 @@ export function List({ data, listPath }) {
 
 		//Empty inputs return an error
 		if (!submittedItem) {
-			setSubmitted('empty');
+			setSubmitted('Please enter an item to add to your list');
+			setOpenSnackbar(true);
 			return;
 		}
 
@@ -56,7 +59,8 @@ export function List({ data, listPath }) {
 		);
 
 		if (match) {
-			setSubmitted('duplicate');
+			setSubmitted('Item already exists!');
+			setOpenSnackbar(true);
 			return;
 		}
 
@@ -80,31 +84,22 @@ export function List({ data, listPath }) {
 				itemName: name,
 				daysUntilNextPurchase: nextPurchasedDate,
 			});
-			setSubmitted('added');
+			setSubmitted('Your item was added!');
+			setOpenSnackbar(true);
 			setItem({ ...item, name: '' });
 		} catch (err) {
 			console.log(err);
-			setSubmitted('failed');
+			setSubmitted("Your item wasn't added!");
+			setOpenSnackbar(true);
 		}
 	};
 
 	//Getting the name of the list
 	const listName = listPath.split('/')[1];
 
-	//Alerts based on "submitted" value
-	const alertText = (submittedValue) => {
-		switch (submittedValue) {
-			case 'added':
-				return <span>Your item was added!</span>;
-			case 'failed':
-				return <span>Your item wasn't added!</span>;
-			case 'empty':
-				return <span>Please enter an item to add to your list</span>;
-			case 'duplicate':
-				return <span>Item already exists!</span>;
-			default:
-				return '';
-		}
+	const handleSnackbarClose = () => {
+		setOpenSnackbar(false);
+		setSubmitted('');
 	};
 
 	//useEffect triggered with change in searchTerm or data
@@ -165,7 +160,10 @@ export function List({ data, listPath }) {
 									variant="standard"
 									sx={{ minWidth: { md: 165, lg: 210 } }}
 								>
-									<InputLabel id="purchaseUrgencyInput">
+									<InputLabel
+										id="purchaseUrgencyInput"
+										sx={{ fontSize: '0.9rem' }}
+									>
 										How soon will you buy this item:
 									</InputLabel>
 									<Select
@@ -225,7 +223,10 @@ export function List({ data, listPath }) {
 									variant="standard"
 									sx={{ m: 0, minWidth: { xs: 156, sm: 170 }, mr: 2 }}
 								>
-									<InputLabel id="purchaseUrgencyInput">
+									<InputLabel
+										id="purchaseUrgencyInput"
+										sx={{ fontSize: '0.9rem' }}
+									>
 										How soon will you buy this item:
 									</InputLabel>
 									<Select
@@ -376,6 +377,8 @@ export function List({ data, listPath }) {
 										itemId={item.id}
 										name={item.name}
 										listPath={listPath}
+										setSubmitted={setSubmitted}
+										setOpenSnackbar={setOpenSnackbar}
 									/>
 								</Grid>
 							);
@@ -393,7 +396,23 @@ export function List({ data, listPath }) {
 
 	return (
 		<>
-			{alertText(submitted)}
+			<Snackbar
+				open={openSnackbar}
+				autoHideDuration={3000}
+				onClose={handleSnackbarClose}
+				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+				message={submitted}
+				sx={{
+					'& .MuiSnackbarContent-root': {
+						backgroundColor: '#f8f9fa',
+						color: 'black',
+						borderRadius: '5px',
+						border: '1px solid #003780',
+						display: 'flex',
+						justifyContent: 'center',
+					},
+				}}
+			/>
 			{data.length === 0 ? renderAddFirstItemCTA() : renderItemList()}
 		</>
 	);

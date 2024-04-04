@@ -26,6 +26,9 @@ export const ThemeProvider = ({ children }) => {
 		},
 		typography: {
 			fontSize: 16,
+			allVariants: {
+				letterSpacing: 'normal', // Resets to the browser's default, or use '0em' for no extra spacing
+			},
 		},
 	});
 
