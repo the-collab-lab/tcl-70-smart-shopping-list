@@ -15,7 +15,7 @@ export function AboutDevelopers() {
 			style={{
 				display: 'flex',
 				flexDirection: 'column',
-				alignItems: 'center', // Centers the content vertically
+				alignItems: 'center',
 				width: '100%',
 				margin: '40px 0',
 			}}
