@@ -83,6 +83,10 @@
 	.Layout-header img {
 		width: 100px;
 	}
+
+	.Layout-main {
+		width: min(85%);
+	}
 	.swift-header {
 		font-size: 4rem;
 	}
