@@ -10,6 +10,8 @@ import {
 	Stack,
 	Grid,
 	Typography,
+	Link,
+	Container,
 } from '@mui/material';
 import { SignInButton } from '../api/useAuth';
 
@@ -53,21 +55,52 @@ export function Home({ data, setListPath, userEmail, userId }) {
 	return (
 		<div className="Home">
 			{!userId ? (
-				<Box
-					display="flex"
-					flexDirection="column"
-					alignItems="center"
-					minHeight="100vh"
+				<Container
 					sx={{
-						mt: '10vh',
-						boxSizing: 'border-box',
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+						width: '100vw',
+						m: '25px 0',
 					}}
 				>
-					<Typography variant="h4" component="h1" gutterBottom>
-						Welcome to Swift Shop! Sign in with below button to shop.
-					</Typography>
-					<SignInButton />
-				</Box>
+					<Box className="welcome-card">
+						<Typography
+							variant="h4"
+							component="h2"
+							gutterBottom
+							sx={{ textAlign: 'center' }}
+						>
+							Welcome to{' '}
+							<p
+								style={{
+									fontFamily: 'Newsreader',
+									fontStyle: 'italic',
+									fontSize: '4rem',
+									margin: '10px',
+								}}
+							>
+								Swift Shop
+							</p>
+						</Typography>
+						<Typography variant="h5" sx={{ mb: '10px' }}>
+							Click the button below to get started
+						</Typography>
+						<SignInButton />
+						<Link
+							href="/about"
+							underline="always"
+							sx={{
+								margin: '10px',
+								color: '#f8f9fa',
+								textDecoration: 'underline',
+								fontSize: '1.2rem',
+							}}
+						>
+							{'Learn more about this app'}
+						</Link>
+					</Box>
+				</Container>
 			) : (
 				<div>
 					<br></br>
