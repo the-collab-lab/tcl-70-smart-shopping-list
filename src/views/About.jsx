@@ -2,10 +2,10 @@ import {
 	Typography,
 	Link,
 	Card,
-	CardActionArea,
-	CardMedia,
 	CardContent,
 	Avatar,
+	Box,
+	IconButton,
 } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
@@ -51,7 +51,7 @@ export function About() {
 								color: 'inherit',
 							}}
 						>
-							<GitHubIcon />
+							<GitHubIcon fontSize="large" />
 							<Typography variant="subtitle1" style={{ marginLeft: '10px' }}>
 								Check out the project repository!
 							</Typography>
@@ -97,6 +97,9 @@ export function About() {
 						Our Project & The Collab Lab
 					</Typography>
 				</div>
+				<Typography variant="h2" sx={{ marginBottom: 2 }}>
+					The Developers
+				</Typography>
 				<div
 					style={{
 						display: 'flex',
@@ -111,7 +114,7 @@ export function About() {
 						className="card"
 						sx={{
 							border: '1.5px solid #003780',
-							borderRadius: '10px',
+							borderRadius: '20px',
 							padding: '1.5rem',
 							display: 'flex',
 							flexDirection: 'column',
@@ -120,8 +123,7 @@ export function About() {
 							maxWidth: '240px',
 						}}
 					>
-						<CardActionArea
-							disableRipple
+						<Box
 							sx={{
 								'&:hover': { backgroundColor: 'transparent' },
 								display: 'flex',
@@ -129,35 +131,51 @@ export function About() {
 								alignItems: 'center',
 							}}
 						>
-							<Avatar sx={{ width: 56, height: 56, marginBottom: 2 }} />
+							<Avatar sx={{ width: 80, height: 80, marginBottom: 1 }} />
 							<CardContent>
 								<Typography
 									gutterBottom
 									variant="h5"
 									component="div"
 									textAlign="center"
+									sx={{ marginBottom: 2, fontWeight: 'bold' }}
 								>
-									Name
+									Amanda Guan
 								</Typography>
-								<div
-									style={{
-										display: 'flex',
-										justifyContent: 'center',
-										alignItems: 'center',
-										color: '#003780',
-									}}
-								>
-									<LinkedInIcon />
-									<GitHubIcon sx={{ marginLeft: 2 }} />
-								</div>
+								<Box display="flex" justifyContent="center" gap={2}>
+									<IconButton
+										aria-label="LinkedIn"
+										sx={{
+											color: 'white',
+											backgroundColor: '#ff9a8d',
+											'&:hover': { backgroundColor: '#ffada4' },
+											width: 48,
+											height: 48,
+										}}
+									>
+										<LinkedInIcon />
+									</IconButton>
+									<IconButton
+										aria-label="GitHub"
+										sx={{
+											color: 'white',
+											backgroundColor: '#ff9a8d',
+											'&:hover': { backgroundColor: '#ffada4' },
+											width: 48,
+											height: 48,
+										}}
+									>
+										<GitHubIcon />
+									</IconButton>
+								</Box>
 							</CardContent>
-						</CardActionArea>
+						</Box>
 					</Card>
 					<Card
 						className="card"
 						sx={{
 							border: '1.5px solid #003780',
-							borderRadius: '10px',
+							borderRadius: '20px',
 							padding: '1.5rem',
 							display: 'flex',
 							flexDirection: 'column',
@@ -166,8 +184,7 @@ export function About() {
 							maxWidth: '240px',
 						}}
 					>
-						<CardActionArea
-							disableRipple
+						<Box
 							sx={{
 								'&:hover': { backgroundColor: 'transparent' },
 								display: 'flex',
@@ -175,35 +192,51 @@ export function About() {
 								alignItems: 'center',
 							}}
 						>
-							<Avatar sx={{ width: 56, height: 56, marginBottom: 2 }} />
+							<Avatar sx={{ width: 80, height: 80, marginBottom: 1 }} />
 							<CardContent>
 								<Typography
 									gutterBottom
 									variant="h5"
 									component="div"
 									textAlign="center"
+									sx={{ marginBottom: 2, fontWeight: 'bold' }}
 								>
-									Name
+									Grace Lee
 								</Typography>
-								<div
-									style={{
-										display: 'flex',
-										justifyContent: 'center',
-										alignItems: 'center',
-										color: '#003780',
-									}}
-								>
-									<LinkedInIcon />
-									<GitHubIcon sx={{ marginLeft: 2 }} />
-								</div>
+								<Box display="flex" justifyContent="center" gap={2}>
+									<IconButton
+										aria-label="LinkedIn"
+										sx={{
+											color: 'white',
+											backgroundColor: '#ff9a8d',
+											'&:hover': { backgroundColor: '#ffada4' },
+											width: 48,
+											height: 48,
+										}}
+									>
+										<LinkedInIcon />
+									</IconButton>
+									<IconButton
+										aria-label="GitHub"
+										sx={{
+											color: 'white',
+											backgroundColor: '#ff9a8d',
+											'&:hover': { backgroundColor: '#ffada4' },
+											width: 48,
+											height: 48,
+										}}
+									>
+										<GitHubIcon />
+									</IconButton>
+								</Box>
 							</CardContent>
-						</CardActionArea>
+						</Box>
 					</Card>
 					<Card
 						className="card"
 						sx={{
 							border: '1.5px solid #003780',
-							borderRadius: '10px',
+							borderRadius: '20px',
 							padding: '1.5rem',
 							display: 'flex',
 							flexDirection: 'column',
@@ -212,8 +245,7 @@ export function About() {
 							maxWidth: '240px',
 						}}
 					>
-						<CardActionArea
-							disableRipple
+						<Box
 							sx={{
 								'&:hover': { backgroundColor: 'transparent' },
 								display: 'flex',
@@ -221,35 +253,51 @@ export function About() {
 								alignItems: 'center',
 							}}
 						>
-							<Avatar sx={{ width: 56, height: 56, marginBottom: 2 }} />
+							<Avatar sx={{ width: 80, height: 80, marginBottom: 1 }} />
 							<CardContent>
 								<Typography
 									gutterBottom
 									variant="h5"
 									component="div"
 									textAlign="center"
+									sx={{ marginBottom: 2, fontWeight: 'bold' }}
 								>
-									Name
+									Leon Chung
 								</Typography>
-								<div
-									style={{
-										display: 'flex',
-										justifyContent: 'center',
-										alignItems: 'center',
-										color: '#003780',
-									}}
-								>
-									<LinkedInIcon />
-									<GitHubIcon sx={{ marginLeft: 2 }} />
-								</div>
+								<Box display="flex" justifyContent="center" gap={2}>
+									<IconButton
+										aria-label="LinkedIn"
+										sx={{
+											color: 'white',
+											backgroundColor: '#ff9a8d',
+											'&:hover': { backgroundColor: '#ffada4' },
+											width: 48,
+											height: 48,
+										}}
+									>
+										<LinkedInIcon />
+									</IconButton>
+									<IconButton
+										aria-label="GitHub"
+										sx={{
+											color: 'white',
+											backgroundColor: '#ff9a8d',
+											'&:hover': { backgroundColor: '#ffada4' },
+											width: 48,
+											height: 48,
+										}}
+									>
+										<GitHubIcon />
+									</IconButton>
+								</Box>
 							</CardContent>
-						</CardActionArea>
+						</Box>
 					</Card>
 					<Card
 						className="card"
 						sx={{
 							border: '1.5px solid #003780',
-							borderRadius: '10px',
+							borderRadius: '20px',
 							padding: '1.5rem',
 							display: 'flex',
 							flexDirection: 'column',
@@ -258,8 +306,7 @@ export function About() {
 							maxWidth: '240px',
 						}}
 					>
-						<CardActionArea
-							disableRipple
+						<Box
 							sx={{
 								'&:hover': { backgroundColor: 'transparent' },
 								display: 'flex',
@@ -267,29 +314,45 @@ export function About() {
 								alignItems: 'center',
 							}}
 						>
-							<Avatar sx={{ width: 56, height: 56, marginBottom: 2 }} />
+							<Avatar sx={{ width: 80, height: 80, marginBottom: 1 }} />
 							<CardContent>
 								<Typography
 									gutterBottom
 									variant="h5"
 									component="div"
 									textAlign="center"
+									sx={{ marginBottom: 2, fontWeight: 'bold' }}
 								>
-									Name
+									Mili Made
 								</Typography>
-								<div
-									style={{
-										display: 'flex',
-										justifyContent: 'center',
-										alignItems: 'center',
-										color: '#003780',
-									}}
-								>
-									<LinkedInIcon />
-									<GitHubIcon sx={{ marginLeft: 2 }} />
-								</div>
+								<Box display="flex" justifyContent="center" gap={2}>
+									<IconButton
+										aria-label="LinkedIn"
+										sx={{
+											color: 'white',
+											backgroundColor: '#ff9a8d',
+											'&:hover': { backgroundColor: '#ffada4' },
+											width: 48,
+											height: 48,
+										}}
+									>
+										<LinkedInIcon />
+									</IconButton>
+									<IconButton
+										aria-label="GitHub"
+										sx={{
+											color: 'white',
+											backgroundColor: '#ff9a8d',
+											'&:hover': { backgroundColor: '#ffada4' },
+											width: 48,
+											height: 48,
+										}}
+									>
+										<GitHubIcon />
+									</IconButton>
+								</Box>
 							</CardContent>
-						</CardActionArea>
+						</Box>
 					</Card>
 				</div>
 			</div>
