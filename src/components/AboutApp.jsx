@@ -3,10 +3,10 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 export function AboutApp() {
 	return (
-		<Box sx={{ mt: 5, mb: 5, overflow: 'auto' }}>
+		<Box sx={{ mt: 1, mb: 1, overflow: 'auto' }}>
 			<Grid container spacing={2} direction="column" alignItems="center">
 				<Grid item>
-					<Typography variant="h2" sx={{ mb: 2, textAlign: 'center' }}>
+					<Typography variant="h2" sx={{ textAlign: 'center' }}>
 						About This App
 					</Typography>
 				</Grid>
@@ -29,10 +29,15 @@ export function AboutApp() {
 					/>
 				</Grid>
 				<Grid item>
-					<Typography sx={{ mb: 2, textAlign: 'center' }}>
+					<Typography sx={{ textAlign: 'center' }}>
 						The SwiftShop is a “smart” shopping list app that learns your buying
 						habits and helps you remember what you’re likely to need to buy on
-						your next trip to the store.
+						your next trip to the store. As a user, you will create a new
+						shopping list and enter items (e.g., “Greek yogurt” or “Paper
+						towels”) into your list. Each time you buy the item, you mark it as
+						purchased in the list. Over time, the app comes to understand the
+						intervals at which you buy different items. If an item is likely to
+						be due to be bought soon, it rises to the top of the shopping list.
 					</Typography>
 				</Grid>
 				<Grid item>

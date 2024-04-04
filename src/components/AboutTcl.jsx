@@ -3,10 +3,10 @@ import WebAssetIcon from '@mui/icons-material/WebAsset';
 
 export function AboutTcl() {
 	return (
-		<Box sx={{ width: '100%', mt: 5, mb: 5, overflow: 'auto' }}>
+		<Box sx={{ width: '100%', mt: 1, mb: 1, overflow: 'auto' }}>
 			<Grid container spacing={2} direction="column" alignItems="center">
 				<Grid item xs={12}>
-					<Typography variant="h2" sx={{ mb: 2, textAlign: 'center' }}>
+					<Typography variant="h2" sx={{ textAlign: 'center' }}>
 						Our Project & The Collab Lab
 					</Typography>
 				</Grid>
@@ -23,7 +23,7 @@ export function AboutTcl() {
 					/>
 				</Grid>
 				<Grid item xs={12}>
-					<Typography sx={{ mb: 2, textAlign: 'center' }}>
+					<Typography sx={{ textAlign: 'center' }}>
 						This project was brought to life as part of The Collab Lab, an
 						initiative designed to empower aspiring developers through teamwork
 						and real-world experience. Within this supportive and dynamic
@@ -39,7 +39,6 @@ export function AboutTcl() {
 							backgroundColor: '#003780',
 							'&:hover': { backgroundColor: '#0058cd' },
 							color: 'white',
-							mt: 2,
 						}}
 					>
 						<WebAssetIcon sx={{ mr: 1, fontSize: '2.5rem' }} />
