@@ -110,7 +110,7 @@ export function Home({ data, setListPath, userEmail, userId }) {
 								size="normal"
 								// className="centered-block"
 							>
-								Enter new list name::
+								Enter new list name:
 							</InputLabel>
 							<Input
 								type="text"
