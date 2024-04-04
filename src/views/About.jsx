@@ -10,8 +10,7 @@ import {
 import GitHubIcon from '@mui/icons-material/GitHub';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-// href="https://github.com/the-collab-lab/tcl-70-smart-shopping-list"
-// href="https://the-collab-lab.codes/"
+
 export function About() {
 	return (
 		<>
@@ -42,7 +41,7 @@ export function About() {
 							buy on your next trip to the store.
 						</Typography>
 						<Link
-							href="#"
+							href="https://github.com/the-collab-lab/tcl-70-smart-shopping-list"
 							style={{
 								display: 'flex',
 								alignItems: 'center',
@@ -78,7 +77,7 @@ export function About() {
 							experienced developers serving as mentors.
 						</Typography>
 						<Link
-							href="#"
+							href="https://the-collab-lab.codes/"
 							style={{
 								display: 'flex',
 								alignItems: 'center',
