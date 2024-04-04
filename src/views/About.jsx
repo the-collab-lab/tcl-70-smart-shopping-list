@@ -26,18 +26,17 @@ export function About() {
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
-				gap: 2,
-				mt: 4,
+				margin: 4,
 			}}
 		>
 			<Button onClick={handlePrev} sx={{ minWidth: '64px' }}>
-				<ArrowBackIosNewIcon />
+				<ArrowBackIosNewIcon style={{ fontSize: '4rem' }} />
 			</Button>
 			<Card
 				sx={{
 					width: '80vw',
 					maxWidth: '1000px',
-					height: '60vh',
+					minHeight: '60vh',
 					display: 'flex',
 					justifyContent: 'center',
 					alignItems: 'center',
@@ -46,12 +45,23 @@ export function About() {
 					border: '2px solid #003780',
 					boxShadow: 3,
 					p: 2,
+					position: 'relative',
 				}}
 			>
-				{items[activeIndex]}
+				<Box
+					sx={{
+						width: '100%',
+						maxHeight: '65vh',
+						overflowY: 'auto',
+						display: 'flex',
+						p: 1,
+					}}
+				>
+					{items[activeIndex]}
+				</Box>
 			</Card>
 			<Button onClick={handleNext} sx={{ minWidth: '64px' }}>
-				<ArrowForwardIosIcon />
+				<ArrowForwardIosIcon style={{ fontSize: '4rem' }} />
 			</Button>
 		</Box>
 	);

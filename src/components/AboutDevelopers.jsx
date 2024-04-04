@@ -5,50 +5,35 @@ import {
 	Avatar,
 	Box,
 	IconButton,
+	Grid,
 } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export function AboutDevelopers() {
 	return (
-		<div
-			style={{
+		<Box
+			sx={{
+				width: '100%',
+				pt: 8,
+				pb: 6,
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
-				width: '100%',
-				margin: '40px 0',
+				overflowY: 'auto',
+				maxHeight: '100vh',
 			}}
 		>
-			<Typography variant="h2" sx={{ marginBottom: 2 }}>
+			<Typography variant="h2" sx={{ mb: 4 }}>
 				The Developers
 			</Typography>
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'row',
-					gap: '20px',
-					flexWrap: 'wrap',
-					justifyContent: 'center',
-					width: '100%',
-				}}
-			>
-				<Card
-					className="card"
-					sx={{
-						border: '1.5px solid #003780',
-						borderRadius: '20px',
-						padding: '1.5rem',
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						flex: '1',
-						maxWidth: '240px',
-					}}
-				>
-					<Box
+			<Grid container spacing={2} alignItems="center" justifyContent="center">
+				<Grid item xs={12} sm={6} md={6} lg={3}>
+					<Card
 						sx={{
-							'&:hover': { backgroundColor: 'transparent' },
+							border: '1.5px solid #003780',
+							borderRadius: '20px',
+							padding: '1.5rem',
 							display: 'flex',
 							flexDirection: 'column',
 							alignItems: 'center',
@@ -58,29 +43,34 @@ export function AboutDevelopers() {
 							sx={{
 								width: 80,
 								height: 80,
-								marginBottom: 1,
-								bgcolor: '#ff9a8d',
+								marginBottom: 2,
+								bgcolor: '#003780',
 							}}
 						>
 							AG
 						</Avatar>
-						<CardContent>
+						<CardContent
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+							}}
+						>
 							<Typography
 								gutterBottom
 								variant="h5"
 								component="div"
 								textAlign="center"
-								sx={{ marginBottom: 2, fontWeight: 'bold' }}
+								sx={{ fontWeight: 'bold', marginBottom: 2 }}
 							>
 								Amanda Guan
 							</Typography>
-							<Box display="flex" justifyContent="center" gap={2}>
+							<Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
 								<IconButton
-									aria-label="LinkedIn"
 									sx={{
 										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
+										backgroundColor: '#003780',
+										'&:hover': { backgroundColor: '#0058cd' },
 										width: 48,
 										height: 48,
 									}}
@@ -88,11 +78,10 @@ export function AboutDevelopers() {
 									<LinkedInIcon />
 								</IconButton>
 								<IconButton
-									aria-label="GitHub"
 									sx={{
 										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
+										backgroundColor: '#003780',
+										'&:hover': { backgroundColor: '#0058cd' },
 										width: 48,
 										height: 48,
 									}}
@@ -101,24 +90,14 @@ export function AboutDevelopers() {
 								</IconButton>
 							</Box>
 						</CardContent>
-					</Box>
-				</Card>
-				<Card
-					className="card"
-					sx={{
-						border: '1.5px solid #003780',
-						borderRadius: '20px',
-						padding: '1.5rem',
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						flex: '1',
-						maxWidth: '240px',
-					}}
-				>
-					<Box
+					</Card>
+				</Grid>
+				<Grid item xs={12} sm={6} md={6} lg={3}>
+					<Card
 						sx={{
-							'&:hover': { backgroundColor: 'transparent' },
+							border: '1.5px solid #003780',
+							borderRadius: '20px',
+							padding: '1.5rem',
 							display: 'flex',
 							flexDirection: 'column',
 							alignItems: 'center',
@@ -128,29 +107,34 @@ export function AboutDevelopers() {
 							sx={{
 								width: 80,
 								height: 80,
-								marginBottom: 1,
-								bgcolor: '#ff9a8d',
+								marginBottom: 2,
+								bgcolor: '#003780',
 							}}
 						>
 							GL
 						</Avatar>
-						<CardContent>
+						<CardContent
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+							}}
+						>
 							<Typography
 								gutterBottom
 								variant="h5"
 								component="div"
 								textAlign="center"
-								sx={{ marginBottom: 2, fontWeight: 'bold' }}
+								sx={{ fontWeight: 'bold', marginBottom: 2 }}
 							>
 								Grace Lee
 							</Typography>
-							<Box display="flex" justifyContent="center" gap={2}>
+							<Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
 								<IconButton
-									aria-label="LinkedIn"
 									sx={{
 										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
+										backgroundColor: '#003780',
+										'&:hover': { backgroundColor: '#0058cd' },
 										width: 48,
 										height: 48,
 									}}
@@ -158,11 +142,10 @@ export function AboutDevelopers() {
 									<LinkedInIcon />
 								</IconButton>
 								<IconButton
-									aria-label="GitHub"
 									sx={{
 										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
+										backgroundColor: '#003780',
+										'&:hover': { backgroundColor: '#0058cd' },
 										width: 48,
 										height: 48,
 									}}
@@ -171,24 +154,14 @@ export function AboutDevelopers() {
 								</IconButton>
 							</Box>
 						</CardContent>
-					</Box>
-				</Card>
-				<Card
-					className="card"
-					sx={{
-						border: '1.5px solid #003780',
-						borderRadius: '20px',
-						padding: '1.5rem',
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						flex: '1',
-						maxWidth: '240px',
-					}}
-				>
-					<Box
+					</Card>
+				</Grid>
+				<Grid item xs={12} sm={6} md={6} lg={3}>
+					<Card
 						sx={{
-							'&:hover': { backgroundColor: 'transparent' },
+							border: '1.5px solid #003780',
+							borderRadius: '20px',
+							padding: '1.5rem',
 							display: 'flex',
 							flexDirection: 'column',
 							alignItems: 'center',
@@ -198,29 +171,34 @@ export function AboutDevelopers() {
 							sx={{
 								width: 80,
 								height: 80,
-								marginBottom: 1,
-								bgcolor: '#ff9a8d',
+								marginBottom: 2,
+								bgcolor: '#003780',
 							}}
 						>
 							LC
 						</Avatar>
-						<CardContent>
+						<CardContent
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+							}}
+						>
 							<Typography
 								gutterBottom
 								variant="h5"
 								component="div"
 								textAlign="center"
-								sx={{ marginBottom: 2, fontWeight: 'bold' }}
+								sx={{ fontWeight: 'bold', marginBottom: 2 }}
 							>
 								Leon Chung
 							</Typography>
-							<Box display="flex" justifyContent="center" gap={2}>
+							<Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
 								<IconButton
-									aria-label="LinkedIn"
 									sx={{
 										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
+										backgroundColor: '#003780',
+										'&:hover': { backgroundColor: '#0058cd' },
 										width: 48,
 										height: 48,
 									}}
@@ -228,11 +206,10 @@ export function AboutDevelopers() {
 									<LinkedInIcon />
 								</IconButton>
 								<IconButton
-									aria-label="GitHub"
 									sx={{
 										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
+										backgroundColor: '#003780',
+										'&:hover': { backgroundColor: '#0058cd' },
 										width: 48,
 										height: 48,
 									}}
@@ -241,24 +218,14 @@ export function AboutDevelopers() {
 								</IconButton>
 							</Box>
 						</CardContent>
-					</Box>
-				</Card>
-				<Card
-					className="card"
-					sx={{
-						border: '1.5px solid #003780',
-						borderRadius: '20px',
-						padding: '1.5rem',
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						flex: '1',
-						maxWidth: '240px',
-					}}
-				>
-					<Box
+					</Card>
+				</Grid>
+				<Grid item xs={12} sm={6} md={6} lg={3}>
+					<Card
 						sx={{
-							'&:hover': { backgroundColor: 'transparent' },
+							border: '1.5px solid #003780',
+							borderRadius: '20px',
+							padding: '1.5rem',
 							display: 'flex',
 							flexDirection: 'column',
 							alignItems: 'center',
@@ -268,29 +235,34 @@ export function AboutDevelopers() {
 							sx={{
 								width: 80,
 								height: 80,
-								marginBottom: 1,
-								bgcolor: '#ff9a8d',
+								marginBottom: 2,
+								bgcolor: '#003780',
 							}}
 						>
 							ML
 						</Avatar>
-						<CardContent>
+						<CardContent
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center',
+							}}
+						>
 							<Typography
 								gutterBottom
 								variant="h5"
 								component="div"
 								textAlign="center"
-								sx={{ marginBottom: 2, fontWeight: 'bold' }}
+								sx={{ fontWeight: 'bold', marginBottom: 2 }}
 							>
 								Mili Made
 							</Typography>
-							<Box display="flex" justifyContent="center" gap={2}>
+							<Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
 								<IconButton
-									aria-label="LinkedIn"
 									sx={{
 										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
+										backgroundColor: '#003780',
+										'&:hover': { backgroundColor: '#0058cd' },
 										width: 48,
 										height: 48,
 									}}
@@ -298,11 +270,10 @@ export function AboutDevelopers() {
 									<LinkedInIcon />
 								</IconButton>
 								<IconButton
-									aria-label="GitHub"
 									sx={{
 										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
+										backgroundColor: '#003780',
+										'&:hover': { backgroundColor: '#0058cd' },
 										width: 48,
 										height: 48,
 									}}
@@ -311,9 +282,9 @@ export function AboutDevelopers() {
 								</IconButton>
 							</Box>
 						</CardContent>
-					</Box>
-				</Card>
-			</div>
-		</div>
+					</Card>
+				</Grid>
+			</Grid>
+		</Box>
 	);
 }
