@@ -54,7 +54,16 @@ export function AboutDevelopers() {
 							alignItems: 'center',
 						}}
 					>
-						<Avatar sx={{ width: 80, height: 80, marginBottom: 1 }} />
+						<Avatar
+							sx={{
+								width: 80,
+								height: 80,
+								marginBottom: 1,
+								bgcolor: '#ff9a8d',
+							}}
+						>
+							AG
+						</Avatar>
 						<CardContent>
 							<Typography
 								gutterBottom
@@ -115,7 +124,16 @@ export function AboutDevelopers() {
 							alignItems: 'center',
 						}}
 					>
-						<Avatar sx={{ width: 80, height: 80, marginBottom: 1 }} />
+						<Avatar
+							sx={{
+								width: 80,
+								height: 80,
+								marginBottom: 1,
+								bgcolor: '#ff9a8d',
+							}}
+						>
+							GL
+						</Avatar>
 						<CardContent>
 							<Typography
 								gutterBottom
@@ -176,7 +194,16 @@ export function AboutDevelopers() {
 							alignItems: 'center',
 						}}
 					>
-						<Avatar sx={{ width: 80, height: 80, marginBottom: 1 }} />
+						<Avatar
+							sx={{
+								width: 80,
+								height: 80,
+								marginBottom: 1,
+								bgcolor: '#ff9a8d',
+							}}
+						>
+							LC
+						</Avatar>
 						<CardContent>
 							<Typography
 								gutterBottom
@@ -237,7 +264,16 @@ export function AboutDevelopers() {
 							alignItems: 'center',
 						}}
 					>
-						<Avatar sx={{ width: 80, height: 80, marginBottom: 1 }} />
+						<Avatar
+							sx={{
+								width: 80,
+								height: 80,
+								marginBottom: 1,
+								bgcolor: '#ff9a8d',
+							}}
+						>
+							ML
+						</Avatar>
 						<CardContent>
 							<Typography
 								gutterBottom

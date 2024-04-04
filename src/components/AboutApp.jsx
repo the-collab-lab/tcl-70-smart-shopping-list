@@ -41,7 +41,7 @@ export function AboutApp() {
 			</div>
 			<div style={{ width: '40%', marginRight: '70px' }}>
 				<img
-					src="../public/img/swiftshop.png"
+					src="/img/swiftshop.png"
 					alt="image of swiftshop app"
 					style={{
 						maxWidth: '100%',

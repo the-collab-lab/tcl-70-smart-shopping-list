@@ -44,7 +44,7 @@ export function AboutTcl() {
 			</div>
 			<div style={{ width: '40%' }}>
 				<img
-					src={`../public/img/the-collab-lab.png`}
+					src="/img/the-collab-lab.png"
 					alt="Description"
 					style={{
 						maxWidth: '100%',
