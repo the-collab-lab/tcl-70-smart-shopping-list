@@ -21,38 +21,58 @@ export function About() {
 	};
 
 	return (
-		<Box
-			sx={{
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				gap: 2,
-				mt: 4,
-			}}
-		>
-			<Button onClick={handlePrev} sx={{ minWidth: '64px' }}>
-				<ArrowBackIosNewIcon />
-			</Button>
-			<Card
+		<>
+			<Box
 				sx={{
-					width: '80vw',
-					maxWidth: '1000px',
-					height: '60vh',
-					display: 'flex',
 					justifyContent: 'center',
 					alignItems: 'center',
-					overflow: 'hidden',
-					borderRadius: '16px',
-					border: '2px solid #003780',
-					boxShadow: 3,
-					p: 2,
+					margin: 4,
+					display: { xs: 'none', sm: 'flex' },
 				}}
 			>
-				{items[activeIndex]}
-			</Card>
-			<Button onClick={handleNext} sx={{ minWidth: '64px' }}>
-				<ArrowForwardIosIcon />
-			</Button>
-		</Box>
+				<Button onClick={handlePrev} sx={{ minWidth: '64px' }}>
+					<ArrowBackIosNewIcon style={{ fontSize: '4rem' }} />
+				</Button>
+				<Card
+					sx={{
+						width: '80vw',
+						maxWidth: '1000px',
+						minHeight: '60vh',
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+						overflow: 'hidden',
+						borderRadius: '16px',
+						border: '2px solid #003780',
+						boxShadow: 3,
+						p: 2,
+						position: 'relative',
+					}}
+				>
+					<Box
+						sx={{
+							width: '100%',
+							maxheight: { md: '65vh', lg: '60vh' },
+							overflowY: 'auto',
+							display: 'flex',
+							p: 1,
+						}}
+					>
+						{items[activeIndex]}
+					</Box>
+				</Card>
+				<Button onClick={handleNext} sx={{ minWidth: '64px' }}>
+					<ArrowForwardIosIcon style={{ fontSize: '4rem' }} />
+				</Button>
+			</Box>
+
+			<Box
+				sx={{ display: { xs: 'flex', sm: 'none' }, flexDirection: 'column' }}
+			>
+				<AboutApp />
+				<AboutTcl />
+				<AboutDevelopers />
+			</Box>
+		</>
 	);
 }

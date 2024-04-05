@@ -351,7 +351,7 @@ export function List({ data, listPath }) {
 								<TripOriginIcon sx={{ color: '#ff94ff' }} />
 							</Grid>
 							<Grid item>
-								<Typography>Not Sure: From 30 to 59 days</Typography>
+								<Typography>Not Soon: From 30 to 59 days</Typography>
 							</Grid>
 						</Grid>
 					</Grid>

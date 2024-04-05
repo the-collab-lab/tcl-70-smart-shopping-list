@@ -1,319 +1,153 @@
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+
+import { useTheme } from '@mui/material/styles';
 import {
-	Typography,
-	Card,
-	CardContent,
-	Avatar,
 	Box,
-	IconButton,
+	Button,
+	Card,
+	Grid,
+	Typography,
+	MobileStepper,
 } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { useState } from 'react';
+import { AboutAmanda } from './AboutAmanda';
+import { AboutGrace } from './AboutGrace';
+import { AboutLeon } from './AboutLeon';
+import { AboutMili } from './AboutMili';
 
 export function AboutDevelopers() {
+	const theme = useTheme();
+	const [activeIndex, setActiveIndex] = useState(0);
+	const items = [<AboutAmanda />, <AboutGrace />, <AboutLeon />, <AboutMili />];
+	const numOfItems = items.length;
+
+	const handleNext = () => {
+		setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
+	};
+
+	const handlePrev = () => {
+		setActiveIndex(
+			(prevIndex) => (prevIndex - 1 + items.length) % items.length,
+		);
+	};
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-				width: '100%',
-				margin: '40px 0',
-			}}
-		>
-			<Typography variant="h2" sx={{ marginBottom: 2 }}>
-				The Developers
-			</Typography>
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'row',
-					gap: '20px',
-					flexWrap: 'wrap',
-					justifyContent: 'center',
+		<>
+			<Box
+				sx={{
 					width: '100%',
+					pt: 3,
+					pb: 6,
+					flexDirection: 'column',
+					alignItems: 'center',
+					justifyContent: 'center',
+					maxHeight: '100vh',
+					display: { xs: 'none', sm: 'flex' },
+				}}
+			>
+				<Typography
+					variant="h2"
+					sx={{
+						mb: 4,
+						fontWeight: 400,
+						fontFamily: 'Newsreader',
+						color: '#003780',
+					}}
+				>
+					The Developers
+				</Typography>
+				<Grid container spacing={2} alignItems="center" justifyContent="center">
+					<AboutAmanda />
+					<AboutGrace />
+					<AboutLeon />
+					<AboutMili />
+				</Grid>
+			</Box>
+
+			<Box
+				sx={{
+					justifyContent: 'center',
+					alignItems: 'center',
+					display: { xs: 'flex', sm: 'none' },
+					flexDirection: 'column',
+					mt: 2,
 				}}
 			>
 				<Card
-					className="card"
 					sx={{
-						border: '1.5px solid #003780',
-						borderRadius: '20px',
-						padding: '1.5rem',
+						width: '95vw',
+						maxWidth: '1000px',
 						display: 'flex',
-						flexDirection: 'column',
+						justifyContent: 'center',
 						alignItems: 'center',
-						flex: '1',
-						maxWidth: '240px',
+						overflow: 'hidden',
+						borderRadius: '16px',
+						border: '1px solid #003780',
+						boxShadow: 3,
+						p: 2,
+						position: 'relative',
+						flexDirection: 'column',
 					}}
 				>
 					<Box
 						sx={{
-							'&:hover': { backgroundColor: 'transparent' },
 							display: 'flex',
-							flexDirection: 'column',
+							p: 1,
+							width: '95%',
 							alignItems: 'center',
+							justifyContent: 'center',
+							flexDirection: 'column',
 						}}
 					>
-						<Avatar
+						<Typography
+							variant="h2"
 							sx={{
-								width: 80,
-								height: 80,
-								marginBottom: 1,
-								bgcolor: '#ff9a8d',
+								mb: 4,
+								fontWeight: 400,
+								fontFamily: 'Newsreader',
+								color: '#003780',
 							}}
 						>
-							AG
-						</Avatar>
-						<CardContent>
-							<Typography
-								gutterBottom
-								variant="h5"
-								component="div"
-								textAlign="center"
-								sx={{ marginBottom: 2, fontWeight: 'bold' }}
-							>
-								Amanda Guan
-							</Typography>
-							<Box display="flex" justifyContent="center" gap={2}>
-								<IconButton
-									aria-label="LinkedIn"
-									sx={{
-										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<LinkedInIcon />
-								</IconButton>
-								<IconButton
-									aria-label="GitHub"
-									sx={{
-										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<GitHubIcon />
-								</IconButton>
-							</Box>
-						</CardContent>
+							The Developers
+						</Typography>
+						{items[activeIndex]}
 					</Box>
-				</Card>
-				<Card
-					className="card"
-					sx={{
-						border: '1.5px solid #003780',
-						borderRadius: '20px',
-						padding: '1.5rem',
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						flex: '1',
-						maxWidth: '240px',
-					}}
-				>
-					<Box
-						sx={{
-							'&:hover': { backgroundColor: 'transparent' },
-							display: 'flex',
-							flexDirection: 'column',
-							alignItems: 'center',
-						}}
-					>
-						<Avatar
-							sx={{
-								width: 80,
-								height: 80,
-								marginBottom: 1,
-								bgcolor: '#ff9a8d',
-							}}
-						>
-							GL
-						</Avatar>
-						<CardContent>
-							<Typography
-								gutterBottom
-								variant="h5"
-								component="div"
-								textAlign="center"
-								sx={{ marginBottom: 2, fontWeight: 'bold' }}
+					<MobileStepper
+						steps={numOfItems}
+						position="static"
+						activeStep={activeIndex}
+						sx={{ color: '#003780', width: '80%' }}
+						nextButton={
+							<Button
+								size="large"
+								onClick={handleNext}
+								sx={{ color: '#003780', fontSize: '1.5rem' }}
 							>
-								Grace Lee
-							</Typography>
-							<Box display="flex" justifyContent="center" gap={2}>
-								<IconButton
-									aria-label="LinkedIn"
-									sx={{
-										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<LinkedInIcon />
-								</IconButton>
-								<IconButton
-									aria-label="GitHub"
-									sx={{
-										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<GitHubIcon />
-								</IconButton>
-							</Box>
-						</CardContent>
-					</Box>
-				</Card>
-				<Card
-					className="card"
-					sx={{
-						border: '1.5px solid #003780',
-						borderRadius: '20px',
-						padding: '1.5rem',
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						flex: '1',
-						maxWidth: '240px',
-					}}
-				>
-					<Box
-						sx={{
-							'&:hover': { backgroundColor: 'transparent' },
-							display: 'flex',
-							flexDirection: 'column',
-							alignItems: 'center',
-						}}
-					>
-						<Avatar
-							sx={{
-								width: 80,
-								height: 80,
-								marginBottom: 1,
-								bgcolor: '#ff9a8d',
-							}}
-						>
-							LC
-						</Avatar>
-						<CardContent>
-							<Typography
-								gutterBottom
-								variant="h5"
-								component="div"
-								textAlign="center"
-								sx={{ marginBottom: 2, fontWeight: 'bold' }}
+								Next
+								{theme.direction === 'rtl' ? (
+									<KeyboardArrowLeft />
+								) : (
+									<KeyboardArrowRight />
+								)}
+							</Button>
+						}
+						backButton={
+							<Button
+								size="large"
+								onClick={handlePrev}
+								sx={{ color: '#003780', fontSize: '1.5rem' }}
 							>
-								Leon Chung
-							</Typography>
-							<Box display="flex" justifyContent="center" gap={2}>
-								<IconButton
-									aria-label="LinkedIn"
-									sx={{
-										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<LinkedInIcon />
-								</IconButton>
-								<IconButton
-									aria-label="GitHub"
-									sx={{
-										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<GitHubIcon />
-								</IconButton>
-							</Box>
-						</CardContent>
-					</Box>
+								{theme.direction === 'rtl' ? (
+									<KeyboardArrowRight />
+								) : (
+									<KeyboardArrowLeft />
+								)}
+								Back
+							</Button>
+						}
+					/>
 				</Card>
-				<Card
-					className="card"
-					sx={{
-						border: '1.5px solid #003780',
-						borderRadius: '20px',
-						padding: '1.5rem',
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						flex: '1',
-						maxWidth: '240px',
-					}}
-				>
-					<Box
-						sx={{
-							'&:hover': { backgroundColor: 'transparent' },
-							display: 'flex',
-							flexDirection: 'column',
-							alignItems: 'center',
-						}}
-					>
-						<Avatar
-							sx={{
-								width: 80,
-								height: 80,
-								marginBottom: 1,
-								bgcolor: '#ff9a8d',
-							}}
-						>
-							ML
-						</Avatar>
-						<CardContent>
-							<Typography
-								gutterBottom
-								variant="h5"
-								component="div"
-								textAlign="center"
-								sx={{ marginBottom: 2, fontWeight: 'bold' }}
-							>
-								Mili Made
-							</Typography>
-							<Box display="flex" justifyContent="center" gap={2}>
-								<IconButton
-									aria-label="LinkedIn"
-									sx={{
-										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<LinkedInIcon />
-								</IconButton>
-								<IconButton
-									aria-label="GitHub"
-									sx={{
-										color: 'white',
-										backgroundColor: '#ff9a8d',
-										'&:hover': { backgroundColor: '#ffada4' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<GitHubIcon />
-								</IconButton>
-							</Box>
-						</CardContent>
-					</Box>
-				</Card>
-			</div>
-		</div>
+			</Box>
+		</>
 	);
 }
