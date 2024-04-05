@@ -69,7 +69,6 @@ export function AboutTcl() {
 							backgroundColor: '#003780',
 							'&:hover': { backgroundColor: '#0058cd' },
 							color: 'white',
-							mt: 2,
 						}}
 					>
 						<WebAssetIcon sx={{ mr: 1, fontSize: '2.5rem' }} />

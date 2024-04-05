@@ -15,7 +15,7 @@ export function AboutDevelopers() {
 		<Box
 			sx={{
 				width: '100%',
-				pt: 8,
+				pt: 3,
 				pb: 6,
 				display: 'flex',
 				flexDirection: 'column',
