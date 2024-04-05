@@ -207,7 +207,18 @@ export function List({ data, listPath }) {
 					</Box>
 					{/* Add item form for smaller screens */}
 					<Box sx={{ display: { md: 'none' } }}>
-						<Accordion>
+						<Accordion
+							sx={{
+								border: (theme) => {
+									return theme.palette.mode === 'dark'
+										? '1.5px solid #f8f9fa'
+										: '1.5px solid #003780';
+								},
+								backgroundColor: (theme) => {
+									return theme.palette.mode === 'dark' ? '#003780' : undefined;
+								},
+							}}
+						>
 							<AccordionSummary expandIcon={<ExpandMoreIcon />}>
 								Add an item +{' '}
 							</AccordionSummary>
@@ -264,7 +275,19 @@ export function List({ data, listPath }) {
 									type="submit"
 									value="Submit"
 									variant="outlined"
-									sx={{ mt: 2 }}
+									sx={{
+										mt: 2,
+										border: (theme) => {
+											return theme.palette.mode === 'dark'
+												? '1px solid #f8f9fa'
+												: '1px solid #003780';
+										},
+										color: (theme) => {
+											return theme.palette.mode === 'dark'
+												? '#f8f9fa'
+												: '#003780';
+										},
+									}}
 								>
 									Submit
 								</Button>
