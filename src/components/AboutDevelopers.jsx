@@ -20,11 +20,19 @@ export function AboutDevelopers() {
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
-				overflowY: 'auto',
+				justifyContent: 'center',
 				maxHeight: '100vh',
 			}}
 		>
-			<Typography variant="h2" sx={{ mb: 4 }}>
+			<Typography
+				variant="h2"
+				sx={{
+					mb: 4,
+					fontWeight: 400,
+					fontFamily: 'Newsreader',
+					color: '#003780',
+				}}
+			>
 				The Developers
 			</Typography>
 			<Grid container spacing={2} alignItems="center" justifyContent="center">

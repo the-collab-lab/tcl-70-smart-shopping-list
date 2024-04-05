@@ -23,10 +23,11 @@ export function About() {
 	return (
 		<Box
 			sx={{
-				display: 'flex',
+				// display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
 				margin: 4,
+				display: { xs: 'none', md: 'flex' },
 			}}
 		>
 			<Button onClick={handlePrev} sx={{ minWidth: '64px' }}>
@@ -51,7 +52,7 @@ export function About() {
 				<Box
 					sx={{
 						width: '100%',
-						maxHeight: '65vh',
+						height: { md: '95vh', lg: '65vh' },
 						overflowY: 'auto',
 						display: 'flex',
 						p: 1,
