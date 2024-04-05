@@ -198,7 +198,12 @@ export function SingleList({ name, path, setListPath, userId }) {
 								sx={{
 									textAlign: 'center',
 									fontSize: '1.5rem',
-									color: '#003780',
+
+									color: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '#f8f9fa'
+											: '#003780';
+									},
 									fontWeight: '600',
 								}}
 							>
