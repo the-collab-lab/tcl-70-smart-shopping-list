@@ -14,6 +14,13 @@ export const SignInButton = () => (
 		variant="contained"
 		startIcon={<GoogleIcon />}
 		onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
+		sx={{
+			color: '#003780',
+			backgroundColor: '#f8f9fa',
+			border: '1px solid #003780',
+			fontSize: '1.5rem',
+			margin: '10px',
+		}}
 	>
 		Sign In with Google
 	</Button>
