@@ -129,6 +129,7 @@ export function NavBar() {
 						color="inherit"
 						aria-label="toggle theme"
 						edge="end"
+						sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}
 					>
 						{mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
 					</IconButton>

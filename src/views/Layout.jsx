@@ -1,21 +1,38 @@
 import { Outlet } from 'react-router-dom';
-
+import { useThemeContext } from '../components/ThemeContext';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import { IconButton } from '@mui/material';
 import './Layout.css';
-// import { auth } from '../api/config.js';
-// import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
+
 import { NavBar } from '../components';
 
 export function Layout() {
+	const { toggleColorMode, mode } = useThemeContext();
 	return (
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
-					<img src="/img/SwiftShopBird.png" alt="" />
-					<h1>
-						<p className="swift-header">Swift</p>
-						<p className="shop-header">shop</p>
-					</h1>
-
+					<IconButton
+						onClick={toggleColorMode}
+						color="inherit"
+						aria-label="toggle theme"
+						edge="end"
+						sx={{
+							display: { sm: 'flex', md: 'none' },
+							alignSelf: 'end',
+							padding: '20px',
+						}}
+					>
+						{mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+					</IconButton>
+					<div className="Layout-header-content">
+						<img src="/img/SwiftShopBird.png" alt="" />
+						<h1>
+							<p className="swift-header">Swift</p>
+							<p className="shop-header">shop</p>
+						</h1>
+					</div>
 					{/* For use later
 					<svg viewBox="0 0 500 500" >
 						<path
