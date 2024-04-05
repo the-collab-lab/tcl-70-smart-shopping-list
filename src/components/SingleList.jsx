@@ -111,7 +111,7 @@ export function SingleList({ name, path, setListPath, userId }) {
 			}}
 		>
 			<Stack direction="column">
-				<CardMedia>
+				<CardMedia sx={{ marginX: 'auto' }}>
 					<Box className="icon-background">
 						<img
 							src={`/img/food-icon2/${icon}`}
