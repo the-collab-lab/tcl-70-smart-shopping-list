@@ -4,11 +4,21 @@ import SvgIcon from '@mui/material/SvgIcon';
 import './Layout.css';
 // import { auth } from '../api/config.js';
 // import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
+
 import { NavBar } from '../components';
+import { Box } from '@mui/material';
 
 export function Layout() {
 	return (
-		<>
+		<Box
+			sx={{
+				backgroundImage: (theme) => {
+					return theme.palette.mode === 'dark'
+						? 'url("/img/main-background-image-darkmode.png")'
+						: 'url("/img/main-background-image.png")';
+				},
+			}}
+		>
 			<div className="Layout">
 				<header className="Layout-header">
 					<img src="/img/SwiftShopBird.png" alt="" />
@@ -36,6 +46,6 @@ export function Layout() {
 					<Outlet />
 				</main>
 			</div>
-		</>
+		</Box>
 	);
 }
