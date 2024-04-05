@@ -24,7 +24,6 @@ export function About() {
 		<>
 			<Box
 				sx={{
-					// display: 'flex',
 					justifyContent: 'center',
 					alignItems: 'center',
 					margin: 4,
