@@ -10,8 +10,12 @@ import {
 	Stack,
 	Grid,
 	Typography,
+
+	useMediaQuery,
+
 	Link,
 	Container,
+
 } from '@mui/material';
 import { SignInButton } from '../api/useAuth';
 
@@ -19,6 +23,9 @@ export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
 	const [notificationMessage, setNotificationMessage] = useState('');
 	const previousDataRef = useRef([]);
+	const isLargeScreen = useMediaQuery((theme) => {
+		return theme.breakpoints.up('lg');
+	});
 
 	useEffect(() => {
 		const newestList = data[data.length - 1];
@@ -161,7 +168,13 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						)}
 					</Box>
 					<ul className="lists-container">
-						<Grid container spacing={2}>
+						<Grid
+							container
+							spacing={2}
+							paddingX={(theme) => {
+								return isLargeScreen ? theme.spacing(12) : undefined;
+							}}
+						>
 							{data.map((list) => (
 								<Grid key={list.name} item display="flex" xs={6} md={4}>
 									<SingleList
