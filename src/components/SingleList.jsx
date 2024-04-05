@@ -8,13 +8,10 @@ import {
 	Modal,
 	Box,
 	Card,
-	CardContent,
 	Typography,
 	Button,
 	CardMedia,
 	CardActions,
-	IconButton,
-	ButtonGroup,
 	Stack,
 } from '@mui/material';
 import '../views/Home.css';
