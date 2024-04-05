@@ -10,12 +10,9 @@ import {
 	Stack,
 	Grid,
 	Typography,
-
 	useMediaQuery,
-
 	Link,
 	Container,
-
 } from '@mui/material';
 import { SignInButton } from '../api/useAuth';
 
@@ -157,7 +154,24 @@ export function Home({ data, setListPath, userEmail, userId }) {
 								placeholder="Add list"
 								className="input-button-common"
 							/>
-							<Button type="submit" disabled={shoppingListName.length === 0}>
+							<Button
+								sx={{
+									color: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '#f8f9fa'
+											: '#003780';
+									},
+
+									border: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '1px solid #f8f9fa'
+											: '1px solid #003780';
+									},
+									width: '80px',
+								}}
+								type="submit"
+								disabled={shoppingListName.length === 0}
+							>
 								Submit
 							</Button>
 						</Stack>
