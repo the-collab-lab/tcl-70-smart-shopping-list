@@ -4,21 +4,34 @@ import {
 	ThemeProvider as MUIThemeProvider,
 } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+
+const initialBackgroundImages = {
+	light: '/img/main-background-image.png',
+	dark: '/img/main-background-image-darkmode.png',
+};
+
 // uses React's Context API to create a global theme state
 const ThemeContext = createContext({
-	// prevent error of attempt to use toggleColorMode without the ThemeProvider properly set up
 	toggleColorMode: () => {},
+	backgroundImageUrl: initialBackgroundImages.light,
 });
 // custom hook
 export const useThemeContext = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
-	// state for theme mode
 	const [mode, setMode] = useState('light');
-	// theme mode toggle function
+	const [backgroundImageUrl, setBackgroundImageUrl] = useState(
+		initialBackgroundImages.light,
+	);
+
 	const toggleColorMode = () => {
-		setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+		setMode((prevMode) => {
+			const newMode = prevMode === 'light' ? 'dark' : 'light';
+			document.body.setAttribute('data-theme', newMode);
+			return newMode;
+		});
 	};
+
 	// MUI theme creation
 	const theme = createTheme({
 		palette: {

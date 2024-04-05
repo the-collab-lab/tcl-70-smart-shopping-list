@@ -1,3 +1,14 @@
+:root {
+	--background-image-url: url('/img/main-background-image.png');
+	--color-text: #000;
+	--color-bg: #fff;
+	--color-accent: #000;
+}
+
+[data-theme='dark'] {
+	--background-image-url: url('/img/main-background-image-darkmode.png');
+}
+
 *,
 *::after,
 *::before {
@@ -21,7 +32,7 @@ html {
 }
 
 body {
-	background-image: url('/img/main-background-image.png');
+	background-image: var(--background-image-url);
 	background-size: 65%;
 	background-position-y: top;
 	color: var(--color-text);
