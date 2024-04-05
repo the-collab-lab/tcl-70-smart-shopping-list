@@ -1,174 +1,153 @@
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+
+import { useTheme } from '@mui/material/styles';
 import {
-	Typography,
-	Card,
-	CardContent,
-	Avatar,
 	Box,
-	IconButton,
+	Button,
+	Card,
 	Grid,
+	Typography,
+	MobileStepper,
 } from '@mui/material';
+import { useState } from 'react';
 import { AboutAmanda } from './AboutAmanda';
 import { AboutGrace } from './AboutGrace';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { AboutLeon } from './AboutLeon';
+import { AboutMili } from './AboutMili';
 
 export function AboutDevelopers() {
+	const theme = useTheme();
+	const [activeIndex, setActiveIndex] = useState(0);
+	const items = [<AboutAmanda />, <AboutGrace />, <AboutLeon />, <AboutMili />];
+	const numOfItems = items.length;
+
+	const handleNext = () => {
+		setActiveIndex((prevIndex) => (prevIndex + 1) % items.length);
+	};
+
+	const handlePrev = () => {
+		setActiveIndex(
+			(prevIndex) => (prevIndex - 1 + items.length) % items.length,
+		);
+	};
 	return (
-		<Box
-			sx={{
-				width: '100%',
-				pt: 3,
-				pb: 6,
-				flexDirection: 'column',
-				alignItems: 'center',
-				justifyContent: 'center',
-				maxHeight: '100vh',
-				display: { xs: 'none', sm: 'flex' },
-			}}
-		>
-			<Typography
-				variant="h2"
+		<>
+			<Box
 				sx={{
-					mb: 4,
-					fontWeight: 400,
-					fontFamily: 'Newsreader',
-					color: '#003780',
+					width: '100%',
+					pt: 3,
+					pb: 6,
+					flexDirection: 'column',
+					alignItems: 'center',
+					justifyContent: 'center',
+					maxHeight: '100vh',
+					display: { xs: 'none', sm: 'flex' },
 				}}
 			>
-				The Developers
-			</Typography>
-			<Grid container spacing={2} alignItems="center" justifyContent="center">
-				<AboutAmanda />
-				<AboutGrace />
-				<Grid item xs={12} sm={6} md={6} lg={3}>
-					<Card
+				<Typography
+					variant="h2"
+					sx={{
+						mb: 4,
+						fontWeight: 400,
+						fontFamily: 'Newsreader',
+						color: '#003780',
+					}}
+				>
+					The Developers
+				</Typography>
+				<Grid container spacing={2} alignItems="center" justifyContent="center">
+					<AboutAmanda />
+					<AboutGrace />
+					<AboutLeon />
+					<AboutMili />
+				</Grid>
+			</Box>
+
+			<Box
+				sx={{
+					justifyContent: 'center',
+					alignItems: 'center',
+					display: { xs: 'flex', sm: 'none' },
+					flexDirection: 'column',
+					mt: 2,
+				}}
+			>
+				<Card
+					sx={{
+						width: '95vw',
+						maxWidth: '1000px',
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+						overflow: 'hidden',
+						borderRadius: '16px',
+						border: '1px solid #003780',
+						boxShadow: 3,
+						p: 2,
+						position: 'relative',
+						flexDirection: 'column',
+					}}
+				>
+					<Box
 						sx={{
-							border: '1.5px solid #003780',
-							borderRadius: '20px',
-							padding: '1.5rem',
 							display: 'flex',
-							flexDirection: 'column',
+							p: 1,
+							width: '95%',
 							alignItems: 'center',
+							justifyContent: 'center',
+							flexDirection: 'column',
 						}}
 					>
-						<Avatar
+						<Typography
+							variant="h2"
 							sx={{
-								width: 80,
-								height: 80,
-								marginBottom: 2,
-								bgcolor: '#003780',
+								mb: 4,
+								fontWeight: 400,
+								fontFamily: 'Newsreader',
+								color: '#003780',
 							}}
 						>
-							LC
-						</Avatar>
-						<CardContent
-							sx={{
-								display: 'flex',
-								flexDirection: 'column',
-								alignItems: 'center',
-							}}
-						>
-							<Typography
-								gutterBottom
-								variant="h5"
-								component="div"
-								textAlign="center"
-								sx={{ fontWeight: 'bold', marginBottom: 2 }}
+							The Developers
+						</Typography>
+						{items[activeIndex]}
+					</Box>
+					<MobileStepper
+						steps={numOfItems}
+						position="static"
+						activeStep={activeIndex}
+						sx={{ color: '#003780', width: '80%' }}
+						nextButton={
+							<Button
+								size="large"
+								onClick={handleNext}
+								sx={{ color: '#003780', fontSize: '1.5rem' }}
 							>
-								Leon Chung
-							</Typography>
-							<Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-								<IconButton
-									sx={{
-										color: 'white',
-										backgroundColor: '#003780',
-										'&:hover': { backgroundColor: '#0058cd' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<LinkedInIcon />
-								</IconButton>
-								<IconButton
-									sx={{
-										color: 'white',
-										backgroundColor: '#003780',
-										'&:hover': { backgroundColor: '#0058cd' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<GitHubIcon />
-								</IconButton>
-							</Box>
-						</CardContent>
-					</Card>
-				</Grid>
-				<Grid item xs={12} sm={6} md={6} lg={3}>
-					<Card
-						sx={{
-							border: '1.5px solid #003780',
-							borderRadius: '20px',
-							padding: '1.5rem',
-							display: 'flex',
-							flexDirection: 'column',
-							alignItems: 'center',
-						}}
-					>
-						<Avatar
-							sx={{
-								width: 80,
-								height: 80,
-								marginBottom: 2,
-								bgcolor: '#003780',
-							}}
-						>
-							ML
-						</Avatar>
-						<CardContent
-							sx={{
-								display: 'flex',
-								flexDirection: 'column',
-								alignItems: 'center',
-							}}
-						>
-							<Typography
-								gutterBottom
-								variant="h5"
-								component="div"
-								textAlign="center"
-								sx={{ fontWeight: 'bold', marginBottom: 2 }}
+								Next
+								{theme.direction === 'rtl' ? (
+									<KeyboardArrowLeft />
+								) : (
+									<KeyboardArrowRight />
+								)}
+							</Button>
+						}
+						backButton={
+							<Button
+								size="large"
+								onClick={handlePrev}
+								sx={{ color: '#003780', fontSize: '1.5rem' }}
 							>
-								Mili Made
-							</Typography>
-							<Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-								<IconButton
-									sx={{
-										color: 'white',
-										backgroundColor: '#003780',
-										'&:hover': { backgroundColor: '#0058cd' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<LinkedInIcon />
-								</IconButton>
-								<IconButton
-									sx={{
-										color: 'white',
-										backgroundColor: '#003780',
-										'&:hover': { backgroundColor: '#0058cd' },
-										width: 48,
-										height: 48,
-									}}
-								>
-									<GitHubIcon />
-								</IconButton>
-							</Box>
-						</CardContent>
-					</Card>
-				</Grid>
-			</Grid>
-		</Box>
+								{theme.direction === 'rtl' ? (
+									<KeyboardArrowRight />
+								) : (
+									<KeyboardArrowLeft />
+								)}
+								Back
+							</Button>
+						}
+					/>
+				</Card>
+			</Box>
+		</>
 	);
 }

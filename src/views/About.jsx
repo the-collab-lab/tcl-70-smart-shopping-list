@@ -72,6 +72,7 @@ export function About() {
 			>
 				<AboutApp />
 				<AboutTcl />
+				<AboutDevelopers />
 			</Box>
 		</>
 	);

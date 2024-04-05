@@ -12,7 +12,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export function AboutGrace() {
 	return (
-		<Grid item xs={12} sm={6} md={6} lg={3}>
+		<Grid item xs={12} sm={6} md={6} lg={3} sx={{ width: { xs: '100%' } }}>
 			<Card
 				sx={{
 					border: '1.5px solid #003780',
