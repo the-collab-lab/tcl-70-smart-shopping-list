@@ -6,6 +6,7 @@ import {
 	Box,
 	IconButton,
 	Grid,
+	Link,
 } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -50,28 +51,33 @@ export function AboutLeon() {
 						Leon Chung
 					</Typography>
 					<Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-						<IconButton
-							sx={{
-								color: 'white',
-								backgroundColor: '#003780',
-								'&:hover': { backgroundColor: '#0058cd' },
-								width: 48,
-								height: 48,
-							}}
-						>
-							<LinkedInIcon />
-						</IconButton>
-						<IconButton
-							sx={{
-								color: 'white',
-								backgroundColor: '#003780',
-								'&:hover': { backgroundColor: '#0058cd' },
-								width: 48,
-								height: 48,
-							}}
-						>
-							<GitHubIcon />
-						</IconButton>
+						<Link href="https://www.linkedin.com/in/leonkhchung/">
+							<IconButton
+								sx={{
+									color: 'white',
+									backgroundColor: '#003780',
+									'&:hover': { backgroundColor: '#0058cd' },
+									width: 48,
+									height: 48,
+								}}
+							>
+								<LinkedInIcon />
+							</IconButton>
+						</Link>
+						'
+						<Link href="https://github.com/chungleee">
+							<IconButton
+								sx={{
+									color: 'white',
+									backgroundColor: '#003780',
+									'&:hover': { backgroundColor: '#0058cd' },
+									width: 48,
+									height: 48,
+								}}
+							>
+								<GitHubIcon />
+							</IconButton>
+						</Link>
 					</Box>
 				</CardContent>
 			</Card>
