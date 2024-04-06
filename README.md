@@ -1,68 +1,62 @@
-## Overview
+# SwiftShop: Your Intelligent Grocery Companion
 
-This README file explains The Collab Lab’s smart shopping list project and provides instructions for developing it locally.
+Welcome to SwiftShop, your next-generation smart shopping list app designed to make grocery shopping a breeze while learning your shopping habits over time. SwiftShop is more than just a shopping list; it's your personalized grocery planning tool.
 
-If you’re a Collab Lab developer, WELCOME! We’re so excited to work with you and collaborate on something amazing. Be sure to read [the setup instructions](#set-up-the-project) and then [make your first contribution](#make-your-first-contribution)! For additional details on how your cohort will operate, please check out the [project brief](PROJECT-BRIEF.md).
+## SwiftShop Live
 
-## What is this project?
+Dive into a smarter way to shop: [SwiftShop - Smart Shopping List](https://tcl-70-smart-shopping-list.web.app/)
 
-The goal of this project is to collaborate with your Collab Lab team to create a “smart” shopping list app that learns your buying habits and helps you remember what you’re likely to need to buy on your next trip to the store.
+## Key Features
 
-### How does it work?
+- **Smart Shopping List**: SwiftShop adapts to your grocery shopping habits, predicting when you're likely to need items again, prioritizing them on your list for an optimized shopping experience.
+- **Simplified List Management**: Create and manage multiple lists with ease. Whether it’s for weekly groceries or special occasions, SwiftShop has you covered.
 
-As a user, you will enter items (e.g., “Greek yogurt” or “Paper towels”) into your list. Each time you buy the item, you mark it as purchased in the list. Over time, the app comes to understand the intervals at which you buy different items. If an item is likely to be due to be bought soon, it rises to the top of the shopping list.
+- **User-Friendly Design**: Our app is crafted for accessibility, featuring an intuitive interface, easy navigation, and compatibility with screen readers and keyboard shortcuts for an inclusive user experience.
 
-### Check out an example
+## How It Works
 
-The app will work in many of the same ways as [iNeedToBuy.xyz](https://app.ineedtobuy.xyz/) (on which our project is based) with the exception that we will not be implementing barcode scanning (that feature would add a lot of scope to the project and wasn’t all that useful).
+1. **Start Your List**: Upon opening SwiftShop, select 'New Shopping List' to begin or enter a unique identifier to access an existing list.
 
-📺&nbsp; Check out a video demo of the example app here:
-[![](https://cdn.zappy.app/33815167c45d74c3ae5af232de633add.png)](https://www.youtube.com/watch?v=mwj74mE9s64&t)
+2. **Add Items**: Easily add items to your list, specifying details like quantity and category. SwiftShop will remember your entries and their purchase frequencies.
 
-<hr>
+3. **Track Purchases**: Mark items as purchased with a simple tap, and watch as SwiftShop learns and adjusts to your buying patterns.
 
-## Set up the project
+## Built With Passion and Precision
 
-### Install Node and NPM
+- **Front End**: Crafted with React, ensuring a dynamic and responsive user interface that’s both fast and efficient.
+- **Back End**: Powered by Firebase, offering a robust and scalable database solution for real-time updates and synchronization.
+- **Design and Accessibility**: Designed with a focus on accessibility, using Material-UI for a sleek, accessible user interface.
 
-`npm` is distributed with Node.js, which means that when you download Node.js, you automatically get `npm` installed on your computer. You can install Node by [downloading it from the Node.js website](https://nodejs.org/en/) or using a Node version manager like [nvm](https://github.com/nvm-sh/nvm) on a macOS or Linux device or [nvm-windows](https://github.com/coreybutler/nvm-windows) on a Windows device.
+## Running SwiftShop Locally
 
-💡 **Note:** This project requires the latest Long Term Support (LTS) version of Node. If you have an earlier version of Node, now would be a great time to upgrade!
+To get SwiftShop running on your machine, follow these steps:
 
-### Clone the project locally
+1. Clone the repository:
+   ```
+   git clone https://github.com/the-collab-lab/tcl-70-smart-shopping-list.git
+   ```
+2. Enter the project directory:
+   ```
+   cd tcl-70-smart-shopping-list
+   ```
+3. Install dependencies:
+   ```
+   npm install
+   ```
+4. Launch the app:
+   ```
+   npm start
+   ```
 
-On GitHub, navigate to the repo for your cohort’s project (you’re probably there right now), then:
+## Developer Team
 
-1. Click on the "Code" tab. It may already be selected.
-2. Click the green "Code" button to reveal a "Clone" popup.
-3. The "HTTPS" tab should be automatically selected. If not, click "HTTPS."
-4. Click the copy button to copy the url of this repository to your clipboard.
-   ![screenshot of "Code" tab on GitHub](_resources/images/00_get_repo_url_from_gui.png)
+- **Amanda Guan** - [LinkedIn](https://www.linkedin.com/in/amandaguan1/) | [GitHub](https://github.com/amandaguan-ag)
+- **Grace Lee** - [LinkedIn](https://www.linkedin.com/in/gracelee-wa) | [GitHub](https://github.com/g-lee2)
+- **Leon Chung** - [LinkedIn](https://www.linkedin.com/in/leonkhchung/) | [GitHub](https://github.com/chungleee)
+- **Mili Made** - [LinkedIn](https://www.linkedin.com/in/mili-m/) | [GitHub](https://github.com/MiliMade)
 
-From your terminal, `cd` into the directory where you want this project to live.
-![screenshot of how to navigate folders in terminal](_resources/images/01_cd_dev_directory.jpg)
+## Mentors
 
-Once you’re in the directory, type `git clone` followed by the web URL you just copied to your clipboard from GitHub. Then `cd` into the directory that is created.
-![screenshot of how to git clone](_resources/images/02_git_clone_and_cd.jpg)
-
-### Install the project’s dependencies
-
-Once you’ve cloned the project locally and you’re in the project directory, you’ll want to install the project’s dependencies. To do so, type the following into your terminal: `npm ci`
-
-![screenshot of npm ci in the terminal](_resources/images/03_install_dependencies.jpg)
-
-### Access the project in your browser
-
-After you’ve cloned the project locally and updated the dependencies, run the project by typing the following into your terminal: `npm start`. You should be able to see the project at `localhost:3000`.
-![screenshot of the react project](_resources/images/04_local_dev_landing_page.jpg)
-
-🎉 You did it! You’re ready to start contributing!
-
-## Make your first contribution
-
-You’ll want to make your first contribution to this repo before your kick-off call! This will help make sure you’re ready to go on day one.
-
-1. Get this project set up locally by following [the setup instructions](#set-up-the-project).
-2. Add your name to the [CONTRIBUTORS.md](CONTRIBUTORS.md) file.
-   - Do this from your local environment and not from GitHub in your browser. The purpose (aside from highlighting our amazing team) is to make sure your local environment is set up properly!
-   - Commit to the `main` branch and push it up to the remote repo. (Over the next 8 weeks, we will rely on feature branches as we collaborate on the project, but for this task committing to main will do just fine.)
+- **DJ Taylor**
+- **Rachael Skye**
+- **Lyle Schemmerling**
