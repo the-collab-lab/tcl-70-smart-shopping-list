@@ -1,6 +1,4 @@
-import './Home.css';
-import { SingleList } from '../components/SingleList';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createList } from '../api/firebase';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,6 +11,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import { SignInButton } from '../api/useAuth';
+import { SingleList } from '../components/SingleList';
+import './Home.css';
 
 export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
