@@ -10,12 +10,9 @@ import {
 	Stack,
 	Grid,
 	Typography,
-
 	useMediaQuery,
-
 	Link,
 	Container,
-
 } from '@mui/material';
 import { SignInButton } from '../api/useAuth';
 
@@ -131,6 +128,15 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						onSubmit={handleSubmit}
 						sx={{
 							'& .MuiTextField-root': { m: 1, width: '25ch' },
+							padding: '20px',
+							color: (theme) =>
+								theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+							borderColor: (theme) =>
+								theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+							borderStyle: 'solid',
+							borderWidth: '1px',
+							backgroundColor: (theme) =>
+								theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa',
 						}}
 						noValidate
 						autoComplete="off"
@@ -145,6 +151,13 @@ export function Home({ data, setListPath, userEmail, userId }) {
 								htmlFor="shopping-list-name"
 								size="normal"
 								// className="centered-block"
+								sx={{
+									color: (theme) =>
+										theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+									backgroundColor: (theme) =>
+										theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa',
+									fontSize: '2rem',
+								}}
 							>
 								Enter new list name:
 							</InputLabel>
@@ -156,8 +169,34 @@ export function Home({ data, setListPath, userEmail, userId }) {
 								value={shoppingListName}
 								placeholder="Add list"
 								className="input-button-common"
+								sx={{
+									input: {
+										fontSize: '1.5rem',
+										'&::placeholder': {
+											color: (theme) =>
+												theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+											fontSize: '1.5rem',
+											opacity: '0.7',
+										},
+									},
+								}}
 							/>
-							<Button type="submit" disabled={shoppingListName.length === 0}>
+							<Button
+								type="submit"
+								disabled={shoppingListName.length === 0}
+								sx={{
+									color: (theme) =>
+										theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+									borderColor: (theme) =>
+										theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+									borderStyle: 'solid',
+									borderWidth: '1px',
+									backgroundColor: (theme) =>
+										theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa',
+									fontSize: '1.5rem',
+									margin: '10px',
+								}}
+							>
 								Submit
 							</Button>
 						</Stack>

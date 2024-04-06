@@ -129,29 +129,69 @@ export function List({ data, listPath }) {
 				<form onSubmit={handleSubmit}>
 					{/* Add item form for larger screens */}
 					<Box
-						sx={{ width: '100%', display: { xs: 'none', md: 'block' }, mr: 1 }}
+						sx={{
+							width: '100%',
+							display: { xs: 'none', md: 'block' },
+							mr: 1,
+							borderColor: (theme) =>
+								theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+							borderStyle: 'solid',
+							borderWidth: '1px',
+							padding: '20px',
+							backgroundColor: (theme) =>
+								theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa',
+						}}
 					>
 						<Grid
 							container
-							alignItems="flex-end"
+							alignItems="center"
 							spacing={2}
-							justifyContent="center"
+							justifyContent="space-around"
 						>
 							<Grid item>
-								<Typography variant="h4">Add an item</Typography>
+								<Typography
+									variant="h4"
+									sx={{
+										color: (theme) =>
+											theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+									}}
+								>
+									Add an item:{' '}
+								</Typography>
 							</Grid>
 							<Grid item>
 								<FormControl
 									variant="standard"
 									sx={{ minWidth: { md: 140, lg: 210 } }}
 								>
-									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
+									<InputLabel
+										htmlFor="itemName"
+										sx={{
+											color: (theme) =>
+												theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+											fontSize: '1.5rem',
+										}}
+									>
+										Enter item name:
+									</InputLabel>
 									<Input
 										id="itemName"
 										placeholder="Item Name"
 										value={item.name}
 										name="name"
 										onChange={handleAddItemChange}
+										sx={{
+											input: {
+												'&::placeholder': {
+													color: (theme) =>
+														theme.palette.mode === 'dark'
+															? '#f8f9fa'
+															: '#003780',
+													fontSize: '1.5rem',
+													opacity: '0.7',
+												},
+											},
+										}}
 									/>
 								</FormControl>
 							</Grid>
@@ -162,7 +202,11 @@ export function List({ data, listPath }) {
 								>
 									<InputLabel
 										id="purchaseUrgencyInput"
-										sx={{ fontSize: '0.9rem' }}
+										sx={{
+											color: (theme) =>
+												theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+											fontSize: '1.3rem',
+										}}
 									>
 										How soon will you buy this item:
 									</InputLabel>
@@ -182,7 +226,22 @@ export function List({ data, listPath }) {
 								</FormControl>
 							</Grid>
 							<Grid item>
-								<Button type="submit" variant="outlined">
+								<Button
+									type="submit"
+									variant="outlined"
+									sx={{
+										color:
+											'(theme)=>theme.palette.mode ==="dark" ? "#f8f9fa": "#003780"',
+										backgroundColor: (theme) =>
+											theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa',
+										borderColor: (theme) =>
+											theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+										borderStyle: 'solid',
+										borderWidth: '1px',
+										fontSize: '1.5rem',
+										margin: '10px',
+									}}
+								>
 									Submit
 								</Button>
 							</Grid>
@@ -262,8 +321,16 @@ export function List({ data, listPath }) {
 	// shown when list is empty
 	const renderAddFirstItemCTA = () => {
 		return (
-			<div>
-				<h2>{listName} List</h2>
+			<div style={{ width: '100%' }}>
+				<Typography
+					variant="h2"
+					sx={{
+						color:
+							'(theme)=>theme.palette.mode ==="dark" ? "#f8f9fa": "#003780"',
+					}}
+				>
+					{listName} List
+				</Typography>
 				<p>Your shopping list is empty!</p>
 				<p>Use the form below to add your first item!</p>
 				{addItemForm()}
@@ -273,7 +340,7 @@ export function List({ data, listPath }) {
 
 	const renderItemList = () => {
 		return (
-			<div>
+			<div style={{ width: '100%' }}>
 				<Box
 					sx={{
 						flexDirection: { xs: 'column', md: 'row' },
@@ -286,15 +353,42 @@ export function List({ data, listPath }) {
 						width: '100%',
 					}}
 				>
-					<h1>{listName} List</h1>
+					<Typography
+						variant="h2"
+						sx={{
+							color:
+								'(theme)=>theme.palette.mode ==="dark" ? "#f8f9fa": "#003780"',
+						}}
+					>
+						{listName} List
+					</Typography>
 					<Box sx={{ display: 'flex', alignItems: 'center' }}>
 						<FormControl variant="standard" sx={{ width: '250px' }}>
-							<InputLabel htmlFor="itemSearch">Search for an item:</InputLabel>
+							<InputLabel
+								htmlFor="itemSearch"
+								sx={{
+									color: (theme) =>
+										theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+									fontSize: '1.3rem',
+								}}
+							>
+								Search for an item:
+							</InputLabel>
 							<Input
 								id="itemSearch"
 								placeholder="Search items"
 								value={searchTerm}
 								onChange={handleChange}
+								sx={{
+									input: {
+										'&::placeholder': {
+											color: (theme) =>
+												theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+											fontSize: '1.5rem',
+											opacity: '0.7',
+										},
+									},
+								}}
 								startAdornment={
 									<InputAdornment position="start">
 										<SearchIcon />
@@ -369,9 +463,8 @@ export function List({ data, listPath }) {
 					<Grid container spacing={2}>
 						{filteredData.map((item) => {
 							return (
-								<Grid item xs={12} md={6}>
+								<Grid item xs={12} md={6} key={item.id}>
 									<ListItem
-										key={item.id}
 										daysUntilNextPurchase={item.daysUntilNextPurchase}
 										dateLastPurchased={item.dateLastPurchased}
 										itemId={item.id}
