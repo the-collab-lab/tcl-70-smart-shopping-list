@@ -151,8 +151,12 @@ export function NavBar() {
 									justifyContent: 'end',
 								}}
 							>
-								<Typography>Signed in as {user.displayName}</Typography>
-								<SignOutButton />
+								<Box sx={{ mr: 2 }}>
+									<Typography>Signed in as {user.displayName}</Typography>
+								</Box>
+								<Box>
+									<SignOutButton />
+								</Box>
 							</Box>
 						</>
 					)}
