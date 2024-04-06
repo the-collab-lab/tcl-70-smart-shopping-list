@@ -393,7 +393,7 @@ export function List({ data, listPath }) {
 								<TripOriginIcon sx={{ color: '#ff94ff' }} />
 							</Grid>
 							<Grid item>
-								<Typography>Not Sure: From 30 to 59 days</Typography>
+								<Typography>Not Soon: From 30 to 59 days</Typography>
 							</Grid>
 						</Grid>
 					</Grid>
@@ -413,7 +413,7 @@ export function List({ data, listPath }) {
 							return (
 								<Grid key={item.id} item xs={12} md={6}>
 									<ListItem
-										key={item.id}
+										// key={item.id}
 										daysUntilNextPurchase={item.daysUntilNextPurchase}
 										dateLastPurchased={item.dateLastPurchased}
 										itemId={item.id}
