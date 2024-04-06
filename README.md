@@ -13,14 +13,6 @@ Dive into a smarter way to shop: [SwiftShop - Smart Shopping List](https://tcl-7
 
 - **User-Friendly Design**: Our app is crafted for accessibility, featuring an intuitive interface, easy navigation, and compatibility with screen readers and keyboard shortcuts for an inclusive user experience.
 
-## How It Works
-
-1. **Start Your List**: Upon opening SwiftShop, select 'New Shopping List' to begin or enter a unique identifier to access an existing list.
-
-2. **Add Items**: Easily add items to your list, specifying details like quantity and category. SwiftShop will remember your entries and their purchase frequencies.
-
-3. **Track Purchases**: Mark items as purchased with a simple tap, and watch as SwiftShop learns and adjusts to your buying patterns.
-
 ## Built With Passion and Precision
 
 - **Front End**: Crafted with React, ensuring a dynamic and responsive user interface that’s both fast and efficient.
