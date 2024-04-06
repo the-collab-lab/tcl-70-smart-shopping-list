@@ -2,18 +2,16 @@ import './Home.css';
 import { SingleList } from '../components/SingleList';
 import { useEffect, useState, useRef } from 'react';
 import { createList } from '../api/firebase';
-import {
-	InputLabel,
-	Input,
-	Box,
-	Button,
-	Stack,
-	Grid,
-	Typography,
-	useMediaQuery,
-	Link,
-	Container,
-} from '@mui/material';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Link from '@mui/material/Link';
+import Container from '@mui/material/Container';
 import { SignInButton } from '../api/useAuth';
 
 export function Home({ data, setListPath, userEmail, userId }) {
