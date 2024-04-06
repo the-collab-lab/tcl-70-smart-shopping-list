@@ -8,13 +8,10 @@ import {
 	Modal,
 	Box,
 	Card,
-	CardContent,
 	Typography,
 	Button,
 	CardMedia,
 	CardActions,
-	IconButton,
-	ButtonGroup,
 	Stack,
 } from '@mui/material';
 import '../views/Home.css';
@@ -95,7 +92,14 @@ export function SingleList({ name, path, setListPath, userId }) {
 		<Card
 			className="card"
 			sx={{
-				border: '1.5px solid #003780',
+				border: (theme) => {
+					return theme.palette.mode === 'dark'
+						? '1.5px solid #f8f9fa'
+						: '1.5px solid #003780';
+				},
+				backgroundColor: (theme) => {
+					return theme.palette.mode === 'dark' ? '#003780' : undefined;
+				},
 				borderRadius: '10px',
 				paddingX: '1.5rem',
 				display: 'flex',
@@ -104,7 +108,7 @@ export function SingleList({ name, path, setListPath, userId }) {
 			}}
 		>
 			<Stack direction="column">
-				<CardMedia>
+				<CardMedia sx={{ marginX: 'auto' }}>
 					<Box className="icon-background">
 						<img
 							src={`/img/food-icon2/${icon}`}
@@ -116,32 +120,53 @@ export function SingleList({ name, path, setListPath, userId }) {
 				<CardActions sx={{ justifyContent: 'center' }}>
 					<Stack direction="column" sx={{ width: '100%' }}>
 						<Button
-							sx={{ border: '1.5px solid #003780', borderRadius: '10px' }}
+							sx={{
+								border: (theme) => {
+									return theme.palette.mode === 'dark'
+										? '1.5px solid #f8f9fa'
+										: '1.5px solid #003780';
+								},
+								borderRadius: '10px',
+								color: (theme) => {
+									return theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780';
+								},
+							}}
 							onClick={handleViewClick}
 						>
 							<Typography variant="body1">{name}</Typography>
 						</Button>
 						{currentUserIsOwner && (
 							<>
-						    <Button
-								onClick={handleOpenModal}
-								sx={{ width: '100%', textAlign: 'center' }}
-							>
-								<Typography
+								<Button
+									onClick={handleOpenModal}
 									sx={{
+										width: '100%',
 										textAlign: 'center',
-										fontSize: '1.5rem',
-										color: '#003780',
-										fontWeight: '600',
-										textTransform: 'none',
+										color: (theme) => {
+											return theme.palette.mode === 'dark'
+												? '#f8f9fa'
+												: '#003780';
+										},
 									}}
 								>
-									Share this list{' '}
-								</Typography>{' '}
-								<ShareIcon
-									sx={{ color: '#003780', margin: '0 5px', fontSize: '1.5rem' }}
-								/>
-							</Button>
+									<Typography
+										sx={{
+											textAlign: 'center',
+											fontSize: '1.5rem',
+
+											fontWeight: '600',
+											textTransform: 'none',
+										}}
+									>
+										Share this list{' '}
+									</Typography>{' '}
+									<ShareIcon
+										sx={{
+											margin: '0 5px',
+											fontSize: '1.5rem',
+										}}
+									/>
+								</Button>
 								<Modal
 									open={openModal}
 									onClose={handleCloseModal}
@@ -168,19 +193,23 @@ export function SingleList({ name, path, setListPath, userId }) {
 								</Modal>
 							</>
 						)}
-           {!currentUserIsOwner && (
-						<Typography
-							sx={{
-								textAlign: 'center',
-								fontSize: '1.5rem',
-								color: '#003780',
-								fontWeight: '600',
-							}}
-						>
-							Shared by {ownerName}
-						</Typography>
-					)}
-            
+						{!currentUserIsOwner && (
+							<Typography
+								sx={{
+									textAlign: 'center',
+									fontSize: '1.5rem',
+
+									color: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '#f8f9fa'
+											: '#003780';
+									},
+									fontWeight: '600',
+								}}
+							>
+								Shared by {ownerName}
+							</Typography>
+						)}
 					</Stack>
 				</CardActions>
 			</Stack>

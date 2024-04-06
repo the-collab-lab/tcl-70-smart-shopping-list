@@ -1,15 +1,31 @@
 import { Outlet } from 'react-router-dom';
+// import SvgIcon from '@mui/material/SvgIcon';
+
 import { useThemeContext } from '../components/ThemeContext';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import { IconButton, Grid } from '@mui/material';
+
 import './Layout.css';
+
+// import { auth } from '../api/config.js';
+// import { SignInButton, SignOutButton, useAuth } from '../api/useAuth.jsx';
+
 import { NavBar } from '../components';
+import { Box } from '@mui/material';
 
 export function Layout() {
 	const { toggleColorMode, mode } = useThemeContext();
 	return (
-		<>
+		<Box
+			sx={{
+				backgroundImage: (theme) => {
+					return theme.palette.mode === 'dark'
+						? 'url("/img/main-background-image-darkmode.png")'
+						: 'url("/img/main-background-image.png")';
+				},
+			}}
+		>
 			<div className="Layout">
 				<header className="Layout-header">
 					<Grid container>
@@ -66,6 +82,6 @@ export function Layout() {
 					<Outlet />
 				</main>
 			</div>
-		</>
+		</Box>
 	);
 }

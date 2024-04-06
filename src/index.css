@@ -21,7 +21,7 @@ html {
 }
 
 body {
-	background-image: url('/img/main-background-image.png');
+	/* background-image: url('/img/main-background-image.png'); */
 	background-size: 65%;
 	background-position-y: top;
 	color: var(--color-text);

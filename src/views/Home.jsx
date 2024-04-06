@@ -1,18 +1,18 @@
+import { useEffect, useRef, useState } from 'react';
+import { createList } from '../api/firebase';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { useEffect, useRef, useState } from 'react';
-import { createList } from '../api/firebase';
-import { SignInButton } from '../api/useAuth';
-import { SingleList } from '../components/SingleList';
-import './Home.css';
+import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
+import { SignInButton } from '../api/useAuth';
+import { SingleList } from '../components/SingleList';
+import './Home.css';
 
 export function Home({ data, setListPath, userEmail, userId }) {
 	const [shoppingListName, setShoppingListName] = useState('');
@@ -152,7 +152,24 @@ export function Home({ data, setListPath, userEmail, userId }) {
 								placeholder="Add list"
 								className="input-button-common"
 							/>
-							<Button type="submit" disabled={shoppingListName.length === 0}>
+							<Button
+								sx={{
+									color: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '#f8f9fa'
+											: '#003780';
+									},
+
+									border: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '1px solid #f8f9fa'
+											: '1px solid #003780';
+									},
+									width: '80px',
+								}}
+								type="submit"
+								disabled={shoppingListName.length === 0}
+							>
 								Submit
 							</Button>
 						</Stack>
