@@ -122,6 +122,15 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						onSubmit={handleSubmit}
 						sx={{
 							'& .MuiTextField-root': { m: 1, width: '25ch' },
+							padding: '20px',
+							color: (theme) =>
+								theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+							borderColor: (theme) =>
+								theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+							borderStyle: 'solid',
+							borderWidth: '1px',
+							backgroundColor: (theme) =>
+								theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa',
 						}}
 						noValidate
 						autoComplete="off"
@@ -135,7 +144,13 @@ export function Home({ data, setListPath, userEmail, userId }) {
 							<InputLabel
 								htmlFor="shopping-list-name"
 								size="normal"
-								// className="centered-block"
+								sx={{
+									color: (theme) =>
+										theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+									backgroundColor: (theme) =>
+										theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa',
+									fontSize: '2rem',
+								}}
 							>
 								Enter new list name:
 							</InputLabel>
@@ -147,24 +162,35 @@ export function Home({ data, setListPath, userEmail, userId }) {
 								value={shoppingListName}
 								placeholder="Add list"
 								className="input-button-common"
+								sx={{
+									input: {
+										fontSize: '1.5rem',
+										'&::placeholder': {
+											color: (theme) =>
+												theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+											fontSize: '1.5rem',
+											opacity: '0.7',
+										},
+									},
+								}}
 							/>
 							<Button
-								sx={{
-									color: (theme) => {
-										return theme.palette.mode === 'dark'
-											? '#f8f9fa'
-											: '#003780';
-									},
 
-									border: (theme) => {
-										return theme.palette.mode === 'dark'
-											? '1px solid #f8f9fa'
-											: '1px solid #003780';
-									},
-									width: '80px',
-								}}
 								type="submit"
 								disabled={shoppingListName.length === 0}
+								sx={{
+									color: (theme) =>
+										theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+									borderColor: (theme) =>
+										theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+									borderStyle: 'solid',
+									borderWidth: '1px',
+									backgroundColor: (theme) =>
+										theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa',
+									fontSize: '1.5rem',
+									margin: '10px',
+								}}
+
 							>
 								Submit
 							</Button>
