@@ -16,18 +16,37 @@ import {
 } from '@mui/material';
 import '../views/Home.css';
 import { shareList, findUserDetails } from '../api/firebase.js';
+import { styled } from '@mui/material/styles';
 
-const style = {
+const ThemedBox = styled(Box)(({ theme }) => ({
 	position: 'absolute',
 	top: '50%',
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
 	width: 400,
-	bgcolor: 'background.paper',
+	bgcolor: theme.palette.mode === 'light' ? 'background.paper' : '#4D4B49',
 	border: '2px solid #000',
 	boxShadow: 24,
 	p: 4,
-};
+}));
+
+const ThemedInput = styled('input')(({ theme }) => ({
+	backgroundColor:
+		theme.palette.mode === 'light' ? '#E3DCCC' : 'background.paper',
+	color: theme.palette.mode === 'light' ? 'black' : 'white',
+	border: 'none',
+	padding: '10px',
+	borderRadius: '4px',
+}));
+
+const ThemedButton = styled('button')(({ theme }) => ({
+	backgroundColor: theme.palette.mode === 'light' ? '#BFB8AC' : 'darkgrey', // replace these colors as needed
+	color: theme.palette.mode === 'light' ? 'black' : 'white',
+	padding: '10px 20px',
+	border: 'none',
+	borderRadius: '4px',
+	cursor: 'pointer',
+}));
 
 export function SingleList({ name, path, setListPath, userId }) {
 	const navigate = useNavigate();
@@ -153,7 +172,6 @@ export function SingleList({ name, path, setListPath, userId }) {
 										sx={{
 											textAlign: 'center',
 											fontSize: '1.5rem',
-
 											fontWeight: '600',
 											textTransform: 'none',
 										}}
@@ -173,12 +191,27 @@ export function SingleList({ name, path, setListPath, userId }) {
 									aria-labelledby="modal-modal-title"
 									aria-describedby="modal-modal-description"
 								>
-									<Box sx={style}>
+									<Box
+										sx={(theme) => ({
+											position: 'absolute',
+											top: '50%',
+											left: '50%',
+											transform: 'translate(-50%, -50%)',
+											width: 400,
+											bgcolor:
+												theme.palette.mode === 'light'
+													? 'background.paper'
+													: '#4D4B49',
+											border: '2px solid #000',
+											boxShadow: 24,
+											p: 4,
+										})}
+									>
 										<form onSubmit={handleEmailInviteSubmit}>
 											<label htmlFor="emailInvite">
 												Email invite (Gmail addresses only):
 											</label>
-											<input
+											<ThemedInput
 												id="emailInvite"
 												placeholder="Type Gmail address to invite"
 												name="emailInvite"
@@ -186,7 +219,7 @@ export function SingleList({ name, path, setListPath, userId }) {
 												onChange={handleEmailInviteChange}
 												value={emailInvite}
 											/>
-											<button type="submit">Invite</button>
+											<ThemedButton type="submit">Invite</ThemedButton>
 											<div>{emailExists}</div>
 										</form>
 									</Box>
@@ -198,7 +231,6 @@ export function SingleList({ name, path, setListPath, userId }) {
 								sx={{
 									textAlign: 'center',
 									fontSize: '1.5rem',
-
 									color: (theme) => {
 										return theme.palette.mode === 'dark'
 											? '#f8f9fa'
