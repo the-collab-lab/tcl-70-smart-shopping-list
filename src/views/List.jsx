@@ -313,6 +313,18 @@ export function List({ data, listPath }) {
 						</FormControl>
 					</Box>
 				</Box>
+				{/* <Divider sx={{ borderBottomWidth: '3px', mb: { xs: 2 } }} /> */}
+				<details>
+					<summary>Quick Guide:</summary>
+					<ul>
+						<li>Click on an item to mark it as purchased.</li>
+						<li>
+							It is assumed that you won't repurchase within 24 hours, so the
+							checkbox will be disabled after purchasing for 24 hours.
+						</li>
+					</ul>
+				</details>
+				<br />
 				<Divider sx={{ borderBottomWidth: '3px', mb: { xs: 2 } }} />
 				{addItemForm()}
 				<Grid
