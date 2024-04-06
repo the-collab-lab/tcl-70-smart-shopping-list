@@ -111,12 +111,8 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						<ul>
 							<li>Click on the list name to redirect to items in the list.</li>
 							<li>
-								(If you are the list owner) Click on the edit icon to modify the
-								list name.
-							</li>
-							<li>
-								(If you are the list owner) Click on the share icon to share the
-								list with others.
+								(If you are the list owner) Click on "Share this list" to share
+								the list with others.
 							</li>
 						</ul>
 					</details>
