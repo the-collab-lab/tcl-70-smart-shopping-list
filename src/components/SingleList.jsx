@@ -4,19 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../api/useAuth.jsx';
 import icons from '../utils/icons.js';
 import ShareIcon from '@mui/icons-material/Share';
-import {
-	Modal,
-	Box,
-	Card,
-	CardContent,
-	Typography,
-	Button,
-	CardMedia,
-	CardActions,
-	IconButton,
-	ButtonGroup,
-	Stack,
-} from '@mui/material';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import CardMedia from '@mui/material/CardMedia';
+import CardActions from '@mui/material/CardActions';
+import Stack from '@mui/material/Stack';
+
 import '../views/Home.css';
 import { shareList, findUserDetails } from '../api/firebase.js';
 import { styled } from '@mui/material/styles';
