@@ -227,6 +227,7 @@ export function List({ data, listPath }) {
 							</Grid>
 							<Grid item>
 								<Button
+
 									type="submit"
 									variant="outlined"
 									sx={{
@@ -241,6 +242,7 @@ export function List({ data, listPath }) {
 										fontSize: '1.5rem',
 										margin: '10px',
 									}}
+
 								>
 									Submit
 								</Button>
@@ -249,7 +251,18 @@ export function List({ data, listPath }) {
 					</Box>
 					{/* Add item form for smaller screens */}
 					<Box sx={{ display: { md: 'none' } }}>
-						<Accordion>
+						<Accordion
+							sx={{
+								border: (theme) => {
+									return theme.palette.mode === 'dark'
+										? '1.5px solid #f8f9fa'
+										: '1.5px solid #003780';
+								},
+								backgroundColor: (theme) => {
+									return theme.palette.mode === 'dark' ? '#003780' : undefined;
+								},
+							}}
+						>
 							<AccordionSummary expandIcon={<ExpandMoreIcon />}>
 								Add an item +{' '}
 							</AccordionSummary>
@@ -269,9 +282,11 @@ export function List({ data, listPath }) {
 									variant="standard"
 									sx={{ minWidth: { xs: 156, sm: 100 }, mr: 2 }}
 								>
-									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
+									<InputLabel htmlFor="itemNameAccordion">
+										Enter item name:
+									</InputLabel>
 									<Input
-										id="itemName"
+										id="itemNameAccordion"
 										placeholder="Item Name"
 										value={item.name}
 										name="name"
@@ -283,14 +298,14 @@ export function List({ data, listPath }) {
 									sx={{ m: 0, minWidth: { xs: 156, sm: 170 }, mr: 2 }}
 								>
 									<InputLabel
-										id="purchaseUrgencyInput"
+										id="purchaseUrgencyInputAccordion"
 										sx={{ fontSize: '0.9rem' }}
 									>
 										How soon will you buy this item:
 									</InputLabel>
 									<Select
-										labelId="purchaseUrgencyInput"
-										id="purchaseUrgency"
+										labelId="purchaseUrgencyInputAccordion"
+										id="purchaseUrgencyInputAccordion"
 										name="urgency"
 										label="How soon will you buy this item:"
 										onChange={handleAddItemChange}
@@ -306,7 +321,19 @@ export function List({ data, listPath }) {
 									type="submit"
 									value="Submit"
 									variant="outlined"
-									sx={{ mt: 2 }}
+									sx={{
+										mt: 2,
+										border: (theme) => {
+											return theme.palette.mode === 'dark'
+												? '1px solid #f8f9fa'
+												: '1px solid #003780';
+										},
+										color: (theme) => {
+											return theme.palette.mode === 'dark'
+												? '#f8f9fa'
+												: '#003780';
+										},
+									}}
 								>
 									Submit
 								</Button>
@@ -407,6 +434,18 @@ export function List({ data, listPath }) {
 						</FormControl>
 					</Box>
 				</Box>
+				{/* <Divider sx={{ borderBottomWidth: '3px', mb: { xs: 2 } }} /> */}
+				<details>
+					<summary>Quick Guide:</summary>
+					<ul>
+						<li>Click on an item to mark it as purchased.</li>
+						<li>
+							It is assumed that you won't repurchase within 24 hours, so the
+							checkbox will be disabled after purchasing for 24 hours.
+						</li>
+					</ul>
+				</details>
+				<br />
 				<Divider sx={{ borderBottomWidth: '3px', mb: { xs: 2 } }} />
 				{addItemForm()}
 				<Grid
@@ -463,8 +502,10 @@ export function List({ data, listPath }) {
 					<Grid container spacing={2}>
 						{filteredData.map((item) => {
 							return (
+
 								<Grid item xs={12} md={6} key={item.id}>
 									<ListItem
+
 										daysUntilNextPurchase={item.daysUntilNextPurchase}
 										dateLastPurchased={item.dateLastPurchased}
 										itemId={item.id}

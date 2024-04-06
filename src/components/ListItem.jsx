@@ -96,7 +96,19 @@ export function ListItem({
 
 	return (
 		<>
-			<Card sx={{ border: '1px solid #003780', borderRadius: 2 }}>
+			<Card
+				sx={{
+					borderRadius: 2,
+					border: (theme) => {
+						return theme.palette.mode === 'dark'
+							? '1.5px solid #f8f9fa'
+							: '1.5px solid #003780';
+					},
+					backgroundColor: (theme) => {
+						return theme.palette.mode === 'dark' ? '#003780' : undefined;
+					},
+				}}
+			>
 				<li
 					className="ListItem"
 					style={{
@@ -121,13 +133,23 @@ export function ListItem({
 							sx={{
 								marginRight: 2,
 								backgroundColor: chipBackgroundColor,
+								color: (theme) => {
+									return theme.palette.mode === 'dark' ? '#003780' : undefined;
+								},
 								width: 75,
 							}}
 						/>
 						<Button
 							sx={{
-								color: '#003780',
-								border: '1px solid #003780',
+								color: (theme) => {
+									return theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780';
+								},
+
+								border: (theme) => {
+									return theme.palette.mode === 'dark'
+										? '1px solid #f8f9fa'
+										: '1px solid #003780';
+								},
 								width: '80px',
 							}}
 							onClick={handleClick}
