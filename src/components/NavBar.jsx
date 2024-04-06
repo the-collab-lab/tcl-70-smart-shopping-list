@@ -30,7 +30,14 @@ export function NavBar() {
 	return (
 		<AppBar
 			position="static"
-			sx={{ backgroundColor: '#003780', color: '#fdeecd', mb: '20px' }}
+			sx={{
+				backgroundColor: (theme) =>
+					theme.palette.mode === 'dark' ? '#003780' : '#003780',
+				border: (theme) =>
+					theme.palette.mode === 'dark' ? '1px solid #f8f9fa' : undefined,
+				color: '#fdeecd',
+				mb: '20px',
+			}}
 		>
 			<Container maxWidth="xl" className="nav-bar">
 				<Toolbar variant="dense" disableGutters>

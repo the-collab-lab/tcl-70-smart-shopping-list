@@ -2,9 +2,8 @@ import { Outlet } from 'react-router-dom';
 import { useThemeContext } from '../components/ThemeContext';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
-import { IconButton } from '@mui/material';
+import { IconButton, Grid } from '@mui/material';
 import './Layout.css';
-
 import { NavBar } from '../components';
 
 export function Layout() {
@@ -13,26 +12,41 @@ export function Layout() {
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
-					<IconButton
-						onClick={toggleColorMode}
-						color="inherit"
-						aria-label="toggle theme"
-						edge="end"
-						sx={{
-							display: { sm: 'flex', md: 'none' },
-							alignSelf: 'end',
-							padding: '20px',
-						}}
-					>
-						{mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-					</IconButton>
-					<div className="Layout-header-content">
-						<img src="/img/SwiftShopBird.png" alt="" />
-						<h1>
-							<p className="swift-header">Swift</p>
-							<p className="shop-header">shop</p>
-						</h1>
-					</div>
+					<Grid container>
+						<Grid item xs={1}>
+							{' '}
+						</Grid>
+						<Grid
+							item
+							xs={10}
+							sx={{ display: 'flex', justifyContent: 'center' }}
+						>
+							<img src="/img/SwiftShopBird.png" alt="" />
+							<h1>
+								<p className="swift-header">Swift</p>
+								<p className="shop-header">shop</p>
+							</h1>
+						</Grid>
+						<Grid
+							item
+							xs={1}
+							sx={{ display: 'flex', justifyContent: 'center' }}
+						>
+							<IconButton
+								onClick={toggleColorMode}
+								color="inherit"
+								aria-label="toggle theme"
+								edge="end"
+								sx={{
+									display: { sm: 'flex', md: 'none' },
+									alignSelf: 'start',
+									justifySelf: 'end',
+								}}
+							>
+								{mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+							</IconButton>
+						</Grid>
+					</Grid>
 					{/* For use later
 					<svg viewBox="0 0 500 500" >
 						<path

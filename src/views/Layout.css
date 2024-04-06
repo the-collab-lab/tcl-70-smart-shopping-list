@@ -25,22 +25,17 @@
 .Layout-header {
 	background-color: var(--color-bg);
 	text-align: center;
-	margin: 0.2rem;
 	/* padding: 0.2rem; */
-	background-image: radial-gradient(#f8f9fa 0%, #fdeecd 60%);
+	/* background: radial-gradient(#f8f9fa 0%, #fdeecd 60%); */
 	color: #003780;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 }
 
 .Layout-header img {
 	width: 200px;
-}
-
-.Layout-header-content {
-	display: flex;
 }
 
 .swift-header {
@@ -51,6 +46,7 @@
 	font-size: 7rem;
 	text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
 	margin: 0;
+	z-index: 1;
 }
 
 .shop-header {
@@ -62,6 +58,7 @@
 	text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
 	text-align: center;
 	margin: 0;
+	z-index: 1;
 }
 
 .Layout-main {
