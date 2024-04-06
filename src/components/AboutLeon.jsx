@@ -64,7 +64,6 @@ export function AboutLeon() {
 								<LinkedInIcon />
 							</IconButton>
 						</Link>
-						'
 						<Link href="https://github.com/chungleee">
 							<IconButton
 								sx={{
