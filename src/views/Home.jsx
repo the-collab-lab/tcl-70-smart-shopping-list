@@ -150,7 +150,6 @@ export function Home({ data, setListPath, userEmail, userId }) {
 							<InputLabel
 								htmlFor="shopping-list-name"
 								size="normal"
-								// className="centered-block"
 								sx={{
 									color: (theme) =>
 										theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
