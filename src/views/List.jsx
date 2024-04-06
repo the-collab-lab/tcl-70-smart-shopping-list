@@ -238,9 +238,11 @@ export function List({ data, listPath }) {
 									variant="standard"
 									sx={{ minWidth: { xs: 156, sm: 100 }, mr: 2 }}
 								>
-									<InputLabel htmlFor="itemName">Enter item name:</InputLabel>
+									<InputLabel htmlFor="itemNameAccordion">
+										Enter item name:
+									</InputLabel>
 									<Input
-										id="itemName"
+										id="itemNameAccordion"
 										placeholder="Item Name"
 										value={item.name}
 										name="name"
@@ -252,14 +254,14 @@ export function List({ data, listPath }) {
 									sx={{ m: 0, minWidth: { xs: 156, sm: 170 }, mr: 2 }}
 								>
 									<InputLabel
-										id="purchaseUrgencyInput"
+										id="purchaseUrgencyInputAccordion"
 										sx={{ fontSize: '0.9rem' }}
 									>
 										How soon will you buy this item:
 									</InputLabel>
 									<Select
-										labelId="purchaseUrgencyInput"
-										id="purchaseUrgency"
+										labelId="purchaseUrgencyInputAccordion"
+										id="purchaseUrgencyInputAccordion"
 										name="urgency"
 										label="How soon will you buy this item:"
 										onChange={handleAddItemChange}
