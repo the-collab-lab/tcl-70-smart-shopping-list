@@ -1,0 +1,17 @@
+.nav-link {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+}
+
+.nav-link .nav-button {
+	color: #fdeecd;
+	display: 'block';
+	font-size: 1.2rem;
+	letter-spacing: 1px;
+}
+
+.nav-link .nav-button:hover {
+	text-decoration: underline;
+}
