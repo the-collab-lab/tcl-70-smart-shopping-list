@@ -369,9 +369,9 @@ export function List({ data, listPath }) {
 					<Grid container spacing={2}>
 						{filteredData.map((item) => {
 							return (
-								<Grid item xs={12} md={6}>
+								<Grid item xs={12} md={6} key={item.id}>
 									<ListItem
-										key={item.id}
+										// key={item.id}
 										daysUntilNextPurchase={item.daysUntilNextPurchase}
 										dateLastPurchased={item.dateLastPurchased}
 										itemId={item.id}
