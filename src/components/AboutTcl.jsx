@@ -28,7 +28,9 @@ export function AboutTcl() {
 								textAlign: 'center',
 								fontFamily: 'Newsreader',
 								fontWeight: 400,
-								color: '#003780',
+								color: (theme) => {
+									return theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780';
+								},
 							}}
 						>
 							Our Project & The Collab Lab
@@ -80,6 +82,11 @@ export function AboutTcl() {
 								'&:hover': { backgroundColor: '#0058cd' },
 								color: 'white',
 								mt: 2,
+								border: (theme) => {
+									return theme.palette.mode === 'dark'
+										? '1px solid #f8f9fa'
+										: '1px solid #003780';
+								},
 							}}
 						>
 							<WebAssetIcon sx={{ mr: 1, fontSize: '2.5rem' }} />

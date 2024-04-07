@@ -42,8 +42,15 @@ export function About() {
 						justifyContent: 'center',
 						alignItems: 'center',
 						overflow: 'hidden',
-						borderRadius: '16px',
-						border: '2px solid #003780',
+						borderRadius: 2,
+						border: (theme) => {
+							return theme.palette.mode === 'dark'
+								? '1.5px solid #f8f9fa'
+								: '1.5px solid #003780';
+						},
+						backgroundColor: (theme) => {
+							return theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa';
+						},
 						boxShadow: 3,
 						p: 2,
 						position: 'relative',

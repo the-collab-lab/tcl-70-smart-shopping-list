@@ -16,12 +16,19 @@ export function AboutGrace() {
 		<Grid item xs={12} sm={6} md={6} lg={3} sx={{ width: { xs: '100%' } }}>
 			<Card
 				sx={{
-					border: '1.5px solid #003780',
+					border: (theme) => {
+						return theme.palette.mode === 'dark'
+							? '1px solid #f8f9fa'
+							: '1px solid #003780';
+					},
 					borderRadius: '20px',
 					padding: '1.5rem',
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
+					backgroundColor: (theme) => {
+						return theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa';
+					},
 				}}
 			>
 				<Avatar
@@ -29,7 +36,17 @@ export function AboutGrace() {
 						width: 80,
 						height: 80,
 						marginBottom: 2,
-						bgcolor: '#003780',
+						backgroundColor: (theme) => {
+							return theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa';
+						},
+						border: (theme) => {
+							return theme.palette.mode === 'dark'
+								? '1.5px solid #f8f9fa'
+								: '1.5px solid #003780';
+						},
+						color: (theme) => {
+							return theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780';
+						},
 					}}
 				>
 					GL
@@ -46,7 +63,13 @@ export function AboutGrace() {
 						variant="h5"
 						component="div"
 						textAlign="center"
-						sx={{ fontWeight: 'bold', marginBottom: 2 }}
+						sx={{
+							fontWeight: 'bold',
+							marginBottom: 2,
+							color: (theme) => {
+								return theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780';
+							},
+						}}
 					>
 						Grace Lee
 					</Typography>
@@ -59,6 +82,11 @@ export function AboutGrace() {
 									'&:hover': { backgroundColor: '#0058cd' },
 									width: 48,
 									height: 48,
+									border: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '1.5px solid #f8f9fa'
+											: '1.5px solid #003780';
+									},
 								}}
 							>
 								<LinkedInIcon />
@@ -72,6 +100,11 @@ export function AboutGrace() {
 									'&:hover': { backgroundColor: '#0058cd' },
 									width: 48,
 									height: 48,
+									border: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '1.5px solid #f8f9fa'
+											: '1.5px solid #003780';
+									},
 								}}
 							>
 								<GitHubIcon />

@@ -51,7 +51,9 @@ export function AboutDevelopers() {
 						mb: 4,
 						fontWeight: 400,
 						fontFamily: 'Newsreader',
-						color: '#003780',
+						color: (theme) => {
+							return theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780';
+						},
 					}}
 				>
 					The Developers
@@ -82,7 +84,11 @@ export function AboutDevelopers() {
 						alignItems: 'center',
 						overflow: 'hidden',
 						borderRadius: '16px',
-						border: '1px solid #003780',
+						border: (theme) => {
+							return theme.palette.mode === 'dark'
+								? '1px solid #f8f9fa'
+								: '1px solid #003780';
+						},
 						boxShadow: 3,
 						p: 2,
 						position: 'relative',
