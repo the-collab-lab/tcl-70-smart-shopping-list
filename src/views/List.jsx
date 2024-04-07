@@ -474,7 +474,6 @@ export function List({ data, listPath }) {
 						padding: '10px',
 						backgroundColor: (theme) =>
 							theme.palette.mode === 'dark' ? '#003780' : '#ffffff',
-						display: 'flex',
 					}}
 				>
 					<Grid item sx={{ ml: 4, mr: 4 }}>
