@@ -51,7 +51,9 @@ export function AboutDevelopers() {
 						mb: 4,
 						fontWeight: 400,
 						fontFamily: 'Newsreader',
-						color: '#003780',
+						color: (theme) => {
+							return theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780';
+						},
 					}}
 				>
 					The Developers
@@ -81,8 +83,15 @@ export function AboutDevelopers() {
 						justifyContent: 'center',
 						alignItems: 'center',
 						overflow: 'hidden',
+						border: (theme) => {
+							return theme.palette.mode === 'dark'
+								? '1px solid #f8f9fa'
+								: '1px solid #003780';
+						},
+						backgroundColor: (theme) => {
+							return theme.palette.mode === 'dark' ? '#003780af' : '#f8f9fa';
+						},
 						borderRadius: '16px',
-						border: '1px solid #003780',
 						boxShadow: 3,
 						p: 2,
 						position: 'relative',
@@ -105,7 +114,9 @@ export function AboutDevelopers() {
 								mb: 4,
 								fontWeight: 400,
 								fontFamily: 'Newsreader',
-								color: '#003780',
+								color: (theme) => {
+									return theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780';
+								},
 							}}
 						>
 							The Developers
@@ -116,12 +127,27 @@ export function AboutDevelopers() {
 						steps={numOfItems}
 						position="static"
 						activeStep={activeIndex}
-						sx={{ color: '#003780', width: '80%' }}
+						sx={{
+							color: (theme) => {
+								return theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780';
+							},
+							width: '80%',
+							backgroundColor: (theme) => {
+								return theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa';
+							},
+						}}
 						nextButton={
 							<Button
 								size="large"
 								onClick={handleNext}
-								sx={{ color: '#003780', fontSize: '1.5rem' }}
+								sx={{
+									color: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '#f8f9fa'
+											: '#003780';
+									},
+									fontSize: '1.5rem',
+								}}
 							>
 								Next
 								{theme.direction === 'rtl' ? (
@@ -135,7 +161,14 @@ export function AboutDevelopers() {
 							<Button
 								size="large"
 								onClick={handlePrev}
-								sx={{ color: '#003780', fontSize: '1.5rem' }}
+								sx={{
+									color: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '#f8f9fa'
+											: '#003780';
+									},
+									fontSize: '1.5rem',
+								}}
 							>
 								{theme.direction === 'rtl' ? (
 									<KeyboardArrowRight />
