@@ -227,7 +227,6 @@ export function List({ data, listPath }) {
 							</Grid>
 							<Grid item>
 								<Button
-
 									type="submit"
 									variant="outlined"
 									sx={{
@@ -242,7 +241,6 @@ export function List({ data, listPath }) {
 										fontSize: '1.5rem',
 										margin: '10px',
 									}}
-
 								>
 									Submit
 								</Button>
@@ -389,7 +387,19 @@ export function List({ data, listPath }) {
 					>
 						{listName} List
 					</Typography>
-					<Box sx={{ display: 'flex', alignItems: 'center' }}>
+					<Box
+						sx={{
+							display: 'flex',
+							alignItems: 'center',
+							borderColor: (theme) =>
+								theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+							borderStyle: 'solid',
+							borderWidth: '1px',
+							padding: '20px',
+							backgroundColor: (theme) =>
+								theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa',
+						}}
+					>
 						<FormControl variant="standard" sx={{ width: '250px' }}>
 							<InputLabel
 								htmlFor="itemSearch"
@@ -454,7 +464,18 @@ export function List({ data, listPath }) {
 					justifyContent="center"
 					spacing={{ xs: 0, md: 2 }}
 					mt={1}
-					sx={{ mt: { xs: 1 }, mb: { xs: 0 } }}
+					sx={{
+						mt: { xs: 1 },
+						mb: { xs: 0 },
+						borderColor: (theme) =>
+							theme.palette.mode === 'dark' ? '#f8f9fa' : '#003780',
+						borderStyle: 'solid',
+						borderWidth: '1px',
+						padding: '10px',
+						backgroundColor: (theme) =>
+							theme.palette.mode === 'dark' ? '#003780' : '#ffffff',
+						display: 'flex',
+					}}
 				>
 					<Grid item sx={{ ml: 4, mr: 4 }}>
 						<Grid container>
@@ -502,10 +523,8 @@ export function List({ data, listPath }) {
 					<Grid container spacing={2}>
 						{filteredData.map((item) => {
 							return (
-
 								<Grid item xs={12} md={6} key={item.id}>
 									<ListItem
-
 										daysUntilNextPurchase={item.daysUntilNextPurchase}
 										dateLastPurchased={item.dateLastPurchased}
 										itemId={item.id}
