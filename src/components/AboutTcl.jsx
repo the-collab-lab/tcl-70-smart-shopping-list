@@ -101,7 +101,14 @@ export function AboutTcl() {
 					mt: 2,
 					display: { xs: 'flex', sm: 'none' },
 					flexDirection: 'column',
-					border: '1px solid #003780',
+					border: (theme) => {
+						return theme.palette.mode === 'dark'
+							? '1.5px solid #f8f9fa'
+							: '1.5px solid #003780';
+					},
+					backgroundColor: (theme) => {
+						return theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa';
+					},
 					borderRadius: '10px',
 					width: '95vw',
 					padding: '10px',
@@ -167,6 +174,11 @@ export function AboutTcl() {
 							backgroundColor: '#003780',
 							'&:hover': { backgroundColor: '#0058cd' },
 							color: 'white',
+							border: (theme) => {
+								return theme.palette.mode === 'dark'
+									? '1px solid #f8f9fa'
+									: '1px solid #003780';
+							},
 						}}
 					>
 						<WebAssetIcon sx={{ mr: 1, fontSize: '2.5rem' }} />

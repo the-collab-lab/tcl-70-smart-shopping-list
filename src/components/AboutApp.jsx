@@ -122,6 +122,9 @@ export function AboutApp() {
 					borderRadius: '10px',
 					width: '95vw',
 					padding: '10px',
+					backgroundColor: (theme) => {
+						return theme.palette.mode === 'dark' ? '#003780' : '#f8f9fa';
+					},
 				}}
 			>
 				<Container maxWidth="sm">
@@ -196,6 +199,11 @@ export function AboutApp() {
 							display: 'flex',
 							alignItems: 'center',
 							width: 'fit-content',
+							border: (theme) => {
+								return theme.palette.mode === 'dark'
+									? '1px solid #f8f9fa'
+									: '1px solid #003780';
+							},
 						}}
 					>
 						<GitHubIcon sx={{ mr: 1, fontSize: '2.5rem' }} />

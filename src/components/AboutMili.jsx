@@ -82,6 +82,11 @@ export function AboutMili() {
 									'&:hover': { backgroundColor: '#0058cd' },
 									width: 48,
 									height: 48,
+									border: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '1.5px solid #f8f9fa'
+											: '1.5px solid #003780';
+									},
 								}}
 							>
 								<LinkedInIcon />
@@ -95,6 +100,11 @@ export function AboutMili() {
 									'&:hover': { backgroundColor: '#0058cd' },
 									width: 48,
 									height: 48,
+									border: (theme) => {
+										return theme.palette.mode === 'dark'
+											? '1.5px solid #f8f9fa'
+											: '1.5px solid #003780';
+									},
 								}}
 							>
 								<GitHubIcon />
