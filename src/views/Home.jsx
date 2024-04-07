@@ -66,7 +66,16 @@ export function Home({ data, setListPath, userEmail, userId }) {
 						m: '25px 0',
 					}}
 				>
-					<Box className="welcome-card">
+					<Box
+						className="welcome-card"
+						sx={{
+							border: (theme) => {
+								return theme.palette.mode === 'dark'
+									? '1.5px solid #f8f9fa'
+									: '1.5px solid #003780';
+							},
+						}}
+					>
 						<Typography
 							variant="h4"
 							component="h2"
@@ -175,7 +184,6 @@ export function Home({ data, setListPath, userEmail, userId }) {
 								}}
 							/>
 							<Button
-
 								type="submit"
 								disabled={shoppingListName.length === 0}
 								sx={{
@@ -190,7 +198,6 @@ export function Home({ data, setListPath, userEmail, userId }) {
 									fontSize: '1.5rem',
 									margin: '10px',
 								}}
-
 							>
 								Submit
 							</Button>
